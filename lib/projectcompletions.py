@@ -66,7 +66,7 @@ def load_project_file(project_name, project_data, file_path, bean_names=None):
 			# lock for setting file completions
 			with lock:
 				if project_name not in projects:
-					projects[project_name] = {"project_data": project_data, "completions": project_completions}
+					projects[project_name] = {"project_data": project_data, "completions": {}}
 				projects[project_name]["completions"].update(file_completions)
 
 def has_completions(project_name, bean_name):
