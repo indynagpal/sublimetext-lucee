@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>lucee-indent</string>
+	<key>scope</key>
+	<string>source.lucee - source.lucee.script</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>(?x)
+		^\s*
+		(
+		&lt;/(:)
+		[A-Za-z0-9]+\b[^&gt;]*&gt;
+		|-?--&gt;
+		)</string>
+		<key>increaseIndentPattern</key>
+		<string>(?x)
+			^\s*
+				&lt;
+				(?!
+					(?i:!---?|/|:set|:param|:dump|:argument|:abort
+					|:import|:content|:break|:include|:catch|:continue
+					|:location|:setting|:file|:log|:object|:invoke|:import
+					|:forward|:return|:throw|:property|:htmlhead|:header
+					|:trace
+					)
+				)
+				[^&gt;]*
+				&gt;
+			\s*$
+  	</string>
+  </dict>
+</dict>
+</plist>

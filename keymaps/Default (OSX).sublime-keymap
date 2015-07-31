@@ -1,0 +1,76 @@
+[
+  // super+alt+a <cfabort>/<:abort>
+  {
+    "keys": ["super+alt+a"],
+    "command": "insert_snippet",
+    "args": {"contents": "<cfabort>"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["super+alt+a"],
+    "command": "insert_snippet",
+    "args": {"contents": "<:abort>"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.lucee"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // super+alt+d writeDump()/dump();
+  {
+    "keys": ["super+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "writeDump(${0:$SELECTION});"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["super+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "dump(${0:$SELECTION});"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // super+alt+d  <cfdump var="##">/<:dump var="##">
+  {
+    "keys": ["super+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "<cfdump var=\"#${1:$SELECTION}#\">"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["super+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "<:dump var=\"#${1:$SELECTION}#\">"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.lucee"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // shift+3 wrap selection with hash
+  {
+    "keys": ["#"],
+    "command": "insert_snippet",
+    "args": {"contents": "#${0:$SELECTION}#"},
+    "context": [
+      {"key": "setting.auto_match_enabled", "operator": "equal", "operand":true},
+      {"key": "selector", "operator": "equal", "operand": "string.quoted.double.cfml,string.quoted.single.cfml,meta.scope.cfoutput.cfml", "match_all":true}
+    ]
+  },
+  {
+    "keys": ["#"],
+    "command": "insert_snippet",
+    "args": {"contents": "#${0:$SELECTION}#"},
+    "context": [
+      {"key": "setting.auto_match_enabled", "operator": "equal", "operand":true},
+      {"key": "selector", "operator": "equal", "operand": "string.quoted.double.lucee,string.quoted.single.lucee,meta.scope.cfoutput.lucee", "match_all":true}
+    ]
+  }
+]

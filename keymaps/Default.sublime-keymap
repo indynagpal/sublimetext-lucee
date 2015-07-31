@@ -1,0 +1,112 @@
+[
+  // ctrl+alt+a <cfabort>/<:abort>
+  {
+    "keys": ["ctrl+alt+a"],
+    "command": "insert_snippet",
+    "args": {"contents": "<cfabort>"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["ctrl+alt+a"],
+    "command": "insert_snippet",
+    "args": {"contents": "<:abort>"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.lucee"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // ctrl+alt+d writeDump()/dump();
+  {
+    "keys": ["ctrl+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "writeDump(${0:$SELECTION});"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["ctrl+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "dump(${0:$SELECTION});"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // ctrl+alt+d  <cfdump var="##">/<:dump var="##">
+  {
+    "keys": ["ctrl+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "<cfdump var=\"#${1:$SELECTION}#\">"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["ctrl+alt+d"],
+    "command": "insert_snippet",
+    "args": {"contents": "<:dump var=\"#${1:$SELECTION}#\">"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.lucee"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // shift+3 wrap selection with hash
+  {
+    "keys": ["#"],
+    "command": "insert_snippet",
+    "args": {"contents": "#${0:$SELECTION}#"},
+    "context": [
+      {"key": "setting.auto_match_enabled", "operator": "equal", "operand":true},
+      {"key": "selection_empty", "operator": "equal", "operand":false, "match_all":true},
+      {"key": "selector", "operator": "equal", "operand": "string.quoted.double.cfml,string.quoted.single.cfml,meta.scope.cfoutput.cfml", "match_all":true}
+    ]
+  },
+  {
+    "keys": ["#"],
+    "command": "insert_snippet",
+    "args": {"contents": "#${0:$SELECTION}#"},
+    "context": [
+      {"key": "setting.auto_match_enabled", "operator": "equal", "operand":true},
+      {"key": "selection_empty", "operator": "equal", "operand":false, "match_all":true},
+      {"key": "selector", "operator": "equal", "operand": "string.quoted.double.lucee,string.quoted.single.lucee,meta.scope.cfoutput.lucee", "match_all":true}
+    ]
+  },
+  // ctrl+f12 cfdocs lookup
+  {
+    "keys": ["ctrl+f12"],
+    "command": "lucee_docs",
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "support.function.cfml,entity.name.tag.cfml,meta.tag.cfml storage.type", "match_all":true}
+    ]
+  },
+  {
+    "keys": ["ctrl+f12"],
+    "command": "lucee_docs",
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "support.function.lucee,entity.name.tag.lucee,meta.tag.lucee storage.type", "match_all":true}
+    ]
+  },
+  // close tags
+  {
+    "keys": ["/"],
+    "command": "close_lucee_tag",
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml - string - comment - source.cfml.script", "match_all":true},
+      {"key": "preceding_text", "operator": "regex_match", "operand": ".*<$", "match_all":true},
+      {"key": "setting.auto_close_tags"}
+    ]
+  },
+  {
+    "keys": ["/"],
+    "command": "close_lucee_tag",
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.lucee - string - comment - source.lucee.script", "match_all":true},
+      {"key": "preceding_text", "operator": "regex_match", "operand": ".*<$", "match_all":true},
+      {"key": "setting.auto_close_tags"}
+    ]
+  }
+]

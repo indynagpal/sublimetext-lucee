@@ -1,0 +1,381 @@
+%YAML1.2
+---
+# Started with https://github.com/SublimeText/ColdFusion
+name: Lucee
+file_extensions:
+  - lucee
+  - lc
+scope: embedding.lucee
+contexts:
+  main:
+    - match: (?i)(?=^\s*(/\*|//|import\b|(component|interface)(\s+|{)))
+      push: scope:source.lucee.script
+    - include: comments
+    - match: (?i)(?=(</?:))
+      push: lucee
+    - match: (?=<?!?[a-zA-Z0-9:]+)
+      set: html
+      with_prototype:
+        - include: comments
+        - match: (?i)(?=</?:)
+          push: lucee
+  html:
+    - meta_scope: text.html.lucee
+    - include: scope:text.html.basic
+  comments:
+    - match: <!---.*?--->
+      scope: comment.line.lucee
+    - match: <!---
+      scope: punctuation.definition.comment.lucee
+      push:
+        - meta_scope: comment.block.lucee
+        - match: "--->"
+          pop: true
+        - include: comments
+  component:
+    - meta_scope: source.lucee
+    - match: (?i)(</)(:component)(>)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: storage.type.class.lucee
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+    - match: (?i)(<)(:component)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: storage.type.class.lucee
+      push:
+        - meta_scope: meta.class.lucee
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          pop: true
+        - match: '(?i)\b(extends)\s*(=)\s*"'
+          captures:
+            1: storage.modifier.extends.lucee
+            2: punctuation.separator.key-value.lucee
+          push:
+            - meta_content_scope: meta.class.inheritance.lucee
+            - match: '([_$a-zA-Z][$\w]*)'
+              scope: entity.other.inherited-class.lucee
+            - match: '"'
+              pop: true
+        - include: tag-stuff
+    - include: comments
+    - include: function
+    - match: (?i)(?=</?:)
+      push: tags
+  interface:
+    - meta_scope: source.lucee
+    - match: (?i)(</)(:interface)(>)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: storage.type.interface.lucee
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+    - match: (?i)(<)(:interface)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: storage.type.interface.lucee
+      push:
+        - meta_scope: meta.interface.lucee
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          pop: true
+        - match: '(?i)\b(extends)\s*(=)\s*"'
+          captures:
+            1: storage.modifier.extends.lucee
+            2: punctuation.separator.key-value.lucee
+            3: entity.other.inherited-interface.lucee
+          push:
+            - meta_content_scope: meta.interface.inheritance.lucee
+            - match: '([_$a-zA-Z][$\w]*)'
+              scope: entity.other.inherited-interface.lucee
+            - match: '"'
+              pop: true
+        - include: tag-stuff
+    - include: comments
+    - include: function
+  function:
+    - match: (?i)(?=<:function)
+      push:
+        - match: (<)(:function)
+          captures:
+            1: punctuation.definition.tag.begin.lucee
+            2: storage.type.function.lucee
+          push:
+            - meta_scope: meta.tag.lucee meta.function.lucee
+            - match: ">"
+              scope: punctuation.definition.tag.end.lucee
+              pop: true
+            - match: '\b(name)\s*(=)\s*"([_$a-zA-Z][$\w]*)"'
+              captures:
+                1: entity.other.attribute-name.lucee
+                2: punctuation.separator.key-value.lucee
+                3: entity.name.function.lucee
+            - match: '\b(access)\s*(=)\s*"([_$a-zA-Z][$\w]*)"'
+              captures:
+                1: entity.other.attribute-name.lucee
+                2: punctuation.separator.key-value.lucee
+                3: storage.modifier.lucee
+            - match: |-
+                (?x)(?i)
+                  \b(returntype)\s*(=)\s*"(
+                  (void)
+                  |
+                  (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid) # return-type.primitive
+                  |
+                  ([A-Za-z0-9_\.$]+) #return-type component/object (may need additional tokens)
+                )"
+              captures:
+                1: entity.other.attribute-name.lucee
+                2: punctuation.separator.key-value.lucee
+                3: storage.type.return-type.void.lucee
+                4: storage.type.return-type.primitive.lucee
+                5: storage.type.return-type.object.lucee
+            - include: tag-stuff
+        - match: (</)(:function)(>)
+          captures:
+            0: meta.tag.lucee
+            1: punctuation.definition.tag.begin.lucee
+            2: storage.type.function.lucee
+            3: punctuation.definition.tag.end.lucee
+          pop: true
+        - include: comments
+        - match: (?i)(?=</?:)
+          push: tags
+  if:
+    - match: (?i)(<)(:if|:elseif)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+      set:
+        - meta_scope: meta.tag.lucee
+        - meta_content_scope: source.lucee.script
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          pop: true
+        - include: scope:source.lucee.script
+  lucee:
+    - include: comments
+    - match: (?i)(?=<:component)
+      push: component
+    - match: (?i)(?=<:interface)
+      push: interface
+    - include: function
+    - include: tags
+  tags:
+    - include: comments
+    - include: output
+    - include: query
+    - include: if
+    - include: tags-with-script
+    - include: script
+    - match: (?i)(<)(:[a-z]+)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+      set:
+        - meta_scope: meta.tag.lucee
+        - match: (/?>)
+          scope: meta.tag.lucee punctuation.definition.tag.end.lucee
+          pop: true
+        - include: tag-stuff
+    - match: (?i)(</)(:[a-z]+)(>)
+      captures:
+        0: meta.tag.lucee
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+  output:
+    - match: (?i)(?<=('|"))(<)(:output)(?=.*<\/:output>\1)
+      captures:
+        2: punctuation.definition.tag.begin.lucee
+        3: entity.name.tag.lucee
+      set:
+        - meta_scope: meta.tag.lucee
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          set: output-string-contents
+        - include: tag-stuff
+    - match: (?i)(<)(:output)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+      set:
+        - meta_scope: meta.tag.lucee
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          set: output-contents
+        - include: tag-stuff
+  output-contents:
+    - meta_content_scope: meta.scope.output.lucee
+    - match: (?i)(</)(:output)(>)
+      captures:
+        0: meta.tag.lucee
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee.end
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+    - match: ""
+      push: html
+      with_prototype:
+        - include: comments
+        - match: (?i)(?=</:output>)
+          pop: true
+        - match: (?i)(?=</?:)
+          push: tags
+        - match: "##"
+          scope: constant.character.escape.hash.lucee
+        - match: "#"
+          scope: constant.character.hash.lucee.start
+          push:
+            - meta_content_scope: source.lucee.script
+            - match: "#"
+              scope: constant.character.hash.lucee
+              pop: true
+            - include: scope:source.lucee.script#expression
+  output-string-contents:
+    - meta_content_scope: meta.scope.output.lucee string.quoted
+    - match: (?i)(</)(:output)(>)(?=('|"))
+      captures:
+        0: meta.tag.lucee
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee.end
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+    - match: (?i)(?=</?cf)
+      push: tags
+    - match: "##"
+      scope: constant.character.escape.hash.lucee
+    - match: "#"
+      scope: constant.character.hash.lucee.start
+      push:
+        - meta_content_scope: source.lucee.script
+        - match: "#"
+          scope: constant.character.hash.lucee
+          pop: true
+        - include: scope:source.lucee.script#expression
+  query:
+    - match: (?i)(<)(:query)(?=\s|>)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+      set:
+        - meta_scope: meta.tag.lucee
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          set: query-contents
+        - include: tag-stuff
+  query-contents:
+    - meta_content_scope: meta.scope.query.lucee
+    - match: (?i)(</)(:query)(>)
+      captures:
+        0: meta.tag.lucee
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee.end
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+    - match: ""
+      push: scope:source.sql
+      with_prototype:
+        - match: (?i)(?=</:query>)
+          pop: true
+        - match: (?i)(?=</?:)
+          push: tags
+        - match: "##"
+          scope: constant.character.escape.hash.lucee
+        - match: "#"
+          scope: constant.character.hash.lucee.start
+          push:
+            - meta_content_scope: source.lucee.script
+            - match: "#"
+              scope: constant.character.hash.lucee
+              pop: true
+            - include: scope:source.lucee.script#expression
+  script:
+    - match: (?i)(<)(:script)(\s+|>)
+      captures:
+        0: meta.tag.lucee
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+        3: punctuation.definition.tag.end.lucee
+      push:
+        - meta_content_scope: source.lucee.script
+        - match: (?i)(?=</:script>)
+          pop: true
+        - include: scope:source.lucee.script
+    - match: (?i)(</)(:script)(>)
+      captures:
+        0: meta.tag.lucee
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+        3: punctuation.definition.tag.end.lucee
+      pop: true
+  string:
+    - match: "'"
+      scope: punctuation.definition.string.begin.lucee
+      push: string-content-single
+    - match: '"'
+      scope: punctuation.definition.string.begin.lucee
+      push: string-content-double
+  string-content-single:
+    - meta_scope: string.quoted.single.lucee
+    - match: ('')
+      scope: constant.character.escape.quote.lucee
+    - match: "##"
+      scope: constant.character.escape.hash.lucee
+    - match: "#"
+      scope: constant.character.hash.lucee.start
+      push:
+        - meta_scope: source.lucee.script
+        - match: "#"
+          scope: constant.character.hash.lucee
+          pop: true
+        - include: scope:source.lucee.script#expression
+    - match: (')
+      captures:
+        1: punctuation.definition.string.end.lucee
+      pop: true
+  string-content-double:
+    - meta_scope: string.quoted.double.lucee
+    - match: ("")
+      scope: constant.character.escape.quote.lucee
+    - match: "##"
+      scope: constant.character.escape.hash.lucee
+    - match: "#"
+      scope: constant.character.hash.lucee.start
+      push:
+        - meta_scope: source.lucee.script
+        - match: "#"
+          scope: constant.character.hash.lucee
+          pop: true
+        - include: scope:source.lucee.script#expression
+    - match: (")
+      captures:
+        1: punctuation.definition.string.end.lucee
+      pop: true
+  tag-generic-attribute:
+    - match: '(?<=[^=])\b([a-zA-Z0-9:-]+)\s*(=?)'
+      captures:
+        1: entity.other.attribute-name.lucee
+        2: punctuation.separator.key-value.lucee
+  tag-stuff:
+    - include: tag-generic-attribute
+    - include: string
+    # in Lucee unquoted attribute values are treated as variables not strings
+    - include: scope:source.lucee.script#language-constant
+    - include: scope:source.lucee.script#language-variable
+    - include: scope:source.lucee.script#variable
+  tags-with-script:
+    - match: (?i)(<)(:set|:return)(?=\s|/?>)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee
+      set:
+        - meta_scope: meta.tag.lucee
+        - meta_content_scope: source.lucee.script
+        - match: "(/?>)"
+          scope: punctuation.definition.tag.end.lucee
+          pop: true
+        - include: scope:source.lucee.script
