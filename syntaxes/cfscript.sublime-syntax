@@ -2,7 +2,7 @@
 ---
 # started with https://github.com/SublimeText/ColdFusion
 # uses JavaScript package from sublimehq as a reference: https://github.com/sublimehq/Packages/tree/master/JavaScript
-# that package was derived fromJavaScript Next: https://github.com/Benvie/JavaScriptNext.tmLanguage
+# that package was derived from JavaScript Next: https://github.com/Benvie/JavaScriptNext.tmLanguage
 name: CFML Script
 scope: source.cfml.script
 hidden: true
@@ -584,7 +584,7 @@ contexts:
                 - include: expression
             - include: core
   tag-in-script:
-    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid))?\s+([_$a-zA-Z][$\w]*)
+    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:
         1: entity.name.tag.script.cfml
         3: storage.type.cfml
