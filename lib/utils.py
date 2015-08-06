@@ -44,7 +44,7 @@ def make_tag_completion(tag, type, required_attrs):
 
 def get_previous_word(view, pos):
 	previous_word_start = view.find_by_class(pos, False, sublime.CLASS_WORD_START)
-	previous_word = view.substr(sublime.Region(previous_word_start, pos)).strip()
+	previous_word = view.substr(sublime.Region(previous_word_start, pos)).strip().lower()
 	return previous_word
 
 def get_tag_name(view, pos):
@@ -52,7 +52,7 @@ def get_tag_name(view, pos):
 	for index in range(500):
 		if view.match_selector(pos - index,"entity.name.tag"):
 			tag_name_region = view.expand_by_class(pos - index, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "<")
-			tag_name = view.substr(tag_name_region)
+			tag_name = view.substr(tag_name_region).lower()
 			return tag_name
 
 def get_last_open_tag(view,pos):
