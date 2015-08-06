@@ -713,16 +713,16 @@ contexts:
         (?x)
             (^|\s+)
             (?i:
-              (abort|ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|case|catch|collection|component
+              (abort|ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|case|catch|collection
               |content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem|documentsection|dump|else|elseif
               |error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata|header|htmlbody|htmlhead
               |http|httpparam|if|image|imap|import|include|index|input|insert|interface|invoke|invokeargument|layout|layoutarea
               |ldap|location|lock|log|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer|module|objectcache|output|pageencoding
               |param|pdf|pdfparam|pop|processingdirective|procparam|procresult|property|query|queryparam|responseheader|rethrow
-              |retry|return|savecontent|schedule|script|search|select|set|setting|silent|sleep|static|stopwatch|storedproc|switch
+              |retry|savecontent|schedule|script|search|select|set|setting|silent|sleep|static|stopwatch|storedproc|switch
               |thread|throw|timer|trace|transaction|try|update|video|videoplayer|videoplayerparam|wddx|while|window|x_|xml|zip
               |zipparam)
-            )(?=(\s+[a-zA-Z]+\s*=))
+            )(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
       captures:
         2: entity.name.tag.script.lucee
       push:

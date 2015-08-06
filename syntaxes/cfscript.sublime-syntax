@@ -599,15 +599,15 @@ contexts:
             (^|\s+)
             (?i:
               (abort|ajaximport|ajaxproxy|applet|application|argument|associate|authenticate|break|cache|case|catch|chart|chartdata
-              |chartseries|col|collection|component|content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem
+              |chartseries|col|collection|content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem
               |documentsection|dump|else|elseif|error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata
               |header|htmlbody|htmlhead|http|httpparam|if|image|imap|import|include|index|input|insert|interface|invoke|invokeargument
               |layout|layoutarea|ldap|location|lock|log|login|loginuser|logout|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer
               |module|object|objectcache|output|pageencoding|param|pdf|pdfparam|pop|processingdirective|procparam|procresult
-              |property|query|queryparam|registry|rethrow|retry|return|savecontent|schedule|script|search|select|servlet|servletparam
+              |property|query|queryparam|registry|rethrow|retry|savecontent|schedule|script|search|select|servlet|servletparam
               |set|setting|silent|sleep|slider|stopwatch|storedproc|switch|table|textinput|thread|throw|timer|trace|transaction|try
               |update|video|videoplayer|videoplayerparam|wddx|while|window|xml|zip|zipparam)
-            )(?=(\s+[a-zA-Z]+\s*=))
+            )(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
       captures:
         2: entity.name.tag.script.cfml
       push:
