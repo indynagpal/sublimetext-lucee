@@ -596,7 +596,7 @@ contexts:
         - include: scope:embedding.cfml#tag-stuff
     - match: |-
         (?x)
-            (^\s*)
+            (^|\s+)
             (?i:
               (abort|ajaximport|ajaxproxy|applet|application|argument|associate|authenticate|break|cache|case|catch|chart|chartdata
               |chartseries|col|collection|component|content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem
@@ -607,7 +607,7 @@ contexts:
               |property|query|queryparam|registry|rethrow|retry|return|savecontent|schedule|script|search|select|servlet|servletparam
               |set|setting|silent|sleep|slider|stopwatch|storedproc|switch|table|textinput|thread|throw|timer|trace|transaction|try
               |update|video|videoplayer|videoplayerparam|wddx|while|window|xml|zip|zipparam)
-            )(?=(\s+[a-zA-Z]+\s*="))
+            )(?=(\s+[a-zA-Z]+\s*=))
       captures:
         2: entity.name.tag.script.cfml
       push:

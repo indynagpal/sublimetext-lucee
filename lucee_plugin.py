@@ -41,11 +41,6 @@ class LuceeCompletions(sublime_plugin.EventListener):
 			if view.match_selector(locations[0], "embedding." + dialect + " - source." + dialect + ".script"):
 				return self.get_tag_completions(view, prefix, locations, dialect)
 
-			# tag in script completions
-			if view.match_selector(locations[0], "embedding." + dialect + " source." + dialect + ".script meta.tag"):
-				completion_list = self.get_attribute_completions(view, locations[0], prefix, True, dialect)
-				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
-
 			# member and model function completions
 			if view.match_selector(locations[0] - 1, "embedding." + dialect + " source." + dialect + ".script meta.property.object." + dialect + ", embedding." + dialect + " source." + dialect + ".script keyword.operator.accessor." + dialect):
 				# are we in a project
@@ -58,12 +53,30 @@ class LuceeCompletions(sublime_plugin.EventListener):
 				# if no match to a bean name return the member function completions
 				return (self.completions[dialect + "_member_functions"], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-			# function completions
+			# tag in script attribute completions
+			if view.match_selector(locations[0] - len(prefix) - 1, "embedding." + dialect + " source." + dialect + ".script meta.tag"):
+				completion_list = self.get_attribute_completions(utils.get_tag_name(view, locations[0]), True, dialect)
+				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+			# adding component (i.e. cfcomponent) attribute completions separately so I don't have to rescope
+			if view.match_selector(locations[0] - len(prefix) - 1, "embedding." + dialect + " source." + dialect + ".script meta.class"):
+				completion_list = self.get_attribute_completions("component", True, dialect)
+				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+			# in all script scopes add a check of last word entered, it might be a tag in script but not yet scoped as such
 			if view.match_selector(locations[0], "embedding." + dialect + " source." + dialect + ".script"):
-				return (self.completions[dialect + "_functions"], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+				previous_word = utils.get_previous_word(view, locations[0] - len(prefix) - 1)
+				completion_list = self.get_attribute_completions(previous_word, True, dialect)
+				if len(completion_list) > 0:
+					return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+
+			# function and tag-in-script completions
+			if view.match_selector(locations[0], "embedding." + dialect + " source." + dialect + ".script"):
+				completion_list = [];
+				completion_list.extend(self.completions[dialect + "_functions"])
+				completion_list.extend(self.completions[dialect + "_tags_in_script"])
+				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
 		# default
-		return []
+		return None
 
 	def get_tag_completions(self, view, prefix, locations, dialect):
 
@@ -74,7 +87,7 @@ class LuceeCompletions(sublime_plugin.EventListener):
 		if is_inside_tag and ch != '<':
 			if ch in [' ', '\t', '\n']:
 				# maybe trying to type an attribute
-				completion_list = self.get_attribute_completions(view, locations[0], prefix, False, dialect)
+				completion_list = self.get_attribute_completions(utils.get_tag_name(view, locations[0]), False, dialect)
 				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
 		if prefix == '':
@@ -89,20 +102,18 @@ class LuceeCompletions(sublime_plugin.EventListener):
 
 		return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-	def get_attribute_completions(self, view, pt, prefix, tag_in_script, dialect):
-
-		tag = utils.get_tag_name(view,pt)
+	def get_attribute_completions(self, tag_name, tag_in_script, dialect):
 
 		# check that this tag looks valid
-		if not tag or not tag.isalnum():
+		if not tag_name:
 			return []
 
 		# tags in script don't have 'cf' or ':' prefix
 		if tag_in_script:
-			tag = (":" if dialect == "lucee" else "cf") + tag
+			tag_name = (":" if dialect == "lucee" else "cf") + tag_name
 
 		# got the tag, now find all attributes that match
-		attribute_completions = self.completions[dialect + '_tag_attributes'].get(tag, [])
+		attribute_completions = self.completions[dialect + '_tag_attributes'].get(tag_name, [])
 		return attribute_completions
 
 class LuceeDocsCommand(sublime_plugin.TextCommand):

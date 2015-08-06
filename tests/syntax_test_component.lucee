@@ -9,5 +9,11 @@ component {
   property name="test3" type="array";
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
 //               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.quoted.double.lucee
+	function foo() {
+		var result;
+		if ( true ) http url="www.google.com" result="result";
+//              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.tag.script.lucee entity.name.tag.script.lucee
+//                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
+	}
 
 }

@@ -711,7 +711,7 @@ contexts:
         - include: scope:embedding.lucee#tag-stuff
     - match: |-
         (?x)
-            (^\s*)
+            (^|\s+)
             (?i:
               (abort|ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|case|catch|collection|component
               |content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem|documentsection|dump|else|elseif
@@ -722,7 +722,7 @@ contexts:
               |retry|return|savecontent|schedule|script|search|select|set|setting|silent|sleep|static|stopwatch|storedproc|switch
               |thread|throw|timer|trace|transaction|try|update|video|videoplayer|videoplayerparam|wddx|while|window|x_|xml|zip
               |zipparam)
-            )(?=(\s+[a-zA-Z]+\s*="))
+            )(?=(\s+[a-zA-Z]+\s*=))
       captures:
         2: entity.name.tag.script.lucee
       push:

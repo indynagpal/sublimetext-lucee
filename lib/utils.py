@@ -10,10 +10,12 @@ def load_completions(plugin_path):
 	for dialect in ["lucee","cfml"]:
 		# tags
 		completions[dialect + "_tags"] = []
+		completions[dialect + "_tags_in_script"] = []
 		completions[dialect + "_tag_attributes"] = {}
 		for tag_name in sorted(completions_data[dialect + "_tags"].keys()):
 			tag_attributes = completions_data[dialect + "_tags"][tag_name]
 			completions[dialect + "_tags"].append(make_tag_completion(tag_name, dialect, tag_attributes[0]))
+			completions[dialect + "_tags_in_script"].append(make_tag_completion(tag_name[(1 if dialect == "lucee" else 2):], dialect, tag_attributes[0]))
 			completions[dialect + "_tag_attributes"][tag_name] = [(a + '\trequired', a + '="$1"') for a in tag_attributes[0]]
 			completions[dialect + "_tag_attributes"][tag_name].extend([(a + '\toptional', a + '="$1"') for a in tag_attributes[1]])
 
@@ -39,6 +41,11 @@ def make_tag_completion(tag, type, required_attrs):
 	for index, attr in enumerate(required_attrs, 1):
 		attrs += ' ' + attr + '="$' + str(index) + '"'
 	return (tag + '\ttag (' + type + ')', tag + attrs)
+
+def get_previous_word(view, pos):
+	previous_word_start = view.find_by_class(pos, False, sublime.CLASS_WORD_START)
+	previous_word = view.substr(sublime.Region(previous_word_start, pos)).strip()
+	return previous_word
 
 def get_tag_name(view, pos):
 	# walk backwards from cursor, looking for tag name scope
