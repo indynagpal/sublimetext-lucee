@@ -36,16 +36,17 @@ contexts:
     - meta_scope: source.lucee
     - match: (?i)(</)(:component)(>)
       captures:
+        0: meta.tag.lucee
         1: punctuation.definition.tag.begin.lucee
-        2: storage.type.class.lucee
+        2: entity.name.tag.lucee storage.type.class.lucee
         3: punctuation.definition.tag.end.lucee
       pop: true
     - match: (?i)(<)(:component)
       captures:
         1: punctuation.definition.tag.begin.lucee
-        2: storage.type.class.lucee
+        2: entity.name.tag.lucee storage.type.class.lucee
       push:
-        - meta_scope: meta.class.lucee
+        - meta_scope: meta.tag.lucee meta.class.lucee
         - match: ">"
           scope: punctuation.definition.tag.end.lucee
           pop: true
@@ -68,16 +69,17 @@ contexts:
     - meta_scope: source.lucee
     - match: (?i)(</)(:interface)(>)
       captures:
+        0: meta.tag.lucee
         1: punctuation.definition.tag.begin.lucee
-        2: storage.type.interface.lucee
+        2: entity.name.tag.lucee storage.type.interface.lucee
         3: punctuation.definition.tag.end.lucee
       pop: true
     - match: (?i)(<)(:interface)
       captures:
         1: punctuation.definition.tag.begin.lucee
-        2: storage.type.interface.lucee
+        2: entity.name.tag.lucee storage.type.interface.lucee
       push:
-        - meta_scope: meta.interface.lucee
+        - meta_scope: meta.tag.lucee meta.interface.lucee
         - match: ">"
           scope: punctuation.definition.tag.end.lucee
           pop: true
@@ -101,7 +103,7 @@ contexts:
         - match: (<)(:function)
           captures:
             1: punctuation.definition.tag.begin.lucee
-            2: storage.type.function.lucee
+            2: entity.name.tag.lucee storage.type.function.lucee
           push:
             - meta_scope: meta.tag.lucee meta.function.lucee
             - match: ">"
@@ -137,7 +139,7 @@ contexts:
           captures:
             0: meta.tag.lucee
             1: punctuation.definition.tag.begin.lucee
-            2: storage.type.function.lucee
+            2: entity.name.tag.lucee storage.type.function.lucee
             3: punctuation.definition.tag.end.lucee
           pop: true
         - include: comments

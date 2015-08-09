@@ -11,6 +11,10 @@ component {
 //               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.quoted.double.lucee
   function foo() {
     var result;
+   	toString( testVar, "utf-8" );
+//  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly support.function.lucee
+//          ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.lucee meta.support.function-call.arguments.begin.lucee
+//                             ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.lucee meta.support.function-call.arguments.end.lucee
     if ( true ) http url="www.google.com" result="result";
 //              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.tag.script.lucee entity.name.tag.script.lucee
 //                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee

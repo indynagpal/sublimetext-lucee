@@ -662,6 +662,15 @@ contexts:
             )(?=\()
       captures:
         1: support.function.lucee
+      push:
+        - match: \(
+          scope: meta.support.function-call.arguments.begin.lucee
+          set:
+            - meta_scope: meta.support.function-call.arguments.lucee
+            - match: \)
+              scope: meta.support.function-call.arguments.end.lucee
+              pop: true
+            - include: expression
     - match: |-
         (?x)
             (\.)

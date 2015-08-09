@@ -27,16 +27,17 @@ contexts:
     - meta_scope: source.cfml
     - match: (?i)(</)(cfcomponent)(>)
       captures:
+        0: meta.tag.cfml
         1: punctuation.definition.tag.begin.cfml
-        2: storage.type.class.cfml
+        2: entity.name.tag.cfml storage.type.class.cfml
         3: punctuation.definition.tag.end.cfml
       pop: true
     - match: (?i)(<)(cfcomponent)
       captures:
         1: punctuation.definition.tag.begin.cfml
-        2: storage.type.class.cfml
+        2: entity.name.tag.cfml storage.type.class.cfml
       push:
-        - meta_scope: meta.class.cfml
+        - meta_scope: meta.tag.cfml meta.class.cfml
         - match: ">"
           scope: punctuation.definition.tag.end.cfml
           pop: true
@@ -59,16 +60,17 @@ contexts:
     - meta_scope: source.cfml
     - match: (?i)(</)(cfinterface)(>)
       captures:
+        0: meta.tag.cfml
         1: punctuation.definition.tag.begin.cfml
-        2: storage.type.interface.cfml
+        2: entity.name.tag.cfml storage.type.interface.cfml
         3: punctuation.definition.tag.end.cfml
       pop: true
     - match: (?i)(<)(cfinterface)
       captures:
         1: punctuation.definition.tag.begin.cfml
-        2: storage.type.interface.cfml
+        2: entity.name.tag.cfml storage.type.interface.cfml
       push:
-        - meta_scope: meta.interface.cfml
+        - meta_scope: meta.tag.cfml meta.interface.cfml
         - match: ">"
           scope: punctuation.definition.tag.end.cfml
           pop: true
@@ -92,7 +94,7 @@ contexts:
         - match: (<)(cffunction)
           captures:
             1: punctuation.definition.tag.begin.cfml
-            2: storage.type.function.cfml
+            2: entity.name.tag.cfml storage.type.function.cfml
           push:
             - meta_scope: meta.tag.cfml meta.function.cfml
             - match: ">"
@@ -128,7 +130,7 @@ contexts:
           captures:
             0: meta.tag.cfml
             1: punctuation.definition.tag.begin.cfml
-            2: storage.type.function.cfml
+            2: entity.name.tag.cfml storage.type.function.cfml
             3: punctuation.definition.tag.end.cfml
           pop: true
         - include: comments

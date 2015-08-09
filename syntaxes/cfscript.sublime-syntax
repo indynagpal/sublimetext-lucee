@@ -538,6 +538,15 @@ contexts:
             )(?=\()
       captures:
         1: support.function.cfml
+      push:
+        - match: \(
+          scope: meta.support.function-call.arguments.begin.cfml
+          set:
+            - meta_scope: meta.support.function-call.arguments.cfml
+            - match: \)
+              scope: meta.support.function-call.arguments.end.cfml
+              pop: true
+            - include: expression
     - match: |-
         (?x)
             (\.)

@@ -1,0 +1,13 @@
+<!--- SYNTAX TEST "lucee.sublime-syntax" --->
+<:component extends="base">
+<!--- <- embedding.lucee source.lucee meta.tag.lucee meta.class.lucee punctuation.definition.tag.begin.lucee --->
+ <!--- <- embedding.lucee source.lucee meta.tag.lucee meta.class.lucee entity.name.tag.lucee storage.type.class.lucee --->
+
+  <:function name="init">
+  <!--- <- embedding.lucee source.lucee meta.tag.lucee meta.function.lucee punctuation.definition.tag.begin.lucee --->
+   <!--- <- embedding.lucee source.lucee meta.tag.lucee meta.function.lucee entity.name.tag.lucee storage.type.function.lucee --->
+    <:return this>
+  </:function>
+
+</:component>
+<!--- <- embedding.lucee source.lucee meta.tag.lucee punctuation.definition.tag.begin.lucee --->

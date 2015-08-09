@@ -5,7 +5,7 @@
  <!--- <- embedding.cfml entity.name.tag --->
 <cfset arrayAppend(testArray, 1)>
 <!---   ^ embedding.cfml meta.tag source.cfml.script support.function.cfml --->
-<!---             ^ embedding.cfml meta.tag source.cfml.script meta.brace.round.cfml --->
+<!---             ^ embedding.cfml meta.tag source.cfml.script meta.support.function-call.arguments.cfml meta.support.function-call.arguments.begin.cfml --->
 </div>
 <cfoutput>
 <!---     ^ embedding.cfml text.html.cfml meta.scope.cfoutput.cfml text.html.cfml --->
