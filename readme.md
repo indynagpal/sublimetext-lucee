@@ -21,7 +21,11 @@ In tag attributes, script strings, and between `cfoutput` tags, pressing `#` wil
 
 If SublimeText's `auto_close_tags` setting is true, when a closing tag's `/` has been pressed, the closing tag will be completed. (Hopefully not closing `cfset` tags and the like.)
 
-<kbd>CTRL</kbd>+<kbd>F12</kbd> pressed when the cursor is on a built-in function (e.g. `arrayMap()`) or a tag (e.g. `<cfset>`, will load the http://docs.lucee.org page for that function in the default browser.
+### CFDocs Tag and Function Documentation
+
+<kbd>CTRL</kbd>+<kbd>F12</kbd> pressed when the cursor is within a built-in function or tag will load the http://cfdocs.org documentation for that function or tag in a pop up window within Sublime. For example, having the cursor anywhere within `dateFormat(myDate, "yyyy-mm-dd")` and pressing <kbd>CTRL</kbd>+<kbd>F12</kbd> will trigger a pop up displaying the documentation for `dateFormat`. Similarly, having the cursor anywhere within `<cfinclude template="myOtherTemplate.cfm">` and pressing <kbd>CTRL</kbd>+<kbd>F12</kbd> will trigger the display of the documention for `cfinclude`.
+
+*Note:* If a tag has a script expression in it (e.g. `<cfset myVar=false>`, or anything between `#`'s), the pop up will not be triggered if the cursor is within that expression.
 
 ### Completions
 
@@ -34,7 +38,7 @@ Locate your Sublime Text 3 packages directory, on a mac it will be something lik
 Open Terminal or Command Prompt and cd into your User packages directory, then run:
 
     git clone https://github.com/jcberquist/sublimetext-lucee.git
-  
+
 That's it, restart Sublime Text 3 - if you want to update the code to match this repo, simply run the following inside the `sublimetext-lucee` folder in your `Packages/User/` folder
 
     git pull origin master
