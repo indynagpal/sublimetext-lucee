@@ -152,7 +152,7 @@ class CfdocsCommand(sublime_plugin.TextCommand):
 			doc_name = utils.get_tag_name(self.view, pt)
 			if doc_name[:2] != "cf":
 				# tag in script
-				doc_name = "cf" + tag_name
+				doc_name = "cf" + doc_name
 
 		# script component, interface, function
 		elif self.view.match_selector(pt, "meta.class.cfml"):
