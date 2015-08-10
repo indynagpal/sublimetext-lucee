@@ -9,6 +9,11 @@ component {
   property name="test3" type="array";
 //         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml entity.other.attribute-name.cfml
 //               ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.quoted.double.cfml
+  property name="test4" required=true;
+//         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml entity.other.attribute-name.cfml
+//               ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.quoted.double.cfml
+//                               ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.unquoted.cfml
+//                                   ^ embedding.cfml source.cfml.script meta.group.braces.curly punctuation.terminator.statement.cfml
   function foo() {
     var result;
 

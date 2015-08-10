@@ -380,5 +380,5 @@ contexts:
           pop: true
         - include: scope:source.cfml.script
   unquoted-attribute:
-    - match: '(?<==)(?:[^\s<>/''"{]|/(?!>))+'
+    - match: '(?<==)(?:[^\s<>/''"{;]|/(?!>))+'
       scope: string.unquoted.cfml
