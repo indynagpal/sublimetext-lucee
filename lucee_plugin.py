@@ -1,8 +1,8 @@
 import sublime, sublime_plugin, json, webbrowser
 from os.path import dirname, realpath, splitext
-from .lib import projectcompletions, utils
+from .lib import cfdocs, projectcompletions, utils
 
-CFML_PLUGIN_PATH = dirname(realpath(__file__)).replace("\\", "/")
+LUCEE_PLUGIN_PATH = dirname(realpath(__file__)).replace("\\", "/")
 
 def get_project_name(project_file_name):
 	project_file = project_file_name.replace("\\","/").split("/").pop()
@@ -15,12 +15,13 @@ def get_project_list():
 def plugin_loaded():
 	projectcompletions.sync_projects(get_project_list())
 
+
 class LuceeCompletions(sublime_plugin.EventListener):
 	"""
 	Provide completions for Lucee/CFML
 	"""
 	def __init__(self):
-		self.completions = utils.load_completions(CFML_PLUGIN_PATH)
+		self.completions = utils.load_completions(LUCEE_PLUGIN_PATH)
 
 	def on_load_async(self, view):
 		projectcompletions.sync_projects(get_project_list())
@@ -70,7 +71,7 @@ class LuceeCompletions(sublime_plugin.EventListener):
 
 			# function and tag-in-script completions
 			if view.match_selector(locations[0], "embedding." + dialect + " source." + dialect + ".script"):
-				completion_list = [];
+				completion_list = []
 				completion_list.extend(self.completions[dialect + "_functions"])
 				completion_list.extend(self.completions[dialect + "_tags_in_script"])
 				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
@@ -84,21 +85,21 @@ class LuceeCompletions(sublime_plugin.EventListener):
 		ch = view.substr(sublime.Region(pt, pt + 1))
 		is_inside_tag = view.match_selector(locations[0],"meta.tag - punctuation.definition.tag.begin")
 
-		if is_inside_tag and ch != '<':
-			if ch in [' ', '\t', '\n']:
+		if is_inside_tag and ch != "<":
+			if ch in [" ", "\t", "\n"]:
 				# maybe trying to type an attribute
 				completion_list = self.get_attribute_completions(utils.get_tag_name(view, locations[0]), False, dialect)
 				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-		if prefix == '':
+		if prefix == "":
 			# need completion list to match
 			return ([], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
-		completion_list = self.completions[dialect + '_tags']
+		completion_list = self.completions[dialect + "_tags"]
 
 		# if the opening < is not here insert that
-		if ch != '<':
-			completion_list = [(pair[0], '<' + pair[1]) for pair in completion_list]
+		if ch != "<":
+			completion_list = [(pair[0], "<" + pair[1]) for pair in completion_list]
 
 		return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
@@ -108,25 +109,65 @@ class LuceeCompletions(sublime_plugin.EventListener):
 		if not tag_name:
 			return []
 
-		# tags in script don't have 'cf' or ':' prefix
+		# tags in script don't have "cf" or ":" prefix
 		if tag_in_script:
 			tag_name = (":" if dialect == "lucee" else "cf") + tag_name
 
 		# got the tag, now find all attributes that match
-		attribute_completions = self.completions[dialect + '_tag_attributes'].get(tag_name, [])
+		attribute_completions = self.completions[dialect + "_tag_attributes"].get(tag_name, [])
 		return attribute_completions
+
 
 class LuceeDocsCommand(sublime_plugin.TextCommand):
 
 	def run(self, edit):
-		pt = self.view.sel()[0].begin();
-		word = self.view.substr(self.view.word(pt)).lower()
-		is_function = self.view.match_selector(pt, 'support.function.lucee,support.function.cfml');
-		# lucee tags urls do not include prefix of 'cf'
-		if not is_function:
-			word = word[2:]
-		full_url = 'http://docs.lucee.org/reference/' + ('functions' if is_function else 'tags') + '/' + word + '.html'
+		pt = self.view.sel()[0].begin()
+		is_function = self.view.match_selector(pt, "support.function.lucee")
+		if is_function:
+			word = self.view.substr(self.view.word(pt)).lower()
+		else:
+			word_region = self.view.expand_by_class(pt, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "<:/>")
+			word = self.view.substr(word_region).lower()
+		full_url = "http://docs.lucee.org/reference/" + ("functions" if is_function else "tags") + "/" + word + ".html"
 		webbrowser.open_new_tab(full_url)
+
+
+class CfdocsCommand(sublime_plugin.TextCommand):
+
+	cfdocs.load(LUCEE_PLUGIN_PATH)
+
+	def run(self, edit):
+		pt = self.view.sel()[0].begin()
+		doc_name = None
+
+		# functions
+		if self.view.match_selector(pt, "support.function.cfml"):
+			doc_name = self.view.substr(self.view.word(pt)).lower()
+
+		elif self.view.match_selector(pt, "meta.support.function-call.arguments.cfml"):
+			doc_name = utils.get_support_function_name(self.view, pt)
+
+		# tags
+		elif self.view.match_selector(pt, "meta.tag.cfml,meta.tag.script.cfml"):
+			doc_name = utils.get_tag_name(self.view, pt)
+			if doc_name[:2] != "cf":
+				# tag in script
+				doc_name = "cf" + tag_name
+
+		# script component, interface, function
+		elif self.view.match_selector(pt, "meta.class.cfml"):
+			doc_name = "cfcomponent"
+		elif self.view.match_selector(pt, "meta.interface.cfml"):
+			doc_name = "cfinterface"
+		elif self.view.match_selector(pt, "meta.function.cfml"):
+			doc_name = "cffunction"
+
+		if doc_name:
+			self.view.show_popup(cfdocs.get_cfdoc(doc_name), max_width=640, max_height=320, on_navigate=self.on_navigate)
+
+	def on_navigate(self, href):
+		webbrowser.open_new_tab(href)
+
 
 class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 
@@ -134,7 +175,7 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 		pt = self.view.sel()[0].begin()
 		last_open_tag = utils.get_last_open_tag(self.view,pt - 1)
 		if last_open_tag:
-			self.view.insert(edit,pt,'/' + last_open_tag + '>')
+			self.view.insert(edit,pt,"/" + last_open_tag + ">")
 		else:
-			# if there is no open tag print '/'
-			self.view.insert(edit,pt,'/')
+			# if there is no open tag print "/"
+			self.view.insert(edit,pt,"/")

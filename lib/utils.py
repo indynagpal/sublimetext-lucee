@@ -1,4 +1,5 @@
 import sublime, json
+from urllib.request import urlopen
 
 def load_completions(plugin_path):
 	completions_data = {}
@@ -34,10 +35,10 @@ def load_completions(plugin_path):
 def load_json_data(plugin_path, filename):
 	with open(plugin_path + '/json/' + filename + '.json', 'r') as f:
 		json_data = f.read()
-	return json.loads(json_data);
+	return json.loads(json_data)
 
 def make_tag_completion(tag, type, required_attrs):
-	attrs = '';
+	attrs = ''
 	for index, attr in enumerate(required_attrs, 1):
 		attrs += ' ' + attr + '="$' + str(index) + '"'
 	return (tag + '\ttag (' + type + ')', tag + attrs)
@@ -51,9 +52,11 @@ def get_tag_name(view, pos):
 	# walk backwards from cursor, looking for tag name scope
 	for index in range(500):
 		if view.match_selector(pos - index,"entity.name.tag"):
-			tag_name_region = view.expand_by_class(pos - index, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "<")
+			tag_name_region = view.expand_by_class(pos - index, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "</>")
 			tag_name = view.substr(tag_name_region).lower()
 			return tag_name
+		if view.match_selector(pos - index,"punctuation.definition.tag.begin"):
+			return None
 
 def get_last_open_tag(view,pos):
 	open_tags = []
@@ -93,3 +96,16 @@ def get_last_open_tag(view,pos):
 			open_tags.remove(tag_name)
 
 	return open_tags.pop() if len(open_tags) > 0 else None
+
+def get_support_function_name(view, pt):
+	args_region = None
+	function_call_arguments_scope = "meta.support.function-call.arguments.cfml"
+	scope_count = view.scope_name(pt).count(function_call_arguments_scope)
+	scope_to_find = " ".join([function_call_arguments_scope] * scope_count)
+	for r in view.find_by_selector(scope_to_find):
+		if r.contains(pt):
+			args_region = r
+			break
+	if args_region:
+		return view.substr(view.word(args_region.begin()-1)).lower()
+	return None

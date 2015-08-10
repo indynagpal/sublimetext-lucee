@@ -78,16 +78,17 @@
   // ctrl+f12 cfdocs lookup
   {
     "keys": ["ctrl+f12"],
-    "command": "lucee_docs",
+    "command": "cfdocs",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "support.function.cfml,entity.name.tag.cfml,meta.tag.cfml storage.type", "match_all":true}
+      {"key": "selector", "operator": "equal", "operand": "support.function.cfml,meta.support.function-call.arguments.cfml,meta.tag.cfml - punctuation.definition.tag.begin.cfml - source.cfml.script,meta.tag.script.cfml,meta.class.cfml,meta.interface.cfml,meta.function.cfml", "match_all":true}
     ]
   },
+  // ctrl+f12 lucee docs
   {
     "keys": ["ctrl+f12"],
     "command": "lucee_docs",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "support.function.lucee,entity.name.tag.lucee,meta.tag.lucee storage.type", "match_all":true}
+      {"key": "selector", "operator": "equal", "operand": "support.function.lucee,entity.name.tag.lucee", "match_all":true}
     ]
   },
   // close tags
