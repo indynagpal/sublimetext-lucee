@@ -425,7 +425,7 @@
 	"queryDeleteRow": "(${1:query}${2:, ${3:number row}})",
 	"queryEach": "(${1:query}, ${2:function closure}${3:, ${4:boolean parallel}}${5:, ${6:number maxThreads}})",
 	"queryEvery": "(${1:query}, ${2:function closure}${3:, ${4:boolean parallel}}${5:, ${6:number maxThreads}})",
-	"queryExecute": "(${1:any caller}, ${2:string sql}${3:, ${4:any params}}${5:, ${6:struct options}})",
+	"queryExecute": "(${1:string sql}${2:, ${3:any params}}${4:, ${5:struct options}})",
 	"queryFilter": "(${1:query}, ${2:function filter}${3:, ${4:boolean parallel}}${5:, ${6:number maxThreads}})",
 	"queryGetCell": "(${1:query}, ${2:string column_name}${3:, ${4:number row_number}})",
 	"queryMap": "(${1:query}, ${2:function closure}${3:, ${4:boolean parallel}}${5:, ${6:number maxThreads}})",
