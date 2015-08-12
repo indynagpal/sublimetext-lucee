@@ -1,19 +1,34 @@
 // SYNTAX TEST "lucee.sublime-syntax"
-component {
+component extends="root.model.text"
+          persistent = "true" {
 
   property test;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
-  property array test2;
+  property test test;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee storage.type.lucee
-//               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
-  property name="test3" type="array";
+//              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
+  property test test test;
+//         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee storage.type.lucee
+//              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
+//                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
+  property name="test" required=true;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
 //               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.quoted.double.lucee
-  property name="test4" required=true;
-//         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
-//               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.quoted.double.lucee
-//                               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee constant.language.boolean.true.lucee
-//                                   ^ embedding.lucee source.lucee.script meta.group.braces.curly punctuation.terminator.statement.lucee
+//                              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
+//                                  ^ embedding.lucee source.lucee.script meta.group.braces.curly punctuation.terminator.statement.lucee
+  property test
+//         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
+default="string";
+// <- embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
+//       ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.quoted.double.lucee
+
+  static {
+//^ embedding.lucee source.lucee.script meta.group.braces.curly meta.static.lucee storage.modifier.lucee
+    test = "Test";
+    static.test = 2;
+//  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.static.lucee variable.language.scope.lucee
+  }
+
   function foo() {
     var result;
 

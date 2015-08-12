@@ -50,27 +50,29 @@ contexts:
           pop: true
         - include: component-attributes
   component-attributes:
+    - include: comments
     - match: \b(?i:(extends))\b\s*(=)\s*
       captures:
         1: storage.modifier.extends.cfml
       push:
         - meta_content_scope: meta.class.inheritance.cfml
-        - match: '(?=[\s{])'
+        - match: '(")([a-zA-Z0-9:.]+)?(")'
+          captures:
+            1: punctuation.definition.string.begin.cfml
+            2: entity.other.inherited-class.cfml
+            3: punctuation.definition.string.end.cfml
           pop: true
-        - match: '"([a-zA-Z0-9:.]+)"'
+        - match: "(')([a-zA-Z0-9:.]+)?(')"
           captures:
-            1: entity.other.inherited-class.cfml
-        - match: "'([a-zA-Z0-9:.]+)'"
-          captures:
-            1: entity.other.inherited-class.cfml
+            1: punctuation.definition.string.begin.cfml
+            2: entity.other.inherited-class.cfml
+            3: punctuation.definition.string.end.cfml
+          pop: true
         - match: ([a-zA-Z0-9:.]+)
           captures:
             1: entity.other.inherited-class.cfml
-    - match: (?=\w)
-      push:
-        - match: '(?=[\s{])'
           pop: true
-        - include: scope:embedding.cfml#tag-stuff
+    - include: scope:embedding.cfml#tag-generic-attribute
   constructor:
     - match: '(new)\s+(?=[_$a-zA-Z][$\w.]*)'
       captures:
@@ -234,7 +236,7 @@ contexts:
   function-properties:
     - match: (?={)
       pop: true
-    - include: scope:embedding.cfml#tag-stuff
+    - include: scope:embedding.cfml#tag-generic-attribute
   keyword-storage:
     - match: (?<!\.)\b(var)\b
       scope: storage.type.cfml
@@ -592,38 +594,59 @@ contexts:
                   pop: true
                 - include: expression
             - include: core
+  tag-generic-attribute-script:
+    - include: comments
+    - match: '\b([a-zA-Z0-9:-]+)\s*'
+      captures:
+        1: entity.other.attribute-name.cfml
+    - match: (=)\s*
+      captures:
+        1: punctuation.separator.key-value.cfml
+      push:
+        - include: expression
+        - match: (?<=\S)
+          pop: true
   tag-in-script:
-    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
+    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:
         1: entity.name.tag.script.cfml
         3: storage.type.cfml
         4: string.unquoted.cfml
       push:
         - meta_scope: meta.tag.script.cfml
+        - include: comments
         - match: (?=(;|{))
           pop: true
-        - include: scope:embedding.cfml#tag-stuff
+        - include: scope:embedding.cfml#tag-generic-attribute
+    - match: ^\s*(property)(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
+      captures:
+        1: entity.name.tag.script.cfml
+      push:
+        - meta_scope: meta.tag.script.cfml
+        - match: (?=(;|{))
+          pop: true
+        - include: scope:embedding.cfml#tag-generic-attribute
     - match: |-
         (?x)
             (^|\s+)
             (?i:
               (abort|ajaximport|ajaxproxy|applet|application|argument|associate|authenticate|break|cache|case|catch|chart|chartdata
               |chartseries|col|collection|content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem
-              |documentsection|dump|else|elseif|error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata
+              |documentsection|dump|error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata
               |header|htmlbody|htmlhead|http|httpparam|if|image|imap|import|include|index|input|insert|interface|invoke|invokeargument
               |layout|layoutarea|ldap|location|lock|log|login|loginuser|logout|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer
               |module|object|objectcache|output|pageencoding|param|pdf|pdfparam|pop|processingdirective|procparam|procresult
-              |property|query|queryparam|registry|rethrow|retry|savecontent|schedule|script|search|select|servlet|servletparam
+              |query|queryparam|registry|rethrow|retry|savecontent|schedule|script|search|select|servlet|servletparam
               |set|setting|silent|sleep|slider|stopwatch|storedproc|switch|table|textinput|thread|throw|timer|trace|transaction|try
               |update|video|videoplayer|videoplayerparam|wddx|while|window|xml|zip|zipparam)
-            )(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
+            )(?=(\s+[a-zA-Z]|\s*[{;]))
       captures:
         2: entity.name.tag.script.cfml
       push:
         - meta_scope: meta.tag.script.cfml
         - match: (?=(;|{))
           pop: true
-        - include: scope:embedding.cfml#tag-stuff
+        - include: tag-generic-attribute-script
   variable:
     - match: '\b[A-Z][_$\dA-Z]*\b'
       scope: variable.other.constant.cfml

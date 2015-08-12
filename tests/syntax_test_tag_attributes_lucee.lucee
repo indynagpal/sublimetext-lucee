@@ -1,0 +1,41 @@
+<!--- SYNTAX TEST "lucee.sublime-syntax" --->
+<:param name="test" type="string" default="hello">
+ <!--- <- embedding.lucee meta.tag.lucee entity.name.tag.lucee --->
+<!---   ^ embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+<!---       ^ embedding.lucee meta.tag.lucee punctuation.separator.key-value.lucee --->
+<!---         ^ embedding.lucee meta.tag.lucee string.quoted.double.lucee --->
+
+<:param name = "test" type = "string" default = "hello">
+ <!--- <- embedding.lucee meta.tag.lucee entity.name.tag.lucee --->
+<!---   ^ embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+<!---        ^ embedding.lucee meta.tag.lucee punctuation.separator.key-value.lucee --->
+<!---           ^ embedding.lucee meta.tag.lucee string.quoted.double.lucee --->
+
+<:param name = test type = "date" default = now()>
+ <!--- <- embedding.lucee meta.tag.lucee entity.name.tag.lucee --->
+<!---   ^ embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+<!---        ^ embedding.lucee meta.tag.lucee punctuation.separator.key-value.lucee --->
+<!---          ^ embedding.lucee meta.tag.lucee variable.other.lucee --->
+<!---               ^ embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+<!---                                       ^ embedding.lucee meta.tag.lucee support.function.lucee --->
+
+<:param name = "test" novalueattribute>
+ <!--- <- embedding.lucee meta.tag.lucee entity.name.tag.lucee --->
+<!---   ^ embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+<!---        ^ embedding.lucee meta.tag.lucee punctuation.separator.key-value.lucee --->
+<!---          ^ embedding.lucee meta.tag.lucee string.quoted.double.lucee --->
+<!---                 ^ embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+
+<:param name = test
+<!---          ^ embedding.lucee meta.tag.lucee variable.other.lucee --->
+type = "string" default = "hello">
+<!--- <- embedding.lucee meta.tag.lucee entity.other.attribute-name.lucee --->
+
+<:param name =
+test type = "string" default = "hello">
+<!---  <- embedding.lucee meta.tag.lucee variable.other.lucee --->
+
+<:param name
+= test type = "string" default = "hello">
+<!--- <- embedding.lucee meta.tag.lucee punctuation.separator.key-value.lucee --->
+  <!---  <- embedding.lucee meta.tag.lucee variable.other.lucee --->

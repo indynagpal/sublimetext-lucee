@@ -60,7 +60,7 @@ contexts:
               scope: entity.other.inherited-class.lucee
             - match: '"'
               pop: true
-        - include: tag-stuff
+        - include: tag-generic-attribute
     - include: comments
     - include: function
     - match: (?i)(?=</?:)
@@ -94,7 +94,7 @@ contexts:
               scope: entity.other.inherited-interface.lucee
             - match: '"'
               pop: true
-        - include: tag-stuff
+        - include: tag-generic-attribute
     - include: comments
     - include: function
   function:
@@ -134,7 +134,7 @@ contexts:
                 3: storage.type.return-type.void.lucee
                 4: storage.type.return-type.primitive.lucee
                 5: storage.type.return-type.object.lucee
-            - include: tag-stuff
+            - include: tag-generic-attribute
         - match: (</)(:function)(>)
           captures:
             0: meta.tag.lucee
@@ -181,7 +181,7 @@ contexts:
         - match: (/?>)
           scope: meta.tag.lucee punctuation.definition.tag.end.lucee
           pop: true
-        - include: tag-stuff
+        - include: tag-generic-attribute
     - match: (?i)(</)(:[a-z]+)(>)
       captures:
         0: meta.tag.lucee
@@ -199,7 +199,7 @@ contexts:
         - match: ">"
           scope: punctuation.definition.tag.end.lucee
           set: output-string-contents
-        - include: tag-stuff
+        - include: tag-generic-attribute
     - match: (?i)(<)(:output)
       captures:
         1: punctuation.definition.tag.begin.lucee
@@ -209,7 +209,7 @@ contexts:
         - match: ">"
           scope: punctuation.definition.tag.end.lucee
           set: output-contents
-        - include: tag-stuff
+        - include: tag-generic-attribute
   output-contents:
     - meta_content_scope: meta.scope.output.lucee
     - match: (?i)(</)(:output)(>)
@@ -268,7 +268,7 @@ contexts:
         - match: ">"
           scope: punctuation.definition.tag.end.lucee
           set: query-contents
-        - include: tag-stuff
+        - include: tag-generic-attribute
   query-contents:
     - meta_content_scope: meta.scope.query.lucee
     - match: (?i)(</)(:query)(>)
@@ -358,17 +358,19 @@ contexts:
         1: punctuation.definition.string.end.lucee
       pop: true
   tag-generic-attribute:
-    - match: '(?<=[^=])\b([a-zA-Z0-9:-]+)\s*(=?)'
+    - include: comments
+    - match: '\b([a-zA-Z0-9:-]+)\s*'
       captures:
         1: entity.other.attribute-name.lucee
-        2: punctuation.separator.key-value.lucee
-  tag-stuff:
-    - include: tag-generic-attribute
-    - include: string
-    # in Lucee unquoted attribute values are treated as variables not strings
-    - include: scope:source.lucee.script#language-constant
-    - include: scope:source.lucee.script#language-variable
-    - include: scope:source.lucee.script#variable
+    - match: (=)\s*
+      captures:
+        1: punctuation.separator.key-value.lucee
+      push:
+        - match: (?=[;/>])
+          pop: true
+        - include: scope:source.lucee.script#expression
+        - match: (?<=\S)
+          pop: true
   tags-with-script:
     - match: (?i)(<)(:set|:return)(?=\s|/?>)
       captures:

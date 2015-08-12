@@ -51,27 +51,28 @@ contexts:
           pop: true
         - include: component-attributes
   component-attributes:
+    - include: comments
     - match: \b(?i:(extends))\b\s*(=)\s*
       captures:
         1: storage.modifier.extends.lucee
       push:
-        - meta_content_scope: meta.class.inheritance.lucee
-        - match: '(?=[\s{])'
+        - match: '(")([a-zA-Z0-9:.]+)?(")'
+          captures:
+            1: punctuation.definition.string.begin.lucee
+            2: entity.other.inherited-class.lucee
+            3: punctuation.definition.string.end.lucee
           pop: true
-        - match: '"([a-zA-Z0-9:.]+)"'
+        - match: "(')([a-zA-Z0-9:.]+)?(')"
           captures:
-            1: entity.other.inherited-class.lucee
-        - match: "'([a-zA-Z0-9:.]+)'"
-          captures:
-            1: entity.other.inherited-class.lucee
+            1: punctuation.definition.string.begin.lucee
+            2: entity.other.inherited-class.lucee
+            3: punctuation.definition.string.end.lucee
+          pop: true
         - match: ([a-zA-Z0-9:.]+)
           captures:
             1: entity.other.inherited-class.lucee
-    - match: (?=\w)
-      push:
-        - match: '(?=[\s{])'
           pop: true
-        - include: scope:embedding.lucee#tag-stuff
+    - include: tag-generic-attribute
   constructor:
     - match: '(new)\s+(?=[_$a-zA-Z][$\w.]*)'
       captures:
@@ -280,7 +281,7 @@ contexts:
   function-properties:
     - match: (?={)
       pop: true
-    - include: scope:embedding.lucee#tag-stuff
+    - include: tag-generic-attribute
   keyword-storage:
     - match: (?<!\.)\b(var)\b
       scope: storage.type.lucee
@@ -707,38 +708,61 @@ contexts:
                   pop: true
                 - include: expression
             - include: core
+  tag-generic-attribute:
+    - include: comments
+    - match: '\b([a-zA-Z0-9:-]+)\s*'
+      captures:
+        1: entity.other.attribute-name.lucee
+    - match: (=)\s*
+      captures:
+        1: punctuation.separator.key-value.lucee
+      push:
+        - include: string
+        - match: '(?:[^\s<>/''"{;]|/(?!/>))+'
+          scope: string.unquoted.lucee
+        - match: (?<=\S)
+          pop: true
   tag-in-script:
-    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
+    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:
         1: entity.name.tag.script.lucee
         3: storage.type.lucee
         4: string.unquoted.lucee
       push:
         - meta_scope: meta.tag.script.lucee
+        - include: comments
         - match: (?=(;|{))
           pop: true
-        - include: scope:embedding.lucee#tag-stuff
+        - include: tag-generic-attribute
+    - match: ^\s*(property)(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
+      captures:
+        1: entity.name.tag.script.lucee
+      push:
+        - meta_scope: meta.tag.script.lucee
+        - match: (?=(;|{))
+          pop: true
+        - include: tag-generic-attribute
     - match: |-
         (?x)
             (^|\s+)
             (?i:
               (abort|ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|case|catch|collection
-              |content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem|documentsection|dump|else|elseif
+              |content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem|documentsection|dump
               |error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata|header|htmlbody|htmlhead
               |http|httpparam|if|image|imap|import|include|index|input|insert|interface|invoke|invokeargument|layout|layoutarea
               |ldap|location|lock|log|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer|module|objectcache|output|pageencoding
-              |param|pdf|pdfparam|pop|processingdirective|procparam|procresult|property|query|queryparam|responseheader|rethrow
-              |retry|savecontent|schedule|script|search|select|set|setting|silent|sleep|static|stopwatch|storedproc|switch
+              |param|pdf|pdfparam|pop|processingdirective|procparam|procresult|query|queryparam|responseheader|rethrow
+              |retry|savecontent|schedule|script|search|select|set|setting|silent|sleep|stopwatch|storedproc|switch
               |thread|throw|timer|trace|transaction|try|update|video|videoplayer|videoplayerparam|wddx|while|window|x_|xml|zip
               |zipparam)
-            )(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
+            )(?=(\s+[a-zA-Z]|\s*[{;]))
       captures:
         2: entity.name.tag.script.lucee
       push:
         - meta_scope: meta.tag.script.lucee
         - match: (?=(;|{))
           pop: true
-        - include: scope:embedding.lucee#tag-stuff
+        - include: scope:embedding.lucee#tag-generic-attribute
   variable:
     - match: '\b[A-Z][_$\dA-Z]*\b'
       scope: variable.other.constant.lucee
