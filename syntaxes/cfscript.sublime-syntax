@@ -618,7 +618,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.cfml#tag-generic-attribute
-    - match: ^\s*(property)(?=\s+[a-zA-Z]+\s*=\s*("|'|\w))
+    - match: ^\s*(property)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         1: entity.name.tag.script.cfml
       push:
@@ -639,7 +639,7 @@ contexts:
               |query|queryparam|registry|rethrow|retry|savecontent|schedule|script|search|select|servlet|servletparam
               |set|setting|silent|sleep|slider|stopwatch|storedproc|switch|table|textinput|thread|throw|timer|trace|transaction|try
               |update|video|videoplayer|videoplayerparam|wddx|while|window|xml|zip|zipparam)
-            )(?=(\s+[a-zA-Z]|\s*[{;]))
+            )(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         2: entity.name.tag.script.cfml
       push:

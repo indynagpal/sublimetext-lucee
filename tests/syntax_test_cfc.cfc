@@ -18,6 +18,11 @@ persistent = true {
 //               ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.quoted.double.cfml
 //                              ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.unquoted.cfml
 //                                  ^ embedding.cfml source.cfml.script meta.group.braces.curly punctuation.terminator.statement.cfml
+  property
+    name = "test"
+    required=true;
+//  ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml entity.other.attribute-name.cfml
+//           ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.unquoted.cfml
   property test
 //         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.unquoted.cfml
 default="string";
