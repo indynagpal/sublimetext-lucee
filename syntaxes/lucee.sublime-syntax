@@ -359,18 +359,17 @@ contexts:
       pop: true
   tag-generic-attribute:
     - include: comments
-    - match: '\b([a-zA-Z0-9:-]+)\s*'
+    - match: \b([a-zA-Z0-9:-]+)\b
       captures:
         1: entity.other.attribute-name.lucee
-    - match: (=)\s*
-      captures:
-        1: punctuation.separator.key-value.lucee
+    - match: =
+      scope: punctuation.separator.key-value.lucee
       push:
-        - match: (?=[;/>])
+        - match: (?=[;/>{])
+          pop: true
+        - match: (?<=[^\s=])
           pop: true
         - include: scope:source.lucee.script#expression
-        - match: (?<=\S)
-          pop: true
   tags-with-script:
     - match: (?i)(<)(:set|:return)(?=\s|/?>)
       captures:

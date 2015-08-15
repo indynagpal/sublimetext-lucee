@@ -596,16 +596,17 @@ contexts:
             - include: core
   tag-generic-attribute-script:
     - include: comments
-    - match: '\b([a-zA-Z0-9:-]+)\s*'
+    - match: '\b([a-zA-Z0-9:-]+)\b'
       captures:
         1: entity.other.attribute-name.cfml
-    - match: (=)\s*
-      captures:
-        1: punctuation.separator.key-value.cfml
+    - match: =
+      scope: punctuation.separator.key-value.cfml
       push:
-        - include: expression
-        - match: (?<=\S)
+        - match: (?=[;{])
           pop: true
+        - match: (?<=[^\s=])
+          pop: true
+        - include: expression
   tag-in-script:
     - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:

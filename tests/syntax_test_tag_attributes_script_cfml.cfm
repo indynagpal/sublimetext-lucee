@@ -23,4 +23,8 @@ default = now() then;
 transaction {
 // <- embedding.cfml source.cfml.script meta.tag.script.cfml entity.name.tag.script.cfml
 }
+
+lock timeout="30"{
+//               ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.brace.curly.cfml - meta.tag.script.cfml
+}
 </cfscript>

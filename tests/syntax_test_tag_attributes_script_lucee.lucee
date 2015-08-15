@@ -24,4 +24,7 @@ transaction {
 // <- embedding.lucee source.lucee.script meta.tag.script.lucee entity.name.tag.script.lucee
 }
 
+lock timeout="30"{
+//               ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.brace.curly.lucee - meta.tag.script.lucee
+}
 <:script>
