@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>lucee</string>
 	<key>scope</key>
-	<string>source.lucee, text.html.lucee</string>
+	<string>embedding.lucee - source.lucee.script, text.html.lucee</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>

@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>cfml</string>
 	<key>scope</key>
-	<string>source.cfml, text.html.cfml</string>
+	<string>embedding.cfml - source.cfml.script, text.html.cfml</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>
