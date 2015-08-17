@@ -33,12 +33,30 @@ Completions are included for tags and tag attributes, as well for built-in funct
 
 ### Installation
 
-Locate your Sublime Text 3 packages directory, on a mac it will be something like this: `/Users/username/Library/Application Support/Sublime Text 3/Packages/`
+Locate your Sublime Text 3 packages directory. This can be easily done by opening the command palette in Sublime Text (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on Windows, <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac), and running `Preferences: Browse Packages`.
 
-Open Terminal or Command Prompt and cd into your User packages directory, then run:
+On Windows it will typically be something like this:
+`C:\Users\Username\AppData\Roaming\Sublime Text 3\Packages`
+
+On a Mac it will be something like this:
+`/Users/Username/Library/Application Support/Sublime Text 3/Packages/`
+
+#### Via Git
+
+Open Terminal or Command Prompt and cd into your packages directory, then run:
 
     git clone https://github.com/jcberquist/sublimetext-lucee.git
 
-That's it, restart Sublime Text 3 - if you want to update the code to match this repo, simply run the following inside the `sublimetext-lucee` folder in your `Packages` folder
+You can optionally specify a subdirectory name to clone into by adding it to the `git clone` command. For example, to clone into a folder named `Lucee` run:
+
+    git clone https://github.com/jcberquist/sublimetext-lucee.git ./Lucee
+
+Or you can leave it as is, and it will clone into `sublimetext-lucee`.
+
+That's it, restart Sublime Text 3 - if you want to update the code to match this repo, simply run the following inside the folder where you installed the package:
 
     git pull origin master
+
+#### Manually
+
+Use the `Download ZIP` option to download a zip of the repository to your computer. Unzip this, and copy the repository folder into your Sublime Text packages directory. You can leave the folder name as is, or rename it (e.g. to `Lucee`).
