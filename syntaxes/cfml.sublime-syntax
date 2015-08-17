@@ -13,7 +13,9 @@ contexts:
       push: scope:source.cfml.script
     - include: comments
     - match: (?i)(?=(</?cf))
-      push: cfml
+      push:
+        - meta_scope: source.cfml
+        - include: cfml
     - match: (?=<?!?[a-zA-Z0-9:]+)
       set: html
       with_prototype:

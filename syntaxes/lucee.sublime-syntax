@@ -12,7 +12,9 @@ contexts:
       push: scope:source.lucee.script
     - include: comments
     - match: (?i)(?=(</?:))
-      push: lucee
+      push:
+        - meta_scope: source.lucee
+        - include: lucee
     - match: (?=<?!?[a-zA-Z0-9:]+)
       set: html
       with_prototype:
