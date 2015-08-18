@@ -1,5 +1,6 @@
 import sublime, json
 from urllib.request import urlopen
+from collections import deque
 
 def load_completions(plugin_path):
 	completions_data = {}
@@ -58,28 +59,23 @@ def get_tag_name(view, pos):
 		if view.match_selector(pos - index,"punctuation.definition.tag.begin"):
 			return None
 
-def get_last_open_tag(view,pos):
-	open_tags = []
-	tag_starts = view.find_by_selector("punctuation.definition.tag.begin")
-	tag_ends = view.find_by_selector("punctuation.definition.tag.end")
-	tag_ends_index = 0
+def get_last_open_tag(view, pos):
+	open_tags = deque()
+	tag_starts = [r for r in view.find_by_selector("punctuation.definition.tag.begin") if r.end() <= pos]
+	tag_ends = [r for r in view.find_by_selector("punctuation.definition.tag.end") if r.end() <= pos]
 
-	for tag_start in tag_starts:
+	# if lengths don't match don't bother trying to find last open tag
+	if len(tag_starts) != len(tag_ends):
+		return None
 
-		# don't need to consider tags after the cursor position
-		if tag_start.begin() > pos:
-			break
-
+	for tag_start, tag_end in zip(tag_starts, tag_ends):
 		tag_name_region = sublime.Region(tag_start.end(), view.find_by_class(tag_start.end(), True, sublime.CLASS_WORD_END, "/>"))
 		tag_name = view.substr(tag_name_region)
 
 		# if length is 1 then this is a tag opening punctuation
 		if tag_start.size() == 1:
-			# check tag_ends for end of this tag - assumption is it is the first tag_end after current tag_start
-			while tag_ends_index < len(tag_ends) and tag_ends[tag_ends_index].begin() < tag_start.end():
-				tag_ends_index += 1
 
-			if tag_ends[tag_ends_index].size() > 1:
+			if tag_end.size() > 1:
 				# self closing tag has tag end of size 2 "/>" - skip these
 				continue
 
@@ -89,13 +85,14 @@ def get_last_open_tag(view,pos):
 			# check to exclude html tags that should not have a closing tag
 			if tag_name in ["area","base","br","col","command","embed","hr","img","input","link","meta","param","source"]:
 				continue
-			open_tags.append(tag_name)
+
+			open_tags.appendleft(tag_name)
 
 		# if length is 2 then this is a tag closing punctuation
 		if tag_start.size() == 2 and tag_name in open_tags:
 			open_tags.remove(tag_name)
 
-	return open_tags.pop() if len(open_tags) > 0 else None
+	return open_tags.popleft() if len(open_tags) > 0 else None
 
 def get_support_function_name(view, pt):
 	args_region = None
