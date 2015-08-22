@@ -676,15 +676,33 @@ contexts:
         (?x)
             (\.)
             (?i:
-              (addcolumn|addrow|append|avg|clear|columnarray|columncount|columndata|columnexists|columnlist|contains|containsnocase
-              |copy|count|currentrow|delete|deleteat|deletecolumn|deleterow|each|every|execute|filter|find|findall|findallnocase
-              |findkey|findnocase|findvalue|first|get|getcell|indexexists|insert|insertat|isempty|keyarray|keyexists|keylist
-              |keytranslate|last|len|map|max|median|merge|mid|min|new|prepend|recordcount|reduce|resize|reverse|rowdata|set|setcell
-              |slice|some|sort|sum|swap|tolist|tostruct|update)
+              (add|addcolumn|addrow|append|avg|blur|cjustify|clear|clearrect|columnarray|columncount|columndata|columnexists
+              |columnlist|compare|comparenocase|contains|containsnocase|copy|count|crop|currentrow|day|dayofweek|dayofyear
+              |daysinmonth|daysinyear|delete|deleteat|deletecolumn|deleterow|diff|drawarc|drawcubiccurve|drawline|drawlines
+              |drawoval|drawpoint|drawquadraticcurve|drawrect|drawroundrect|each|every|filter|find|findall|findallnocase|findkey
+              |findnocase|findoneof|findvalue|first|firstdayofmonth|flip|get|getbufferedimage|getcell|getheight|gettoken|getwidth
+              |grayscale|hour|indexexists|info|insert|insertat|isempty|keyarray|keyexists|keylist|keytranslate|last|lcase|left
+              |len|listappend|listavg|listchangedelims|listcompact|listcontains|listcontainsnocase|listdeleteat|listeach|listevery
+              |listfilter|listfind|listfindnocase|listfirst|listgetat|listindexexists|listinsertat|listitemtrim|listlast|listlen
+              |listmap|listprepend|listqualify|listreduce|listremoveduplicates|listrest|listsetat|listsome|listsort|listtoarray
+              |listvaluecount|listvaluecountnocase|ljustify|lsdayofweek|ltrim|map|max|median|merge|mid|min|minute|month|overlay
+              |part|paste|prepend|quarter|recordcount|reduce|refind|refindnocase|rematch|rematchnocase|removechars|repeatstring
+              |replace|replacenocase|rereplace|rereplacenocase|resize|reverse|right|rowdata|rtrim|scaletofit|second|set
+              |setantialiasing|setcell|setdrawingstroke|sharpen|slice|some|sort|spanexcluding|spanincluding|stripcr|sum|swap|tolist
+              |tostruct|translate|trim|ucase|update|week|wrap|writebase64|year)
             )(?=\()
       captures:
         1: keyword.operator.accessor.lucee
-        2: support.function.mutator.lucee
+        2: support.function.member.lucee
+      push:
+        - match: \(
+          scope: meta.support.function-call.member.arguments.begin.lucee
+          set:
+            - meta_scope: meta.support.function-call.member.arguments.lucee
+            - match: \)
+              scope: meta.support.function-call.member.arguments.end.lucee
+              pop: true
+            - include: expression
   switch:
     - match: (?<!\.)\b(switch)\b
       captures:

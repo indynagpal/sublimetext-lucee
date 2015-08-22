@@ -553,24 +553,34 @@ contexts:
         (?x)
             (\.)
             (?i:
-              (addcolumn|addrow|add|append|asc|avg|blur|cjustify|clearrect|clear|columnarray|columncount|columndata
-              |columnexists|columnlist|comparenocase|compare|containsnocase|contains|copy|currentrow|dateformat
-              |dayofweek|dayofyear|daysinmonth|daysinyear|day|deleteat|deletecolumn|deleterow|delete|deserializejson
-              |diff|each|every|filter|findallnocase|findall|findkey|findnocase|findoneof|findvalue|find|firstdayofmonth
-              |first|getcell|getheight|getrow|gettoken|getwidth|hour|indexexists|insertat|insert|isdefined|isempty
-              |keyarray|keyexists|keylist|keytranslate|last|lcase|left|len|listappend|listavg|listchangedelims
-              |listcompact|listcontainsnocase|listcontains|listdeleteat|listeach|listevery|listfilter|listfindnocase
-              |listfind|listfirst|listgetat|listindexexists|listinsertat|listitemtrim|listlast|listlen|listmap
-              |listprepend|listqualify|listreduce|listremoveduplicates|listrest|listsetat|listsome|listsort|listtoarray
-              |listvaluecountnocase|listvaluecount|ljustify|lsdayofweek|ltrim|map|max|median|merge|mid|millisecond|minute
-              |min|month|part|prepend|quarter|recordcount|reduce|refindnocase|refind|rematchnocase|rematch|removechars
-              |repeat|replacenocase|replace|rereplacenocase|rereplace|resize|reverse|right|rjustify|rowdata|rtrim|second
-              |serializejson|setcell|set|slice|some|sort|spanincluding|stripcr|sum|swap|tolist|tostruct|trim|ucase
-              |ucfirst|update|week|wrap|year)
+              (add|addcolumn|addrow|append|avg|blur|cjustify|clear|clearrect|columnarray|columncount|columndata|columnexists
+              |columnlist|compare|comparenocase|contains|containsnocase|copy|count|crop|currentrow|dateformat|day|dayofweek
+              |dayofyear|daysinmonth|daysinyear|delete|deleteat|deletecolumn|deleterow|diff|drawarc|drawcubiccurve|drawline
+              |drawlines|drawoval|drawpoint|drawquadraticcurve|drawrect|drawroundrect|each|every|filter|find|findall
+              |findallnocase|findkey|findnocase|findoneof|findvalue|first|firstdayofmonth|flip|get|getbufferedimage|getcell
+              |getheight|getrow|gettoken|getwidth|grayscale|hour|indexexists|info|insert|insertat|isdefined|isempty|keyarray
+              |keyexists|keylist|keytranslate|last|lcase|left|len|listappend|listavg|listchangedelims|listcompact|listcontains
+              |listcontainsnocase|listdeleteat|listeach|listevery|listfilter|listfind|listfindnocase|listfirst|listgetat
+              |listindexexists|listinsertat|listitemtrim|listlast|listlen|listmap|listprepend|listqualify|listreduce
+              |listremoveduplicates|listrest|listsetat|listsome|listsort|listtoarray|listvaluecount|listvaluecountnocase
+              |ljustify|lsdateformat|lsdayofweek|ltrim|map|max|median|merge|mid|min|minute|month|overlay|part|paste|prepend
+              |quarter|recordcount|reduce|refind|refindnocase|rematch|rematchnocase|removechars|repeatstring|replace|replacenocase
+              |rereplace|rereplacenocase|resize|reverse|right|rowdata|rtrim|scaletofit|second|set|setantialiasing|setcell
+              |setdrawingstroke|sharpen|slice|some|sort|spanexcluding|spanincluding|stripcr|sum|swap|tolist|tostruct|translate
+              |trim|ucase|update|week|wrap|writebase64|year)
             )(?=\()
       captures:
         1: keyword.operator.accessor.cfml
-        2: support.function.mutator.cfml
+        2: support.function.member.cfml
+      push:
+        - match: \(
+          scope: meta.support.function-call.member.arguments.begin.cfml
+          set:
+            - meta_scope: meta.support.function-call.member.arguments.cfml
+            - match: \)
+              scope: meta.support.function-call.member.arguments.end.cfml
+              pop: true
+            - include: expression
   switch:
     - match: (?<!\.)\b(switch)\b
       captures:
