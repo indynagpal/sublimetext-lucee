@@ -1,3 +1,5 @@
 {
-  "auto_complete_triggers": [ {"selector": "source.cfml.script - string", "characters": "."} ]
+	"auto_complete_triggers": [
+		{"selector": "source.cfml.script - string", "characters": "."}
+	]
 }

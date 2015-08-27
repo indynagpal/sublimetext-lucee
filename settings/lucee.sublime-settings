@@ -1,0 +1,5 @@
+{
+	"auto_complete_triggers": [
+		{"selector": "source.lucee.script - string", "characters": "."}
+	]
+}
