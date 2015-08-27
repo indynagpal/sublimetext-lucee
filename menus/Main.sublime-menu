@@ -1,0 +1,37 @@
+[
+	{
+		"caption": "Preferences",
+		"mnemonic": "n",
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Package Settings",
+				"mnemonic": "P",
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"caption": "Lucee",
+						"mnemonic": "L",
+						"id": "lucee",
+						"children":
+						[
+							{
+								"command": "lucee_default_color_scheme_styles",
+								"caption": "Color Scheme Styles – Default"
+							},
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/User/lucee.sublime-settings"
+								},
+								"caption": "Color Scheme Styles – User"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

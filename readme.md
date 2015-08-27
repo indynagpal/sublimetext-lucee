@@ -31,6 +31,14 @@ If SublimeText's `auto_close_tags` setting is true, when a closing tag's `/` has
 
 Completions are included for tags and tag attributes, as well for built-in functions and member functions. There is also the ability on a per project basis, via the `.sublime-project` file, to index folders of components, and then completions will be offered after typing a `.` if the preceding text matches a component file, or component file and containing directory (as DI/1 has it). So, for example, if a `services/user.cfc` file is found, then when typing either `user.` or `userService.`, the functions from that cfc will be offered as completions. To set this up you add the following setting to your project file: `"model_completion_folders":    [ "/full/path/to/model", "/another/full/path/to/index" ]`.
 
+### Custom Coloring for Lucee/CFML Tags
+
+Unless you are using a specialized color scheme, Lucee/CFML tags and HTML tags will receive the same coloring. This can make it a bit harder to distinguish between the two types of tags when embedding Lucee/CFML tags in HTML. This package has a command you can run from the command palette that will inject custom colors for Lucee/CFML tags into your current color scheme (or remove them if they are already there). Press <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> to bring up the command palette (<kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac) and run `Lucee: Toggle Color Scheme Styles`. You can edit the styles that will be injected via the user color scheme settings for this package. This can be found under the menu `Package Settings -> Lucee -> Color Scheme Styles - User` or via the command palette: `Lucee: User Color Scheme Styles`. See the default settings file for the settings to use (`Package Settings -> Lucee -> Color Scheme Styles - Default` or via the command palette: `Lucee: Default Color Scheme Styles`).
+
+*Note:* Do not edit the default settings to change the color scheme styles, but rather place your custom settings in the user settings file, as this will not be overwritten when the package is upgraded.
+
+*Caveat:* This feature works by either overriding or modifying your active color scheme file. Because of this, it may not work well with other packages that also modify the active color scheme in some way. Also, if the package containing your active color scheme is updated, it is likely that you will need to toggle the custom tag coloring off and then on again to pick up any changes.
+
 ### Installation
 
 Locate your Sublime Text 3 packages directory. This can be easily done by opening the command palette in Sublime Text (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on Windows, <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac), and running `Preferences: Browse Packages`.
