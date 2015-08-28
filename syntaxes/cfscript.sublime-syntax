@@ -9,6 +9,8 @@ hidden: true
 contexts:
   main:
     - include: core
+  prototype:
+    - include: comments
   brackets:
     - include: round-brackets
     - include: square-brackets
@@ -32,6 +34,7 @@ contexts:
       scope: comment.line.double-slash.cfml
       captures:
         1: punctuation.definition.comment.cfml
+    - include: scope:embedding.cfml#comments
   component:
     - match: (?i)(^\s*(component)(?=(\s+|{)))
       captures:
@@ -50,7 +53,6 @@ contexts:
           pop: true
         - include: component-attributes
   component-attributes:
-    - include: comments
     - match: \b(?i:(extends))\b\s*(=)\s*
       captures:
         1: storage.modifier.extends.cfml
@@ -112,7 +114,6 @@ contexts:
     - include: component
     - include: method-call
     - include: function-call
-    - include: comments
     - include: brackets
     - include: operators
     - include: tag-in-script
@@ -232,7 +233,6 @@ contexts:
             - match: (?=[,)])
               pop: true
             - include: expression
-        - include: comments
   function-properties:
     - match: (?={)
       pop: true
@@ -312,7 +312,6 @@ contexts:
           scope: punctuation.definition.separator.arguments.cfml
         - match: (?i:(\w+)\s*(?=\=))
           scope: entity.other.method-parameter.cfml
-        - include: comments
         - include: expression
   number:
     - match: |-
@@ -420,6 +419,7 @@ contexts:
       scope: punctuation.definition.string.begin.cfml
       push: string-content-double
   string-content-single:
+    - meta_include_prototype: false
     - meta_scope: string.quoted.single.cfml
     - match: ('')
       scope: constant.character.escape.quote.cfml
@@ -429,6 +429,7 @@ contexts:
       pop: true
     - include: scope:embedding.cfml#hash-delimiters
   string-content-double:
+    - meta_include_prototype: false
     - meta_scope: string.quoted.double.cfml
     - match: ("")
       scope: constant.character.escape.quote.cfml
@@ -585,7 +586,6 @@ contexts:
                 - include: expression
             - include: core
   tag-generic-attribute-script:
-    - include: comments
     - match: '\b([a-zA-Z0-9:-]+)\b'
       captures:
         1: entity.other.attribute-name.cfml
@@ -605,7 +605,6 @@ contexts:
         4: string.unquoted.cfml
       push:
         - meta_scope: meta.tag.script.cfml
-        - include: comments
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.cfml#tag-generic-attribute

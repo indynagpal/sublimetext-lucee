@@ -272,6 +272,7 @@ contexts:
         - meta_content_scope: source.cfml.script
         - match: (?i)(?=</cfscript>)
           pop: true
+        - include: scope:source.cfml.script#comments
         - include: scope:source.cfml.script
     - match: (?i)(</)(cfscript)(>)
       captures:
@@ -300,6 +301,7 @@ contexts:
         - match: "#"
           scope: constant.character.hash.cfml
           pop: true
+        - include: scope:source.cfml.script#comments
         - include: scope:source.cfml.script#expression
   string:
     - match: "'"

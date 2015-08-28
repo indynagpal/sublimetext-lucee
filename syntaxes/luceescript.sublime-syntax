@@ -9,6 +9,8 @@ hidden: true
 contexts:
   main:
     - include: core
+  prototype:
+    - include: comments
   brackets:
     - include: round-brackets
     - include: square-brackets
@@ -32,6 +34,7 @@ contexts:
       scope: comment.line.double-slash.lucee
       captures:
         1: punctuation.definition.comment.lucee
+    - include: scope:embedding.lucee#comments
   component:
     - match: (?i)(^\s*((abstract|final)\s+)?(component)(?=(\s+|{)))
       captures:
@@ -51,7 +54,6 @@ contexts:
           pop: true
         - include: component-attributes
   component-attributes:
-    - include: comments
     - match: \b(?i:(extends))\b\s*(=)\s*
       captures:
         1: storage.modifier.extends.lucee
@@ -115,7 +117,6 @@ contexts:
     - include: component
     - include: method-call
     - include: function-call
-    - include: comments
     - include: brackets
     - include: operators
     - include: tag-in-script
@@ -277,7 +278,6 @@ contexts:
             - match: (?=[,)])
               pop: true
             - include: expression
-        - include: comments
   function-properties:
     - match: (?={)
       pop: true
@@ -430,7 +430,6 @@ contexts:
           scope: punctuation.definition.separator.arguments.lucee
         - match: (?i:(\w+)\s*(?=\=))
           scope: entity.other.method-parameter.lucee
-        - include: comments
         - include: expression
   number:
     - match: |-
@@ -558,6 +557,7 @@ contexts:
       scope: punctuation.definition.string.begin.lucee
       push: string-content-double
   string-content-single:
+    - meta_include_prototype: false
     - meta_scope: string.quoted.single.lucee
     - match: ('')
       scope: constant.character.escape.quote.lucee
@@ -567,6 +567,7 @@ contexts:
       pop: true
     - include: scope:embedding.lucee#hash-delimiters
   string-content-double:
+    - meta_include_prototype: false
     - meta_scope: string.quoted.double.lucee
     - match: ("")
       scope: constant.character.escape.quote.lucee
@@ -707,7 +708,6 @@ contexts:
                 - include: expression
             - include: core
   tag-generic-attribute:
-    - include: comments
     - match: \b([a-zA-Z0-9:-]+)\b
       captures:
         1: entity.other.attribute-name.lucee
@@ -729,7 +729,6 @@ contexts:
         4: string.unquoted.lucee
       push:
         - meta_scope: meta.tag.script.lucee
-        - include: comments
         - match: (?=(;|{))
           pop: true
         - include: tag-generic-attribute

@@ -157,6 +157,7 @@ contexts:
         - match: "#"
           scope: constant.character.hash.lucee
           pop: true
+        - include: scope:source.lucee.script#comments
         - include: scope:source.lucee.script#expression
   if:
     - match: (?i)(<)(:if|:elseif)
@@ -292,6 +293,7 @@ contexts:
         - meta_content_scope: source.lucee.script
         - match: (?i)(?=</:script>)
           pop: true
+        - include: scope:source.lucee.script#comments
         - include: scope:source.lucee.script
     - match: (?i)(</)(:script)(>)
       captures:
