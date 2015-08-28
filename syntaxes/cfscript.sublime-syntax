@@ -423,38 +423,20 @@ contexts:
     - meta_scope: string.quoted.single.cfml
     - match: ('')
       scope: constant.character.escape.quote.cfml
-    - match: "##"
-      scope: constant.character.escape.hash.cfml
-    - match: "#"
-      scope: constant.character.hash.cfml
-      set:
-        - meta_scope: source.cfml.embedded
-        - match: "#"
-          scope: constant.character.hash.cfml
-          set: string-content-single
-        - include: expression
     - match: (')
       captures:
         1: punctuation.definition.string.end.cfml
       pop: true
+    - include: scope:embedding.cfml#hash-delimiters
   string-content-double:
     - meta_scope: string.quoted.double.cfml
     - match: ("")
       scope: constant.character.escape.quote.cfml
-    - match: "##"
-      scope: constant.character.escape.hash.cfml
-    - match: "#"
-      scope: constant.character.hash.cfml
-      set:
-        - meta_scope: source.cfml.embedded
-        - match: "#"
-          scope: constant.character.hash.cfml
-          set: string-content-double
-        - include: expression
     - match: (")
       captures:
         1: punctuation.definition.string.end.cfml
       pop: true
+    - include: scope:embedding.cfml#hash-delimiters
   support:
     - match: |-
         (?x)

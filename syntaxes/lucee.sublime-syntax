@@ -147,6 +147,17 @@ contexts:
         - include: comments
         - match: (?i)(?=</?:)
           push: tags
+  hash-delimiters:
+    - match: "##"
+      scope: constant.character.escape.hash.lucee
+    - match: "#"
+      scope: constant.character.hash.lucee.start
+      push:
+        - meta_content_scope: source.lucee.script
+        - match: "#"
+          scope: constant.character.hash.lucee
+          pop: true
+        - include: scope:source.lucee.script#expression
   if:
     - match: (?i)(<)(:if|:elseif)
       captures:
@@ -229,16 +240,7 @@ contexts:
           pop: true
         - match: (?i)(?=</?:)
           push: tags
-        - match: "##"
-          scope: constant.character.escape.hash.lucee
-        - match: "#"
-          scope: constant.character.hash.lucee.start
-          push:
-            - meta_content_scope: source.lucee.script
-            - match: "#"
-              scope: constant.character.hash.lucee
-              pop: true
-            - include: scope:source.lucee.script#expression
+        - include: hash-delimiters
   output-string-contents:
     - meta_content_scope: meta.scope.output.lucee string.quoted
     - match: (?i)(</)(:output)(>)(?=('|"))
@@ -250,16 +252,7 @@ contexts:
       pop: true
     - match: (?i)(?=</?cf)
       push: tags
-    - match: "##"
-      scope: constant.character.escape.hash.lucee
-    - match: "#"
-      scope: constant.character.hash.lucee.start
-      push:
-        - meta_content_scope: source.lucee.script
-        - match: "#"
-          scope: constant.character.hash.lucee
-          pop: true
-        - include: scope:source.lucee.script#expression
+    - include: hash-delimiters
   query:
     - match: (?i)(<)(:query)(?=\s|>)
       captures:
@@ -287,16 +280,7 @@ contexts:
           pop: true
         - match: (?i)(?=</?:)
           push: tags
-        - match: "##"
-          scope: constant.character.escape.hash.lucee
-        - match: "#"
-          scope: constant.character.hash.lucee.start
-          push:
-            - meta_content_scope: source.lucee.script
-            - match: "#"
-              scope: constant.character.hash.lucee
-              pop: true
-            - include: scope:source.lucee.script#expression
+        - include: hash-delimiters
   script:
     - match: (?i)(<)(:script)(\s+|>)
       captures:
@@ -327,38 +311,20 @@ contexts:
     - meta_scope: string.quoted.single.lucee
     - match: ('')
       scope: constant.character.escape.quote.lucee
-    - match: "##"
-      scope: constant.character.escape.hash.lucee
-    - match: "#"
-      scope: constant.character.hash.lucee.start
-      push:
-        - meta_scope: source.lucee.script
-        - match: "#"
-          scope: constant.character.hash.lucee
-          pop: true
-        - include: scope:source.lucee.script#expression
     - match: (')
       captures:
         1: punctuation.definition.string.end.lucee
       pop: true
+    - include: hash-delimiters
   string-content-double:
     - meta_scope: string.quoted.double.lucee
     - match: ("")
       scope: constant.character.escape.quote.lucee
-    - match: "##"
-      scope: constant.character.escape.hash.lucee
-    - match: "#"
-      scope: constant.character.hash.lucee.start
-      push:
-        - meta_scope: source.lucee.script
-        - match: "#"
-          scope: constant.character.hash.lucee
-          pop: true
-        - include: scope:source.lucee.script#expression
     - match: (")
       captures:
         1: punctuation.definition.string.end.lucee
       pop: true
+    - include: hash-delimiters
   tag-generic-attribute:
     - include: comments
     - match: \b([a-zA-Z0-9:-]+)\b

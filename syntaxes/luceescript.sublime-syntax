@@ -561,38 +561,20 @@ contexts:
     - meta_scope: string.quoted.single.lucee
     - match: ('')
       scope: constant.character.escape.quote.lucee
-    - match: "##"
-      scope: constant.character.escape.hash.lucee
-    - match: "#"
-      scope: constant.character.hash.lucee
-      set:
-        - meta_scope: source.lucee.embedded
-        - match: "#"
-          scope: constant.character.hash.lucee
-          set: string-content-single
-        - include: expression
     - match: (')
       captures:
         1: punctuation.definition.string.end.lucee
       pop: true
+    - include: scope:embedding.lucee#hash-delimiters
   string-content-double:
     - meta_scope: string.quoted.double.lucee
     - match: ("")
       scope: constant.character.escape.quote.lucee
-    - match: "##"
-      scope: constant.character.escape.hash.lucee
-    - match: "#"
-      scope: constant.character.hash.lucee
-      set:
-        - meta_scope: source.lucee.embedded
-        - match: "#"
-          scope: constant.character.hash.lucee
-          set: string-content-double
-        - include: expression
     - match: (")
       captures:
         1: punctuation.definition.string.end.lucee
       pop: true
+    - include: scope:embedding.lucee#hash-delimiters
   support:
     - match: |-
         (?x)

@@ -48,7 +48,7 @@ default="string";
 //              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.tag.script.lucee entity.name.tag.script.lucee
 //                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee
     var test = "#foo
-//              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly string.quoted.double.lucee source.lucee.embedded constant.character.hash.lucee
+//              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly string.quoted.double.lucee constant.character.hash.lucee
     # true";
     return result = foo;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly variable.other.lucee

@@ -43,7 +43,7 @@ default="string";
 //              ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.tag.script.cfml entity.name.tag.script.cfml
 //                   ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml entity.other.attribute-name.cfml
     var test = "#foo
-//              ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly string.quoted.double.cfml source.cfml.embedded constant.character.hash.cfml
+//              ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly string.quoted.double.cfml constant.character.hash.cfml
     # true";
 
     return result = foo;
