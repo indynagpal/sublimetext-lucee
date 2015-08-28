@@ -586,6 +586,9 @@ contexts:
                 - include: expression
             - include: core
   tag-generic-attribute-script:
+    - meta_scope: meta.tag.script.cfml
+    - match: (?=[;{])
+      pop: true
     - match: '\b([a-zA-Z0-9:-]+)\b'
       captures:
         1: entity.other.attribute-name.cfml
@@ -598,7 +601,7 @@ contexts:
           pop: true
         - include: expression
   tag-in-script:
-    - match: ^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
+    - match: (?i)^\s*(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:
         1: entity.name.tag.script.cfml
         3: storage.type.cfml
@@ -608,7 +611,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.cfml#tag-generic-attribute
-    - match: ^\s*(property)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+    - match: (?i)^\s*(property)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         1: entity.name.tag.script.cfml
       push:
@@ -616,6 +619,25 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.cfml#tag-generic-attribute
+    - match: (?i)(^|\s+)(param)(?=\s+(name|default|max|maxLength|min|pattern|type)\s*=)
+      captures:
+        2: entity.name.tag.script.cfml
+      push: tag-generic-attribute-script
+    - match: (?i)(^|\s+)(param)\s+([_$a-zA-Z][$\w\.]*)(?=\s+(name|default|max|maxLength|min|pattern|type))
+      captures:
+        2: entity.name.tag.script.cfml
+        3: string.unquoted.cfml
+      push: tag-generic-attribute-script
+    - match: (?i)(^|\s+)(param)(\s+([_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w\.]*\b)
+      captures:
+        2: entity.name.tag.script.cfml
+        4: storage.type.cfml
+        5: string.unquoted.cfml
+      push: tag-generic-attribute-script
+    - match: (?i)(^|\s+)(param)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+      captures:
+        2: entity.name.tag.script.cfml
+      push: tag-generic-attribute-script
     - match: |-
         (?x)
             (^|\s+)
@@ -632,11 +654,7 @@ contexts:
             )(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         2: entity.name.tag.script.cfml
-      push:
-        - meta_scope: meta.tag.script.cfml
-        - match: (?=(;|{))
-          pop: true
-        - include: tag-generic-attribute-script
+      push: tag-generic-attribute-script
   variable:
     - match: '\b[A-Z][_$\dA-Z]*\b'
       scope: variable.other.constant.cfml
