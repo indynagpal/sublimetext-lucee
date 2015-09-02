@@ -199,18 +199,21 @@ contexts:
     - match: |-
         (?x)
         ([_$a-zA-Z][$\w]*)\s*
-        (\(\s*\))
-      scope: meta.function-call.without-arguments.cfml
-      captures:
-        1: variable.function.cfml
-        2: meta.group.braces.round.function.arguments.cfml
-    - match: |-
-        (?x)
-        ([_$a-zA-Z][$\w]*)\s*
         (?=\()
-      scope: meta.function-call.with-arguments.cfml
       captures:
         1: variable.function.cfml
+      push:
+        - meta_scope: meta.function-call.cfml
+        - match: (?<=\))
+          pop: true
+        - match: \(
+          scope: punctuation.definition.arguments.begin.cfml
+          push:
+            - meta_scope: meta.function-call.arguments.cfml
+            - match: \)
+              scope: punctuation.definition.arguments.end.cfml
+              pop: true
+            - include: expression
   function-declaration-parameters:
     - match: \(
       scope: punctuation.definition.parameters.begin.cfml
@@ -292,27 +295,23 @@ contexts:
         (?x)
         (?<=\.)
         ([_$a-zA-Z][$\w]*)\s*
-        (\(\s*\))
-      scope: meta.function-call.method.without-arguments.cfml
-      captures:
-        2: meta.group.braces.round.function.arguments.cfml
-    - match: |-
-        (?x)
-        (?<=\.)
-        ([_$a-zA-Z][$\w]*)\s*
-        (\()
-      captures:
-        2: punctuation.definition.arguments.begin.cfml
+        (?=\()
       push:
-        - meta_scope: meta.function-call.method.with-arguments.cfml
-        - match: \)
-          scope: punctuation.definition.arguments.end.cfml
+        - meta_scope: meta.function-call.method.cfml
+        - match: (?<=\))
           pop: true
-        - match: ","
-          scope: punctuation.definition.separator.arguments.cfml
-        - match: (?i:(\w+)\s*(?=\=))
-          scope: entity.other.method-parameter.cfml
-        - include: expression
+        - match: \(
+          scope: punctuation.definition.arguments.begin.cfml
+          push:
+            - meta_scope: meta.function-call.method.arguments.cfml
+            - match: \)
+              scope: punctuation.definition.arguments.end.cfml
+              pop: true
+            - match: ","
+              scope: punctuation.definition.separator.arguments.cfml
+            - match: (?i:(\w+)\s*(?=\=))
+              scope: entity.other.method-parameter.cfml
+            - include: expression
   number:
     - match: |-
         (?x)(
@@ -522,12 +521,15 @@ contexts:
       captures:
         1: support.function.cfml
       push:
+        - meta_scope: meta.support.function-call.cfml
+        - match: (?<=\))
+          pop: true
         - match: \(
-          scope: meta.support.function-call.arguments.begin.cfml
-          set:
+          scope: punctuation.definition.arguments.begin.cfml
+          push:
             - meta_scope: meta.support.function-call.arguments.cfml
             - match: \)
-              scope: meta.support.function-call.arguments.end.cfml
+              scope: punctuation.definition.arguments.end.cfml
               pop: true
             - include: expression
     - match: |-
@@ -554,12 +556,15 @@ contexts:
         1: keyword.operator.accessor.cfml
         2: support.function.member.cfml
       push:
+        - meta_scope: meta.support.function-call.member.cfml
+        - match: (?<=\))
+          pop: true
         - match: \(
-          scope: meta.support.function-call.member.arguments.begin.cfml
-          set:
+          scope: punctuation.definition.arguments.begin.cfml
+          push:
             - meta_scope: meta.support.function-call.member.arguments.cfml
             - match: \)
-              scope: meta.support.function-call.member.arguments.end.cfml
+              scope: punctuation.definition.arguments.end.cfml
               pop: true
             - include: expression
   switch:

@@ -33,12 +33,12 @@ default="string";
     var result;
 
    	toString( testVar, "utf-8" );
-//  ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly support.function.cfml
-//          ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.cfml meta.support.function-call.arguments.begin.cfml
-//                             ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.cfml meta.support.function-call.arguments.end.cfml
+//  ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.cfml support.function.cfml
+//          ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.cfml meta.support.function-call.arguments.cfml punctuation.definition.arguments.begin.cfml
+//                             ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.cfml punctuation.definition.arguments.end.cfml
     var new_list = testVar.listAppend( "hello" );
-//                         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly support.function.member.cfml
-//                                   ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.member.arguments.cfml meta.support.function-call.member.arguments.begin.cfml
+//                         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.member.cfml support.function.member.cfml
+//                                   ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.member.cfml meta.support.function-call.member.arguments.cfml punctuation.definition.arguments.begin.cfml
     if ( true ) http url="www.google.com" result="result";
 //              ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.tag.script.cfml entity.name.tag.script.cfml
 //                   ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml entity.other.attribute-name.cfml

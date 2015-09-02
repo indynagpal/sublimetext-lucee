@@ -1,0 +1,44 @@
+<!--- SYNTAX TEST "lucee.sublime-syntax" --->
+<div>
+ <!--- <- embedding.lucee text.html.lucee meta.tag entity.name.tag --->
+<:set testArray = []>
+ <!--- <- embedding.lucee entity.name.tag --->
+<:set arrayAppend(testArray, 1)>
+<!--- ^ embedding.lucee meta.tag source.lucee.script meta.support.function-call.lucee support.function.lucee --->
+<!---            ^ embedding.lucee meta.tag source.lucee.script meta.support.function-call.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+</div>
+<:output>
+<!---    ^ embedding.lucee text.html.lucee meta.scope.output.lucee text.html.lucee --->
+#now()#
+<!--- <- embedding.lucee text.html.lucee meta.scope.output.lucee text.html.lucee constant.character.hash.lucee.start --->
+ <!--- <- embedding.lucee text.html.lucee meta.scope.output.lucee text.html.lucee source.lucee.script support.function.lucee --->
+</:output>
+<:script>
+foo = 'hello world';
+<!--- <- embedding.lucee text.html.lucee source.lucee.script variable.other.lucee --->
+<!---  ^ embedding.lucee text.html.lucee source.lucee.script string.quoted.single.lucee --->
+<!---              ^ embedding.lucee text.html.lucee source.lucee.script punctuation.terminator.statement.lucee --->
+
+arrayAppend(foo, 10);
+<!--- <- embedding.lucee text.html.lucee source.lucee.script meta.support.function-call.lucee support.function.lucee --->
+<!---      ^ embedding.lucee text.html.lucee source.lucee.script meta.support.function-call.lucee meta.support.function-call.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+<!---              ^ embedding.lucee text.html.lucee source.lucee.script meta.support.function-call.lucee meta.support.function-call.arguments.lucee punctuation.definition.arguments.end.lucee --->
+myArray.append(10);
+<!---   ^ embedding.lucee text.html.lucee source.lucee.script meta.support.function-call.member.lucee support.function.member.lucee --->
+<!---         ^ embedding.lucee text.html.lucee source.lucee.script meta.support.function-call.member.lucee meta.support.function-call.member.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+myFunc();
+<!--- <- embedding.lucee text.html.lucee source.lucee.script meta.function-call.lucee variable.function.lucee --->
+<!--- ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.lucee meta.function-call.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+myFunc(10);
+<!--- <- embedding.lucee text.html.lucee source.lucee.script meta.function-call.lucee variable.function.lucee --->
+<!--- ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.lucee meta.function-call.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+myObj.addVal(10);
+<!--- <- embedding.lucee text.html.lucee source.lucee.script variable.other.object.lucee --->
+<!--- ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.method.lucee --->
+<!---       ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.method.lucee meta.function-call.method.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+myFunc().addVal(10);
+<!--- <- embedding.lucee text.html.lucee source.lucee.script meta.function-call.lucee variable.function.lucee --->
+<!--- ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.lucee meta.function-call.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+<!---    ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.method.lucee --->
+<!---          ^ embedding.lucee text.html.lucee source.lucee.script meta.function-call.method.lucee meta.function-call.method.arguments.lucee punctuation.definition.arguments.begin.lucee --->
+</:script>

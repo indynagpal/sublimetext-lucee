@@ -38,12 +38,12 @@ default="string";
     var result;
 
    	toString( testVar, "utf-8" );
-//  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly support.function.lucee
-//          ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.lucee meta.support.function-call.arguments.begin.lucee
-//                             ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.arguments.lucee meta.support.function-call.arguments.end.lucee
+//  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.lucee support.function.lucee
+//          ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.lucee meta.support.function-call.arguments.lucee punctuation.definition.arguments.begin.lucee
+//                             ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.lucee meta.support.function-call.arguments.lucee punctuation.definition.arguments.end.lucee
     var new_list = testVar.listAppend( "hello" );
-//                         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly support.function.member.lucee
-//                                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.member.arguments.lucee meta.support.function-call.member.arguments.begin.lucee
+//                         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.member.lucee support.function.member.lucee
+//                                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.support.function-call.member.lucee meta.support.function-call.member.arguments.lucee punctuation.definition.arguments.begin.lucee
     if ( true ) http url="www.google.com" result="result";
 //              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.tag.script.lucee entity.name.tag.script.lucee
 //                   ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee entity.other.attribute-name.lucee

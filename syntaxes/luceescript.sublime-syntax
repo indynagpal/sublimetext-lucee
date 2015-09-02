@@ -244,18 +244,21 @@ contexts:
     - match: |-
         (?x)
         ([_$a-zA-Z][$\w]*)\s*
-        (\(\s*\))
-      scope: meta.function-call.without-arguments.lucee
-      captures:
-        1: variable.function.lucee
-        2: meta.group.braces.round.function.arguments.lucee
-    - match: |-
-        (?x)
-        ([_$a-zA-Z][$\w]*)\s*
         (?=\()
-      scope: meta.function-call.with-arguments.lucee
       captures:
         1: variable.function.lucee
+      push:
+        - meta_scope: meta.function-call.lucee
+        - match: (?<=\))
+          pop: true
+        - match: \(
+          scope: punctuation.definition.arguments.begin.lucee
+          push:
+            - meta_scope: meta.function-call.arguments.lucee
+            - match: \)
+              scope: punctuation.definition.arguments.end.lucee
+              pop: true
+            - include: expression
   function-declaration-parameters:
     - match: \(
       scope: punctuation.definition.parameters.begin.lucee
@@ -408,29 +411,25 @@ contexts:
   method-call:
     - match: |-
         (?x)
-        ((?<=\.)|(?<=\::))
+        (?<=\.)
         ([_$a-zA-Z][$\w]*)\s*
-        (\(\s*\))
-      scope: meta.function-call.method.without-arguments.lucee
-      captures:
-        3: meta.group.braces.round.function.arguments.lucee
-    - match: |-
-        (?x)
-        ((?<=\.)|(?<=\::))
-        ([_$a-zA-Z][$\w]*)\s*
-        (\()
-      captures:
-        3: punctuation.definition.arguments.begin.lucee
+        (?=\()
       push:
-        - meta_scope: meta.function-call.method.with-arguments.lucee
-        - match: \)
-          scope: punctuation.definition.arguments.end.lucee
+        - meta_scope: meta.function-call.method.lucee
+        - match: (?<=\))
           pop: true
-        - match: ","
-          scope: punctuation.definition.separator.arguments.lucee
-        - match: (?i:(\w+)\s*(?=\=))
-          scope: entity.other.method-parameter.lucee
-        - include: expression
+        - match: \(
+          scope: punctuation.definition.arguments.begin.lucee
+          push:
+            - meta_scope: meta.function-call.method.arguments.lucee
+            - match: \)
+              scope: punctuation.definition.arguments.end.lucee
+              pop: true
+            - match: ","
+              scope: punctuation.definition.separator.arguments.lucee
+            - match: (?i:(\w+)\s*(?=\=))
+              scope: entity.other.method-parameter.lucee
+            - include: expression
   number:
     - match: |-
         (?x)(
@@ -645,12 +644,15 @@ contexts:
       captures:
         1: support.function.lucee
       push:
+        - meta_scope: meta.support.function-call.lucee
+        - match: (?<=\))
+          pop: true
         - match: \(
-          scope: meta.support.function-call.arguments.begin.lucee
-          set:
+          scope: punctuation.definition.arguments.begin.lucee
+          push:
             - meta_scope: meta.support.function-call.arguments.lucee
             - match: \)
-              scope: meta.support.function-call.arguments.end.lucee
+              scope: punctuation.definition.arguments.end.lucee
               pop: true
             - include: expression
     - match: |-
@@ -676,12 +678,15 @@ contexts:
         1: keyword.operator.accessor.lucee
         2: support.function.member.lucee
       push:
+        - meta_scope: meta.support.function-call.member.lucee
+        - match: (?<=\))
+          pop: true
         - match: \(
-          scope: meta.support.function-call.member.arguments.begin.lucee
-          set:
+          scope: punctuation.definition.arguments.begin.lucee
+          push:
             - meta_scope: meta.support.function-call.member.arguments.lucee
             - match: \)
-              scope: meta.support.function-call.member.arguments.end.lucee
+              scope: punctuation.definition.arguments.end.lucee
               pop: true
             - include: expression
   switch:
