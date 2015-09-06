@@ -1,8 +1,8 @@
 import sublime, sublime_plugin, webbrowser
 from os.path import dirname, realpath, splitext
-from .lib import bootstrap
-from .lib import cfdocs, color_scheme_styles, events, utils
-from .lib import completions
+from .src import bootstrap
+from .src import cfdocs, color_scheme_styles, events, utils
+from .src import completions
 
 LUCEE_PLUGIN_PATH = dirname(realpath(__file__)).replace("\\", "/")
 
