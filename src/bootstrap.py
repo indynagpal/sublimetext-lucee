@@ -1,2 +1,3 @@
 from . import basecompletions
 from . import modelcompletions
+from .color_scheme_styles import LuceeColorSchemeStylesCommand, LuceeDefaultColorSchemeStylesCommand

@@ -1,8 +1,7 @@
 import sublime, sublime_plugin, webbrowser
 from os.path import dirname, realpath, splitext
-from .src import bootstrap
-from .src import cfdocs, color_scheme_styles, events, utils
-from .src import completions
+from .src.bootstrap import *
+from .src import cfdocs, completions, events, utils
 
 LUCEE_PLUGIN_PATH = dirname(realpath(__file__)).replace("\\", "/")
 
@@ -112,12 +111,4 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 			# if there is no open tag print "/"
 			self.view.insert(edit,pt,"/")
 
-class LuceeDefaultColorSchemeStylesCommand(sublime_plugin.WindowCommand):
 
-	def run(self):
-		self.window.run_command("open_file", {"file": "${packages}/" + LUCEE_PLUGIN_PATH.split("/").pop() + "/settings/lucee_color_scheme_styles.sublime-settings"})
-
-class LuceeColorSchemeStylesCommand(sublime_plugin.ApplicationCommand):
-
-	def run(self):
-		color_scheme_styles.toggle()
