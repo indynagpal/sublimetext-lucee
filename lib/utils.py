@@ -1,63 +1,32 @@
-import sublime, json
-from urllib.request import urlopen
-from collections import deque
+import sublime
+from collections import deque, namedtuple
+Symbol = namedtuple('Symbol', 'name is_function function_region args_region')
 
-def load_completions(plugin_path):
-	completions_data = {}
-	for filename in ["lucee_tags","lucee_functions","lucee_member_functions","cfml_tags","cfml_functions","cfml_member_functions"]:
-		completions_data[filename] = load_json_data(plugin_path, filename)
+def get_dot_context(view, dot_position):
+	context = []
 
-	# setup completion lists
-	completions = {}
-	for dialect in ["lucee","cfml"]:
-		# tags
-		completions[dialect + "_tags"] = []
-		completions[dialect + "_tags_in_script"] = []
-		completions[dialect + "_tag_attributes"] = {}
-		for tag_name in sorted(completions_data[dialect + "_tags"].keys()):
-			tag_attributes = completions_data[dialect + "_tags"][tag_name]
-			completions[dialect + "_tags"].append(make_tag_completion(tag_name, dialect, tag_attributes[0]))
-			completions[dialect + "_tags_in_script"].append(make_tag_completion(tag_name[(1 if dialect == "lucee" else 2):], dialect, tag_attributes[0]))
-			completions[dialect + "_tag_attributes"][tag_name] = [(a + '\trequired', a + '="$1"') for a in tag_attributes[0]]
-			completions[dialect + "_tag_attributes"][tag_name].extend([(a + '\toptional', a + '="$1"') for a in tag_attributes[1]])
+	if view.substr(dot_position) != ".":
+		return context
 
-		# functions
-		completions[dialect + "_functions"] = [(funct + '\tfn (' + dialect + ')', funct + completions_data[dialect + "_functions"][funct]) for funct in sorted(completions_data[dialect + "_functions"].keys())]
+	if view.substr(dot_position - 1) in [" ", "\t", "\n"]:
+		dot_position = view.find_by_class(dot_position, False, sublime.CLASS_WORD_END | sublime.CLASS_PUNCTUATION_END)
 
-		# member functions
-		mem_func_comp = []
-		for member_function_type in sorted(completions_data[dialect + "_member_functions"].keys()):
-			for funct in sorted(completions_data[dialect + "_member_functions"][member_function_type].keys()):
-				mem_func_comp.append( (funct + '\t' + member_function_type + '.fn (' + dialect + ')', funct + completions_data[dialect + "_member_functions"][member_function_type][funct]))
-		completions[dialect + "_member_functions"] = mem_func_comp
+	for scope_name in ["meta.support.function-call", "meta.function-call"]:
+		base_scope_count = view.scope_name(dot_position).count(scope_name)
+		scope_to_find = " ".join([scope_name] * (base_scope_count + 1))
+		if view.match_selector(dot_position - 1, scope_to_find):
+			function_name, name_region, function_args_region = get_function(view, dot_position - 1, scope_name)
+			context.append(Symbol(function_name, True, name_region, function_args_region))
+			break
+	else:
+		if view.match_selector(dot_position - 1, "variable, meta.property.object"):
+			name_region = view.word(dot_position)
+			context.append(Symbol(view.substr(name_region).lower(), False, None, None))
 
-	return completions
+	if len(context) > 0:
+		context.extend(get_dot_context(view, name_region.begin() - 1))
 
-def load_json_data(plugin_path, filename):
-	with open(plugin_path + '/json/' + filename + '.json', 'r') as f:
-		json_data = f.read()
-	return json.loads(json_data)
-
-def make_tag_completion(tag, type, required_attrs):
-	attrs = ''
-	for index, attr in enumerate(required_attrs, 1):
-		attrs += ' ' + attr + '="$' + str(index) + '"'
-	return (tag + '\ttag (' + type + ')', tag + attrs)
-
-def get_previous_word(view, pos):
-	previous_word_start = view.find_by_class(pos, False, sublime.CLASS_WORD_START)
-	previous_word = view.substr(sublime.Region(previous_word_start, pos)).strip().lower()
-	return previous_word
-
-def get_tag_name(view, pos):
-	# walk backwards from cursor, looking for tag name scope
-	for index in range(500):
-		if view.match_selector(pos - index,"entity.name.tag"):
-			tag_name_region = view.expand_by_class(pos - index, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "</>;{}()")
-			tag_name = view.substr(tag_name_region).lower()
-			return tag_name
-		if view.match_selector(pos - index,"punctuation.definition.tag.begin"):
-			return None
+	return context
 
 def get_last_open_tag(view, pos):
 	open_tags = deque()
@@ -94,15 +63,34 @@ def get_last_open_tag(view, pos):
 
 	return open_tags.popleft() if len(open_tags) > 0 else None
 
-def get_support_function_name(view, pt):
-	args_region = None
-	function_call_arguments_scope = "meta.support.function-call.arguments.cfml"
-	scope_count = view.scope_name(pt).count(function_call_arguments_scope)
-	scope_to_find = " ".join([function_call_arguments_scope] * scope_count)
+def get_tag_name(view, pos):
+	# walk backwards from cursor, looking for tag name scope
+	for index in range(500):
+		if view.match_selector(pos - index,"entity.name.tag"):
+			tag_name_region = view.expand_by_class(pos - index, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "</>;{}()")
+			tag_name = view.substr(tag_name_region).lower()
+			return tag_name
+		if view.match_selector(pos - index,"punctuation.definition.tag.begin"):
+			return None
+
+def get_previous_word(view, pos):
+	previous_character = view.substr(pos - 1)
+	if previous_character in [" ", "\t", "\n"]:
+		pos = view.find_by_class(pos, False, sublime.CLASS_WORD_END | sublime.CLASS_PUNCTUATION_END)
+	return (view.substr(view.word(pos)).lower(), False)
+
+def get_function(view, pt, function_call_scope):
+	function_region = None
+	scope_count = view.scope_name(pt).count(function_call_scope)
+	if scope_count == 0:
+		return None
+	scope_to_find = " ".join([function_call_scope] * scope_count)
 	for r in view.find_by_selector(scope_to_find):
 		if r.contains(pt):
-			args_region = r
+			function_region = r
 			break
-	if args_region:
-		return view.substr(view.word(args_region.begin()-1)).lower()
+	if function_region:
+		function_name_region = view.word(function_region.begin())
+		function_args_region = sublime.Region(function_name_region.end(), function_region.end())
+		return view.substr(function_name_region).lower(), function_name_region, function_args_region
 	return None
