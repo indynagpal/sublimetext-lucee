@@ -2,7 +2,7 @@ import sublime_plugin
 from os.path import dirname, realpath
 from .color_scheme_styles import toggle
 
-__all__ = ["LuceeColorSchemeStylesCommand"]
+__all__ = ["LuceeColorSchemeStylesCommand","LuceeDefaultColorSchemeStylesCommand"]
 MODULE_PATH = dirname(realpath(__file__)).replace("\\", "/")
 
 class LuceeDefaultColorSchemeStylesCommand(sublime_plugin.WindowCommand):
