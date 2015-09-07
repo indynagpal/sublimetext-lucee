@@ -3,20 +3,19 @@
 # then uses the functionfinder module to load the functions from those files. It assumes
 # that all such files in the directory are model (e.g. component) files, and does not
 # check that the files actually define components. It returns a dict of bean names mapped to
-# function completions. The bean names are determined by the get_bean_names() function, or
-# by an alternative function passed in to load_directory()
+# a named tuple containing function metadata and completions. The bean names are determined
+# by the get_bean_names() function, or by an alternative function passed in to load_directory()
 
 # The returned dict structure looks like this:
 # {
-#   "beanname": [
-#     (trigger, contents),
-#     ...
-#   ],
+#   "beanname": Bean(file_path, metadata, completions),
 #   ...
 # }
 
 import os
 from .functionfinder import find_functions
+from collections import namedtuple
+Bean = namedtuple('Bean', 'file_path functions completions')
 
 def get_bean_names(root_path, file_path):
 	bean_path, file_ext = os.path.splitext(file_path)
@@ -26,7 +25,7 @@ def get_bean_names(root_path, file_path):
 	return [bean_name, bean_name + (bean_folder if len(bean_folder) == 0 or bean_folder[-1] != "s" else bean_folder[:-1])]
 
 def load_directory(root_path, bean_names_func=get_bean_names):
-	completions = {}
+	beans = {}
 	file_count = 0
 	for path, directories, filenames in os.walk(root_path):
 		for filename in filenames:
@@ -35,8 +34,8 @@ def load_directory(root_path, bean_names_func=get_bean_names):
 				file_count += 1
 				full_file_path = path.replace("\\","/") + "/" + filename
 				bean_names = bean_names_func(root_path, full_file_path)
-				completions.update(load_file(full_file_path, bean_names))
-	return (completions, file_count)
+				beans.update(load_file(full_file_path, bean_names))
+	return (beans, file_count)
 
 def load_file(file_path, bean_names):
 	try:
@@ -46,10 +45,14 @@ def load_file(file_path, bean_names):
 		print("Lucee: unable to read file: " + file_path)
 		return {}
 	functions = find_functions(file_string)
-	return {bean_name.lower(): make_completions(bean_name, functions) for bean_name in bean_names}
+	beans = {bean_name.lower(): Bean(file_path, make_metadata(bean_name, functions), make_completions(bean_name, functions)) for bean_name in bean_names}
+	return beans
 
 def make_completions(bean_name, functions):
 	return [make_completion(bean_name, function_name, function_params) for function_name, function_params in functions]
+
+def make_metadata(bean_name, functions):
+	return {function_name.lower(): (function_name, function_params)  for function_name, function_params in functions}
 
 def make_completion(bean_name, function_name, function_params):
 	key_string = function_name + "()"
