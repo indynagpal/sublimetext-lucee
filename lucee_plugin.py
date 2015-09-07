@@ -1,7 +1,7 @@
 import sublime, sublime_plugin, webbrowser
 from os.path import dirname, realpath, splitext
 from .src.bootstrap import *
-from .src import cfdocs, completions, events, utils
+from .src import completions, events, utils
 
 LUCEE_PLUGIN_PATH = dirname(realpath(__file__)).replace("\\", "/")
 
@@ -62,44 +62,6 @@ class LuceeDocsCommand(sublime_plugin.TextCommand):
 		full_url = "http://docs.lucee.org/reference/" + ("functions" if is_function else "tags") + "/" + word + ".html"
 		webbrowser.open_new_tab(full_url)
 
-
-class CfdocsCommand(sublime_plugin.TextCommand):
-
-	cfdocs.load(LUCEE_PLUGIN_PATH)
-
-	def run(self, edit):
-		pt = self.view.sel()[0].begin()
-		doc_name = None
-
-		# functions
-		if self.view.match_selector(pt, "support.function.cfml"):
-			doc_name = self.view.substr(self.view.word(pt)).lower()
-
-		elif self.view.match_selector(pt, "meta.support.function-call.cfml"):
-			doc_name, function_name_region, function_args_region = utils.get_function(self.view, pt, "meta.support.function-call")
-
-		# tags
-		elif self.view.match_selector(pt, "meta.tag.cfml,meta.tag.script.cfml"):
-			doc_name = utils.get_tag_name(self.view, pt)
-			if doc_name[:2] != "cf":
-				# tag in script
-				doc_name = "cf" + doc_name
-
-		# script component, interface, function
-		elif self.view.match_selector(pt, "meta.class.cfml"):
-			doc_name = "cfcomponent"
-		elif self.view.match_selector(pt, "meta.interface.cfml"):
-			doc_name = "cfinterface"
-		elif self.view.match_selector(pt, "meta.function.cfml"):
-			doc_name = "cffunction"
-
-		if doc_name:
-			self.view.show_popup(cfdocs.get_cfdoc(doc_name), max_width=640, max_height=320, on_navigate=self.on_navigate)
-
-	def on_navigate(self, href):
-		webbrowser.open_new_tab(href)
-
-
 class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 
 	def run(self, edit):
@@ -110,5 +72,3 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 		else:
 			# if there is no open tag print "/"
 			self.view.insert(edit,pt,"/")
-
-

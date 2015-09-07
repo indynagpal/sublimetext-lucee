@@ -1,14 +1,15 @@
 <style>
 html {
-	background-color: #18BC9C;
+	background-color: ${side_color};
 	margin: 0;
 	padding: 0;
+	font-size: 10pt;
 }
 body {
 	margin: 0;
 	padding: 0;
 }
-.cfdocs {
+.container {
 	background-color: #FFFFFF;
 	margin-left: 3px;
 	padding: 5px;
@@ -18,23 +19,24 @@ h1 {
 	font-size: 1em;
 	margin: 1px;
 	padding: 2px;
-	background-color: #F9F2F4;
-	color: #C7254E;
+	background-color: ${header_bg_color};
+	color: ${header_color};
 }
 p {
 	margin: 1px;
 	padding: 2px;
-	color: #272B33;
+	color: ${text_color};
 }
 a {
 	margin: 1px;
 	padding: 2px;
-	color: #18BC9C;
+	color: ${side_color};
 }
+
 </style>
-<div class="cfdocs">
-<h1>${syntax}</h1>
+<div class="container">
+<h1>${header}</h1>
 <p>${description}</p>
-<div>${params}</div>
-<a href="${href}">cfdocs.org/${function_or_tag}</a>
+<div>${body}</div>
+<a href="${a_href}">${a_text}</a>
 </div>

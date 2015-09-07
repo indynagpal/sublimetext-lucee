@@ -78,9 +78,9 @@
   // ctrl+f12 cfdocs lookup
   {
     "keys": ["ctrl+f12"],
-    "command": "cfdocs",
+    "command": "lucee_inline_documentation",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "support.function.cfml,meta.support.function-call.arguments.cfml,meta.tag.cfml - punctuation.definition.tag.begin.cfml - source.cfml.script,meta.tag.script.cfml,meta.class.cfml,meta.interface.cfml,meta.function.cfml", "match_all":true}
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml", "match_all":true}
     ]
   },
   // ctrl+f12 lucee docs
