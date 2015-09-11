@@ -54,6 +54,8 @@ param rc.testVar = 100;
 <!--- ^ embedding.lucee source.lucee source.lucee.script meta.tag.script.lucee string.unquoted.lucee --->
 <!---    ^ embedding.lucee source.lucee source.lucee.script meta.tag.script.lucee string.unquoted.lucee --->
 <!---              ^ embedding.lucee source.lucee source.lucee.script meta.tag.script.lucee constant.numeric.lucee --->
+  param integer testVar = 100;
+<!--- <- embedding.lucee source.lucee.script - meta.tag.script.lucee --->
 
 transaction {
 <!--- <- embedding.lucee source.lucee source.lucee.script meta.tag.script.lucee entity.name.tag.script.lucee --->

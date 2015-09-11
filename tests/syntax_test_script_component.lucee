@@ -3,6 +3,7 @@ component extends="root.model.text"
           persistent = "true" {
 
   property test;
+// <- embedding.lucee source.lucee.script meta.group.braces.curly - meta.tag.script.lucee
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee string.unquoted.lucee
   property test test;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.tag.script.lucee storage.type.lucee

@@ -5,6 +5,7 @@ persistent = true {
 // <- embedding.cfml source.cfml.script meta.class.cfml entity.other.attribute-name.cfml
 //           ^ embedding.cfml source.cfml.script meta.class.cfml string.unquoted.cfml
   property test;
+// <- embedding.cfml source.cfml.script meta.group.braces.curly - meta.tag.script.cfml
 //         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.unquoted.cfml
   property test test;
 //         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml storage.type.cfml
