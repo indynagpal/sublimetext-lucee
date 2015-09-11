@@ -53,14 +53,18 @@ class LuceeDocsCommand(sublime_plugin.TextCommand):
 
 	def run(self, edit):
 		pt = self.view.sel()[0].begin()
-		is_function = self.view.match_selector(pt, "support.function.lucee")
-		if is_function:
-			word = self.view.substr(self.view.word(pt)).lower()
-		else:
-			word_region = self.view.expand_by_class(pt, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "<:/>")
-			word = self.view.substr(word_region).lower()
-		full_url = "http://docs.lucee.org/reference/" + ("functions" if is_function else "tags") + "/" + word + ".html"
-		webbrowser.open_new_tab(full_url)
+		word_tuple = None
+
+		if self.view.match_selector(pt, "support.function.lucee"):
+			word_tuple = self.view.substr(self.view.word(pt)).lower(), "functions"
+		elif self.view.match_selector(pt, "meta.tag.lucee"):
+			word_tuple = utils.get_tag_name(self.view, pt)[1:], "tags"
+		elif self.view.match_selector(pt, "meta.tag.script.lucee"):
+			word_tuple = utils.get_tag_name(self.view, pt), "tags"
+
+		if word_tuple:
+			full_url = "http://docs.lucee.org/reference/" + word_tuple[1] + "/" + word_tuple[0] + ".html"
+			webbrowser.open_new_tab(full_url)
 
 class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 

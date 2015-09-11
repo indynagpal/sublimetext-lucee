@@ -64,14 +64,16 @@ def get_last_open_tag(view, pos):
 	return open_tags.popleft() if len(open_tags) > 0 else None
 
 def get_tag_name(view, pos):
-	# walk backwards from cursor, looking for tag name scope
-	for index in range(500):
-		if view.match_selector(pos - index,"entity.name.tag"):
-			tag_name_region = view.word(pos - index)
-			tag_name = view.substr(tag_name_region).lower()
-			return tag_name
-		if view.match_selector(pos - index,"punctuation.definition.tag.begin"):
-			return None
+	dialect = "cfml" if view.match_selector(pos, "embedding.cfml") else "lucee"
+	tag_scope = "meta.tag." + dialect + " - punctuation.definition.tag.begin,meta.tag.script." + dialect + " - punctuation.definition.tag.begin"
+	tag_name_scope = "entity.name.tag." + dialect + ",entity.name.tag.script." + dialect
+	tag_regions = view.find_by_selector(tag_scope)
+	tag_name_regions = view.find_by_selector(tag_name_scope)
+
+	for tag_region, tag_name_region in zip(tag_regions, tag_name_regions):
+		if tag_region.contains(pos):
+			return view.substr(tag_name_region).lower()
+	return None
 
 def get_previous_word(view, pos):
 	previous_character = view.substr(pos - 1)
