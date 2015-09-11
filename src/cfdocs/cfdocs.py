@@ -23,7 +23,7 @@ def get_inline_documentation(view, position):
 	# tags
 	elif view.match_selector(position, "meta.tag.cfml,meta.tag.script.cfml"):
 		doc_name = utils.get_tag_name(view, position)
-		if doc_name[:2] != "cf":
+		if doc_name and doc_name[:2] != "cf":
 			# tag in script
 			doc_name = "cf" + doc_name
 

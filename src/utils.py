@@ -67,7 +67,7 @@ def get_tag_name(view, pos):
 	# walk backwards from cursor, looking for tag name scope
 	for index in range(500):
 		if view.match_selector(pos - index,"entity.name.tag"):
-			tag_name_region = view.expand_by_class(pos - index, sublime.CLASS_WORD_START | sublime.CLASS_WORD_END, "</>;{}()")
+			tag_name_region = view.word(pos - index)
 			tag_name = view.substr(tag_name_region).lower()
 			return tag_name
 		if view.match_selector(pos - index,"punctuation.definition.tag.begin"):
