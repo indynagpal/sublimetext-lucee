@@ -30,7 +30,9 @@ default="string";
 // <- embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml entity.other.attribute-name.cfml
 //       ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.tag.script.cfml string.quoted.double.cfml
 
-  function foo() {
+  public string function foo() {
+// <- embedding.cfml source.cfml.script meta.group.braces.curly - meta.function.cfml
+//^ embedding.cfml source.cfml.script meta.group.braces.curly meta.function.cfml
     var result;
 
    	toString( testVar, "utf-8" );

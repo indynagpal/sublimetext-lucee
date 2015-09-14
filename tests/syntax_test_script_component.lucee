@@ -35,7 +35,9 @@ default="string";
 //  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.static.lucee variable.language.scope.lucee
   }
 
-  function foo() {
+  public string function foo() {
+// <- embedding.lucee source.lucee.script meta.group.braces.curly - meta.function.lucee
+//^ embedding.lucee source.lucee.script meta.group.braces.curly meta.function.lucee
     var result;
 
    	toString( testVar, "utf-8" );

@@ -138,26 +138,24 @@ contexts:
   function:
     - match: |-
         (?x)
-        ^\s*
         (?:
-        (?: # optional access-control modifier and return-type
+          (?: # optional access-control modifier and return-type
             (?i:\b(private|package|public|remote)\s+)? # access-control.modifier
             (?i:\b
-                (void)
-                |
-                (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid) # return-type.primitive
-                |
-                ([A-Za-z0-9_\.$]+) #return-type component/object (may need additional tokens)
-                )?
-            )
+              (void)\s+
+              |
+              (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid)\s+ # return-type.primitive
+              |
+              ([A-Za-z0-9_\.$]+)\s+ #return-type component/object (may need additional tokens)
+            )?
+          )
         )
-        \s*
         (?i:(function)) # storage.function
         \s+
         (?:
-            (init) # entity.name.function.contructor
-            |
-            ([_$a-zA-Z][$\w]*) # entity.name.function
+          (init) # entity.name.function.contructor
+          |
+          ([_$a-zA-Z][$\w]*) # entity.name.function
         )\b
       captures:
         1: storage.modifier.cfml
@@ -168,7 +166,7 @@ contexts:
         6: entity.name.function.constructor.cfml
         7: entity.name.function.cfml
       push:
-        - meta_scope: meta.function.cfml
+        - meta_scope: meta.function.cfml.test
         - match: (?<=\))
           set: function-properties
         - include: function-declaration-parameters
@@ -187,7 +185,7 @@ contexts:
         - match: (?<=\))
           pop: true
         - include: function-declaration-parameters
-    - match: \s*(function)(?=\s*\()
+    - match: (?<!\.)\b(function)(?=\s*\()
       captures:
         1: storage.type.function.cfml
       push:
