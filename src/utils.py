@@ -15,7 +15,7 @@ def get_dot_context(view, dot_position):
 		base_scope_count = view.scope_name(dot_position).count(scope_name)
 		scope_to_find = " ".join([scope_name] * (base_scope_count + 1))
 		if view.match_selector(dot_position - 1, scope_to_find):
-			function_name, name_region, function_args_region = get_function(view, dot_position - 1, scope_name)
+			function_name, name_region, function_args_region = get_function_call(view, dot_position - 1, scope_name)
 			context.append(Symbol(function_name, True, name_region, function_args_region))
 			break
 	else:
@@ -81,7 +81,7 @@ def get_previous_word(view, pos):
 		pos = view.find_by_class(pos, False, sublime.CLASS_WORD_END | sublime.CLASS_PUNCTUATION_END)
 	return (view.substr(view.word(pos)).lower(), False)
 
-def get_function(view, pt, function_call_scope):
+def get_function_call(view, pt, function_call_scope):
 	function_region = None
 	scope_count = view.scope_name(pt).count(function_call_scope)
 	if scope_count == 0:

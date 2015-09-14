@@ -18,7 +18,7 @@ def get_inline_documentation(view, position):
 
 	# functions
 	if view.match_selector(position, "meta.support.function-call.cfml"):
-		doc_name, function_name_region, function_args_region = utils.get_function(view, position, "meta.support.function-call.cfml")
+		doc_name, function_name_region, function_args_region = utils.get_function_call(view, position, "meta.support.function-call.cfml")
 
 	# tags
 	elif view.match_selector(position, "meta.tag.cfml,meta.tag.script.cfml"):

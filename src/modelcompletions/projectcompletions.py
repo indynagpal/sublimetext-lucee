@@ -118,7 +118,7 @@ def get_inline_documentation(view, position):
 
 	project_file_name = view.window().project_file_name()
 	if project_file_name and view.match_selector(position, "meta.function-call.method"):
-		function_name, function_name_region, function_args_region = utils.get_function(view, position, "meta.function-call.method")
+		function_name, function_name_region, function_args_region = utils.get_function_call(view, position, "meta.function-call.method")
 		if view.substr(function_name_region.begin() - 1) == ".":
 			dot_context = utils.get_dot_context(view, function_name_region.begin() - 1)
 			for symbol in dot_context:
