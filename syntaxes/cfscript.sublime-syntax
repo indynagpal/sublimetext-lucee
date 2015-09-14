@@ -166,7 +166,7 @@ contexts:
         6: entity.name.function.constructor.cfml
         7: entity.name.function.cfml
       push:
-        - meta_scope: meta.function.cfml.test
+        - meta_scope: meta.function.cfml
         - match: (?<=\))
           set: function-properties
         - include: function-declaration-parameters
