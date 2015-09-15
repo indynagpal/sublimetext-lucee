@@ -724,7 +724,7 @@ contexts:
         - match: '(?:[^\s<>/''"{;]|/(?!/>))+'
           scope: string.unquoted.lucee
   tag-in-script:
-    - match: (?i)\b(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
+    - match: (?i)(?<!\.)\b(property)(?!\s+in\b)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:
         1: entity.name.tag.script.lucee
         3: storage.type.lucee
@@ -734,7 +734,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: tag-generic-attribute
-    - match: (?i)\b(property)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+    - match: (?i)(?<!\.)\b(property)(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         1: entity.name.tag.script.lucee
       push:
@@ -742,7 +742,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: tag-generic-attribute
-    - match: (?i)\b(param)(?=\s+(name|default|max|maxLength|min|pattern|type)\s*=)
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)(?=\s+(name|default|max|maxLength|min|pattern|type)\s*=)
       captures:
         1: entity.name.tag.script.lucee
       push:
@@ -750,7 +750,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.lucee#tag-generic-attribute
-    - match: (?i)\b(param)\s+([_$a-zA-Z][$\w\.]*)(?=\s+(name|default|max|maxLength|min|pattern|type))
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)\s+([_$a-zA-Z][$\w\.]*)(?=\s+(name|default|max|maxLength|min|pattern|type))
       captures:
         1: entity.name.tag.script.lucee
         2: string.unquoted.lucee
@@ -759,7 +759,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.lucee#tag-generic-attribute
-    - match: (?i)\b(param)(\s+([_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w\.]*\b)
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)(\s+([_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w\.]*\b)
       captures:
         1: entity.name.tag.script.lucee
         3: storage.type.lucee
@@ -769,7 +769,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.lucee#tag-generic-attribute
-    - match: (?i)\b(param)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         1: entity.name.tag.script.lucee
       push:
@@ -777,20 +777,27 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.lucee#tag-generic-attribute
+    - match: (?<!\.)(\b)(?i:(abort))(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*;|\s*$))
+      captures:
+        2: entity.name.tag.script.lucee
+      push:
+        - meta_scope: meta.tag.script.lucee
+        - match: (?=;)
+          pop: true
+        - include: scope:embedding.lucee#tag-generic-attribute
     - match: |-
         (?x)
-            (\b)
+            (?<!\.)(\b)
             (?i:
-              (abort|ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|case|catch|collection
-              |content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem|documentsection|dump
-              |error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata|header|htmlbody|htmlhead
-              |http|httpparam|if|image|imap|import|include|index|input|insert|interface|invoke|invokeargument|layout|layoutarea
+              (ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|collection
+              |content|cookie|dbinfo|directory|div|document|documentitem|documentsection|dump
+              |error|execute|exit|feed|file|flush|form|forward|ftp|function|graph|graphdata|header|htmlbody|htmlhead
+              |http|httpparam|image|imap|import|include|index|input|insert|invoke|invokeargument|layout|layoutarea
               |ldap|location|lock|log|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer|module|objectcache|output|pageencoding
               |param|pdf|pdfparam|pop|processingdirective|procparam|procresult|query|queryparam|responseheader|rethrow
-              |retry|savecontent|schedule|script|search|select|set|setting|silent|sleep|stopwatch|storedproc|switch
-              |thread|throw|timer|trace|transaction|try|update|video|videoplayer|videoplayerparam|wddx|while|window|x_|xml|zip
-              |zipparam)
-            )(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+              |retry|savecontent|schedule|search|select|setting|silent|sleep|stopwatch|storedproc|thread|throw|timer
+              |trace|transaction|update|video|videoplayer|videoplayerparam|wddx|window|x_|xml|zip|zipparam)
+            )(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*[{]|\s*$))
       captures:
         2: entity.name.tag.script.lucee
       push:

@@ -53,6 +53,14 @@ default="string";
     var test = "#foo
 //              ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly string.quoted.double.lucee constant.character.hash.lucee
     # true";
+
+    foo = document;
+//        ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.lucee
+    foo = test.document;
+//             ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.lucee
+    for ( var header in foo)
+//            ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.lucee
+
     return result = foo;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly variable.other.lucee
 //                  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly variable.other.lucee

@@ -604,7 +604,7 @@ contexts:
           pop: true
         - include: expression
   tag-in-script:
-    - match: (?i)\b(property)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
+    - match: (?i)(?<!\.)\b(property)(?!\s+in\b)(\s+(any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|[_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w]*\b)(?!\s*=)
       captures:
         1: entity.name.tag.script.cfml
         3: storage.type.cfml
@@ -614,7 +614,7 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.cfml#tag-generic-attribute
-    - match: (?i)\b(property)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+    - match: (?i)(?<!\.)\b(property)(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         1: entity.name.tag.script.cfml
       push:
@@ -622,39 +622,43 @@ contexts:
         - match: (?=(;|{))
           pop: true
         - include: scope:embedding.cfml#tag-generic-attribute
-    - match: (?i)\b(param)(?=\s+(name|default|max|maxLength|min|pattern|type)\s*=)
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)(?=\s+(name|default|max|maxLength|min|pattern|type)\s*=)
       captures:
         1: entity.name.tag.script.cfml
       push: tag-generic-attribute-script
-    - match: (?i)\b(param)\s+([_$a-zA-Z][$\w\.]*)(?=\s+(name|default|max|maxLength|min|pattern|type))
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)\s+([_$a-zA-Z][$\w\.]*)(?=\s+(name|default|max|maxLength|min|pattern|type))
       captures:
         1: entity.name.tag.script.cfml
         2: string.unquoted.cfml
       push: tag-generic-attribute-script
-    - match: (?i)\b(param)(\s+([_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w\.]*\b)
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)(\s+([_$a-zA-Z][$\w]*))?\s+([_$a-zA-Z][$\w\.]*\b)
       captures:
         1: entity.name.tag.script.cfml
         3: storage.type.cfml
         4: string.unquoted.cfml
       push: tag-generic-attribute-script
-    - match: (?i)\b(param)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+    - match: (?i)(?<!\.)\b(param)(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
       captures:
         1: entity.name.tag.script.cfml
       push: tag-generic-attribute-script
+    - match: (?<!\.)(\b)(?i:(abort))(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*;|\s*$))
+      captures:
+        2: entity.name.tag.script.cfml
+      push: tag-generic-attribute-script
     - match: |-
         (?x)
-            (\b)
+            (?<!\.)(\b)
             (?i:
-              (abort|ajaximport|ajaxproxy|applet|application|argument|associate|authenticate|break|cache|case|catch|chart|chartdata
-              |chartseries|col|collection|content|continue|cookie|dbinfo|defaultcase|directory|div|document|documentitem
-              |documentsection|dump|error|execute|exit|feed|file|finally|flush|form|forward|ftp|function|graph|graphdata
-              |header|htmlbody|htmlhead|http|httpparam|if|image|imap|import|include|index|input|insert|interface|invoke|invokeargument
+              (ajaximport|ajaxproxy|applet|application|argument|associate|authenticate|break|cache|chart|chartdata
+              |chartseries|col|collection|content|cookie|dbinfo|directory|div|document|documentitem
+              |documentsection|dump|error|execute|exit|feed|file|flush|form|forward|ftp|function|graph|graphdata
+              |header|htmlbody|htmlhead|http|httpparam|image|imap|import|include|index|input|insert|invoke|invokeargument
               |layout|layoutarea|ldap|location|lock|log|login|loginuser|logout|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer
-              |module|object|objectcache|output|pageencoding|param|pdf|pdfparam|pop|processingdirective|procparam|procresult
-              |query|queryparam|registry|rethrow|retry|savecontent|schedule|script|search|select|servlet|servletparam
-              |set|setting|silent|sleep|slider|stopwatch|storedproc|switch|table|textinput|thread|throw|timer|trace|transaction|try
-              |update|video|videoplayer|videoplayerparam|wddx|while|window|xml|zip|zipparam)
-            )(?=(\s+[a-zA-Z]|\s*[{;]|\s*$))
+              |module|object|objectcache|output|pageencoding|pdf|pdfparam|pop|processingdirective|procparam|procresult
+              |query|queryparam|registry|rethrow|retry|savecontent|schedule|search|select|servlet|servletparam
+              |setting|silent|sleep|slider|stopwatch|storedproc|table|textinput|thread|throw|timer|trace|transaction
+              |update|video|videoplayer|videoplayerparam|wddx|window|xml|zip|zipparam)
+            )(?!\s+in\b)(?=(\s+[a-zA-Z]|\s*[{]|\s*$))
       captures:
         2: entity.name.tag.script.cfml
       push: tag-generic-attribute-script

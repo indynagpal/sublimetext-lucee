@@ -49,6 +49,13 @@ default="string";
 //              ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly string.quoted.double.cfml constant.character.hash.cfml
     # true";
 
+    foo = document;
+//        ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.cfml
+    foo = test.document;
+//             ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.cfml
+    for ( var header in foo)
+//            ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.cfml
+
     return result = foo;
 //         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly variable.other.cfml
 //                  ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly variable.other.cfml
