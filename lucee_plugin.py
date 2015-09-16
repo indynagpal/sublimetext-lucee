@@ -76,3 +76,12 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 		else:
 			# if there is no open tag print "/"
 			self.view.insert(edit,pt,"/")
+
+
+class MyTestCommand(sublime_plugin.TextCommand):
+
+	def run(self, edit):
+		print("test")
+		pt = self.view.sel()[0].begin()
+		context = utils.get_struct_context(self.view, pt)
+		print(context)

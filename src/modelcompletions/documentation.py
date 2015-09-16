@@ -2,13 +2,12 @@ STYLES = {
 	"side_color": "#4C9BB0",
 	"header_color": "#306B7B",
 	"header_bg_color": "#E4EEF1",
-	"text_color": "#272B33",
-	"a_href": "",
-	"a_text": "Go to Definition"
+	"text_color": "#272B33"
 }
 
 def get_documentation(bean_name, file_path, function_name, function_metadata):
 	model_doc = dict(STYLES)
+	model_doc["links"] = [{"href": "", "text": "Go to Definition"}]
 
 	model_doc["header"] = bean_name + "." + function_name + "()"
 	if len(function_metadata["access"]) > 0:

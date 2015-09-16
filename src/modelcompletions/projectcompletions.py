@@ -2,6 +2,7 @@ import sublime, threading, time
 from os.path import splitext
 from functools import partial
 from ..completions import CompletionList
+from ..inline_documentation import Documentation
 from .. import utils
 from .componentfinder import load_directory, load_file, get_bean_names
 from .documentation import get_documentation
@@ -118,7 +119,7 @@ def get_inline_documentation(view, position):
 
 	project_file_name = view.window().project_file_name()
 	if project_file_name and view.match_selector(position, "meta.function-call.method"):
-		function_name, function_name_region, function_args_region = utils.get_function_call(view, position, "meta.function-call.method")
+		function_name, function_name_region, function_args_region = utils.get_function_call(view, position)
 		if view.substr(function_name_region.begin() - 1) == ".":
 			dot_context = utils.get_dot_context(view, function_name_region.begin() - 1)
 			for symbol in dot_context:
@@ -127,7 +128,9 @@ def get_inline_documentation(view, position):
 						bean = get_bean(project_file_name, symbol.name)
 						if function_name in bean.functions:
 							bean_function_name, bean_function_metadata = bean.functions[function_name]
-							return get_documentation(symbol.name, bean.file_path, bean_function_name, bean_function_metadata), partial(on_navigate, view, bean.file_path, bean_function_name)
+							doc = get_documentation(symbol.name, bean.file_path, bean_function_name, bean_function_metadata)
+							callback = partial(on_navigate, view, bean.file_path, bean_function_name)
+							return Documentation(doc, callback, "normal")
 					break
 
 	return None

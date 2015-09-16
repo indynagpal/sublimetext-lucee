@@ -1,5 +1,6 @@
 import sublime, json, urllib, webbrowser
 from .. import utils
+from ..inline_documentation import Documentation
 
 CFDOCS_PARAM_TEMPLATE = '<strong>${name}</strong><p>${description}</p><p>${values}</p>'
 CFDOCS_BASE_URL = "https://raw.githubusercontent.com/foundeo/cfdocs/master/data/en/"
@@ -8,17 +9,16 @@ CFDOCS_STYLES = {
 	"side_color": "#18BC9C",
 	"header_color": "#C7254E",
 	"header_bg_color": "#F9F2F4",
-	"text_color": "#272B33",
-	"a_href": "http://cfdocs.org",
-	"a_text": "cfdocs.org"
+	"text_color": "#272B33"
 }
 
 def get_inline_documentation(view, position):
 	doc_name = None
+	doc_type = "normal"
 
 	# functions
 	if view.match_selector(position, "meta.support.function-call.cfml"):
-		doc_name, function_name_region, function_args_region = utils.get_function_call(view, position, "meta.support.function-call.cfml")
+		doc_name, function_name_region, function_args_region = utils.get_function_call(view, position, support_function = True)
 
 	# tags
 	elif view.match_selector(position, "meta.tag.cfml,meta.tag.script.cfml"):
@@ -34,17 +34,18 @@ def get_inline_documentation(view, position):
 		doc_name = "cfinterface"
 	elif view.match_selector(position, "meta.function.cfml"):
 		doc_name = "cffunction"
+		doc_type = "default"
 
 	if doc_name:
-		return get_cfdoc(doc_name)
+		return get_cfdoc(doc_name, doc_type)
 
 	return None
 
-def get_cfdoc(function_or_tag):
+def get_cfdoc(function_or_tag, doc_type):
 	data, success = fetch_cfdoc(function_or_tag)
 	if success:
-		return build_cfdoc(function_or_tag, data), on_navigate
-	return build_cfdoc_error(function_or_tag, data), on_navigate
+		return Documentation(build_cfdoc(function_or_tag, data), on_navigate, doc_type)
+	return Documentation(build_cfdoc_error(function_or_tag, data), on_navigate, doc_type)
 
 def fetch_cfdoc(function_or_tag):
 	full_url = CFDOCS_BASE_URL + function_or_tag  + ".json"
@@ -68,8 +69,7 @@ def on_navigate(href):
 
 def build_cfdoc(function_or_tag, data):
 	cfdoc = dict(CFDOCS_STYLES)
-	cfdoc["a_href"] += "/" + function_or_tag
-	cfdoc["a_text"] += "/" + function_or_tag
+	cfdoc["links"] = [{"href": "http://cfdocs.org" + "/" + function_or_tag, "text": "cfdocs.org" + "/" + function_or_tag}]
 	cfdoc["header"] = data["syntax"].replace("<","&lt;").replace(">","&gt;")
 	cfdoc["description"] = data["description"].replace("<","&lt;").replace(">","&gt;").replace("\n","<br>")
 

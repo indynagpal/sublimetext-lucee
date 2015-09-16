@@ -1,3 +1,4 @@
+from . import applicationcfc
 from . import basecompletions
 from . import modelcompletions
 from . import cfdocs
