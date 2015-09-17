@@ -43,7 +43,8 @@ def build_links(links):
 	return "<br>".join(html_links)
 
 def build_doc_html(inline_doc):
-	inline_doc["links"] = build_links(inline_doc["links"])
+	if "links" in inline_doc:
+		inline_doc["links"] = build_links(inline_doc["links"])
 	return sublime.expand_variables(DOC_TEMPLATE, inline_doc)
 
 class LuceeInlineDocumentationCommand(sublime_plugin.TextCommand):
