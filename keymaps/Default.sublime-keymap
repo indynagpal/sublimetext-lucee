@@ -75,9 +75,9 @@
       {"key": "selector", "operator": "equal", "operand": "string.quoted.double.lucee,string.quoted.single.lucee,meta.scope.cfoutput.lucee", "match_all":true}
     ]
   },
-  // ctrl+f12 cfdocs lookup
+  // f1 docs lookup
   {
-    "keys": ["ctrl+f12"],
+    "keys": ["f1"],
     "command": "lucee_inline_documentation",
     "context": [
       {"key": "selector", "operator": "equal", "operand": "embedding.cfml", "match_all":true}
@@ -85,7 +85,7 @@
   },
   // ctrl+f12 lucee docs
   {
-    "keys": ["ctrl+f12"],
+    "keys": ["f1"],
     "command": "lucee_docs",
     "context": [
       {"key": "selector", "operator": "equal", "operand": "support.function.lucee,entity.name.tag.lucee", "match_all":true}
@@ -108,6 +108,13 @@
       {"key": "selector", "operator": "equal", "operand": "embedding.lucee - string - comment - source.lucee.script", "match_all":true},
       {"key": "preceding_text", "operator": "regex_match", "operand": ".*<$", "match_all":true},
       {"key": "setting.auto_close_tags"}
+    ]
+  },
+  {
+    "keys": ["ctrl+f1"],
+    "command": "lucee_toggle_controller_view",
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml,embedding.lucee", "match_all":true}
     ]
   }
 ]

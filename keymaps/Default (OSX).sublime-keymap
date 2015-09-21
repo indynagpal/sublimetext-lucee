@@ -72,5 +72,12 @@
       {"key": "setting.auto_match_enabled", "operator": "equal", "operand":true},
       {"key": "selector", "operator": "equal", "operand": "string.quoted.double.lucee,string.quoted.single.lucee,meta.scope.cfoutput.lucee", "match_all":true}
     ]
+  },
+  {
+    "keys": ["super+f1"],
+    "command": "lucee_toggle_controller_view",
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml,embedding.lucee", "match_all":true}
+    ]
   }
 ]

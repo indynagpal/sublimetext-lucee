@@ -9,6 +9,13 @@
 	"cfml_tag_attribute_style": { "foreground": "#D9995E", "fontStyle": "" },
 
 	"lucee_tag_style": { "foreground": "#4C9BB0", "fontStyle": "" },
-	"lucee_tag_attribute_style": { "foreground": "#D9995E", "fontStyle": "" }
+	"lucee_tag_attribute_style": { "foreground": "#D9995E", "fontStyle": "" },
+
+	// default controller and view folder names that the
+	// toggle_controller_view command looks for when switching
+	// between controller method and corresponding view
+
+	"controller_folders": ["controllers", "handlers"],
+	"view_folders": ["views"]
 
 }

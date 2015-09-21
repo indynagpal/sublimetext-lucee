@@ -18,15 +18,15 @@
 						"children":
 						[
 							{
-								"command": "lucee_default_color_scheme_styles",
-								"caption": "Color Scheme Styles – Default"
+								"command": "lucee_default_package_settings",
+								"caption": "Package Settings – Default"
 							},
 							{
 								"command": "open_file", "args":
 								{
-									"file": "${packages}/User/lucee.sublime-settings"
+									"file": "${packages}/User/lucee_package.sublime-settings"
 								},
-								"caption": "Color Scheme Styles – User"
+								"caption": "Package Settings – User"
 							}
 						]
 					}

@@ -77,11 +77,7 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 			# if there is no open tag print "/"
 			self.view.insert(edit,pt,"/")
 
+class LuceeDefaultPackageSettingsCommand(sublime_plugin.WindowCommand):
 
-class MyTestCommand(sublime_plugin.TextCommand):
-
-	def run(self, edit):
-		print("test")
-		pt = self.view.sel()[0].begin()
-		context = utils.get_struct_context(self.view, pt)
-		print(context)
+	def run(self):
+		self.window.run_command("open_file", {"file": "${packages}/" + LUCEE_PLUGIN_PATH.split("/")[-1] + "/settings/lucee_package.sublime-settings"})

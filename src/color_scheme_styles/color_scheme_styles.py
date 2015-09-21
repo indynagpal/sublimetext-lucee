@@ -11,7 +11,7 @@ def get_style_dicts():
 	return dicts
 
 def get_style_settings():
-	lucee_settings = sublime.load_settings("lucee_color_scheme_styles.sublime-settings")
+	lucee_settings = sublime.load_settings("lucee_package.sublime-settings")
 	style_dicts = get_style_dicts()
 	styles = []
 	for style_setting_key in style_dicts:

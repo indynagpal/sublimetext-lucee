@@ -29,19 +29,23 @@ In addition, there is the ability on a per project basis, via the `.sublime-proj
 
 ### Inline Documentation
 
-<kbd>CTRL</kbd>+<kbd>F12</kbd> is mapped to an inline documentation command that provides an inline documentation popup based on the cursor position.
+<kbd>F1</kbd> is mapped to an inline documentation command that provides an inline documentation popup based on the cursor position.
 
-If <kbd>CTRL</kbd>+<kbd>F12</kbd> is pressed when the cursor is within a built-in function or tag will load the http://cfdocs.org documentation for that function or tag in a pop up window within Sublime. Thus, having the cursor anywhere within `dateFormat(myDate, "yyyy-mm-dd")` and pressing <kbd>CTRL</kbd>+<kbd>F12</kbd> will trigger a pop up displaying the documentation for `dateFormat`. Similarly, having the cursor anywhere within `<cfinclude template="myOtherTemplate.cfm">` and pressing <kbd>CTRL</kbd>+<kbd>F12</kbd> will trigger the display of the documention for `cfinclude`.
+**Note: The default key binding for inline documentation has been changed from <kbd>CTRL</kbd>+<kbd>F12</kbd> to <kbd>F1</kbd>. You can always override the default key binding in your user key bindings file.**
+
+If the documentation command is run when the cursor is within a built-in function or tag it will load the http://cfdocs.org documentation for that function or tag. Thus, having the cursor anywhere within `dateFormat(myDate, "yyyy-mm-dd")` and pressing <kbd>F1</kbd> (by default) will trigger a popup displaying the documentation for `dateFormat`. Similarly, having the cursor anywhere within `<cfinclude template="myOtherTemplate.cfm">` and pressing <kbd>F1</kbd> will trigger the display of the documention for `cfinclude`.
 
 *Note:* If a tag has a script expression in it (e.g. `<cfset myVar=false>`, or anything between `#`'s), the pop up will not be triggered if the cursor is within that expression.
 
-Inline documentation is also available for `Application.cfc` settings and methods.
+Inline documentation is also available for `Application.cfc` settings and methods as well as method calls that have been indexed via the model completions functionality (see above). In the latter case documentation of the function signature, file location, and argument list is provided.
 
-If <kbd>CTRL</kbd>+<kbd>F12</kbd> is pressed when the cursor is on a method call that has been mapped via the model completions functionality (see above), documentation of the function signature, file location, and argument list will be provided.
+### Controller/View Toggle
+
+Lucee/CFML MVC frameworks typically have the convention that a `controllers` and a `views` folder are contained in the same parent directory, and that controller names and methods correspond to view folder and file names. <kbd>CTRL</kbd>+<kbd>F1</kbd> (<kbd>command</kbd>+<kbd>F1</kbd> on a Mac) is mapped to a toggle command that will jump the editor back and forth between a view file and the controller method that corresponds to it. The settings which determine which folder names are regarded as controller and view folders are contained in the package settings file. By default, `controllers` and `handlers` are treated as controller folders, and `views` as the views folder. Alternate folder names can be specifed in the user package settings file.
 
 ### Custom Coloring for Lucee/CFML Tags
 
-Unless you are using a specialized color scheme, Lucee/CFML tags and HTML tags will receive the same coloring. This can make it a bit harder to distinguish between the two types of tags when embedding Lucee/CFML tags in HTML. This package has a command you can run from the command palette that will inject custom colors for Lucee/CFML tags into your current color scheme (or remove them if they are already there). Press <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> to bring up the command palette (<kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac) and run `Lucee: Toggle Color Scheme Styles`. You can edit the styles that will be injected via the user color scheme settings for this package. This can be found under the menu `Package Settings -> Lucee -> Color Scheme Styles - User` or via the command palette: `Lucee: User Color Scheme Styles`. See the default settings file for the settings to use (`Package Settings -> Lucee -> Color Scheme Styles - Default` or via the command palette: `Lucee: Default Color Scheme Styles`).
+Unless you are using a specialized color scheme, Lucee/CFML tags and HTML tags will receive the same coloring. This can make it a bit harder to distinguish between the two types of tags when embedding Lucee/CFML tags in HTML. This package has a command you can run from the command palette that will inject custom colors for Lucee/CFML tags into your current color scheme (or remove them if they are already there). Press <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> to bring up the command palette (<kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac) and run `Lucee: Toggle Color Scheme Styles`. You can edit the styles that will be injected via the user settings for this package. This can be found under the menu `Package Settings -> Lucee -> Package Settings - User` or via the command palette: `Lucee: User Package Settings`. See the default settings file for the settings to use (`Package Settings -> Lucee -> Package Settings - Default` or via the command palette: `Lucee: Default Color Scheme Styles`).
 
 *Note:* Do not edit the default settings to change the color scheme styles, but rather place your custom settings in the user settings file, as this will not be overwritten when the package is upgraded.
 

@@ -1,11 +1,11 @@
 [
 	{
-		"caption": "Lucee: Default Color Scheme Styles",
-		"command": "lucee_default_color_scheme_styles"
+		"caption": "Lucee: Default Package Settings",
+		"command": "lucee_default_package_settings"
 	},
 	{
-		"caption": "Lucee: User Color Scheme Styles",
-		"command": "open_file", "args": {"file": "${packages}/User/lucee_color_scheme_styles.sublime-settings"}
+		"caption": "Lucee: User Package Settings",
+		"command": "open_file", "args": {"file": "${packages}/User/lucee_package.sublime-settings"}
 	},
 	// Toggle Lucee/CFML tag color scheme styles
 	{
