@@ -651,7 +651,7 @@ contexts:
             (?i:
               (ajaximport|ajaxproxy|applet|application|argument|associate|authenticate|break|cache|chart|chartdata
               |chartseries|col|collection|content|cookie|dbinfo|directory|div|document|documentitem
-              |documentsection|dump|error|execute|exit|feed|file|flush|form|forward|ftp|function|graph|graphdata
+              |documentsection|dump|error|execute|exit|feed|file|flush|form|forward|ftp|graph|graphdata
               |header|htmlbody|htmlhead|http|httpparam|image|imap|import|include|index|input|insert|invoke|invokeargument
               |layout|layoutarea|ldap|location|lock|log|login|loginuser|logout|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer
               |module|object|objectcache|output|pageencoding|pdf|pdfparam|pop|processingdirective|procparam|procresult

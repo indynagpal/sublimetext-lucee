@@ -791,7 +791,7 @@ contexts:
             (?i:
               (ajaximport|ajaxproxy|application|argument|associate|authenticate|break|cache|collection
               |content|cookie|dbinfo|directory|div|document|documentitem|documentsection|dump
-              |error|execute|exit|feed|file|flush|form|forward|ftp|function|graph|graphdata|header|htmlbody|htmlhead
+              |error|execute|exit|feed|file|flush|form|forward|ftp|graph|graphdata|header|htmlbody|htmlhead
               |http|httpparam|image|imap|import|include|index|input|insert|invoke|invokeargument|layout|layoutarea
               |ldap|location|lock|log|loop|mail|mailparam|mailpart|map|mapitem|mediaplayer|module|objectcache|output|pageencoding
               |param|pdf|pdfparam|pop|processingdirective|procparam|procresult|query|queryparam|responseheader|rethrow
