@@ -1,4 +1,4 @@
-import sublime, json, urllib, webbrowser
+import sublime, json, urllib
 from .. import utils
 from ..inline_documentation import Documentation
 
@@ -43,8 +43,8 @@ def get_inline_documentation(view, position):
 def get_cfdoc(function_or_tag, doc_priority):
 	data, success = fetch_cfdoc(function_or_tag)
 	if success:
-		return Documentation(build_cfdoc(function_or_tag, data), on_navigate, doc_priority)
-	return Documentation(build_cfdoc_error(function_or_tag, data), on_navigate, doc_priority)
+		return Documentation(build_cfdoc(function_or_tag, data), None, doc_priority)
+	return Documentation(build_cfdoc_error(function_or_tag, data), None, doc_priority)
 
 def fetch_cfdoc(function_or_tag):
 	full_url = CFDOCS_BASE_URL + function_or_tag  + ".json"
@@ -62,9 +62,6 @@ def fetch_cfdoc(function_or_tag):
 		return data, False
 
 	return data, True
-
-def on_navigate(href):
-	webbrowser.open_new_tab(href)
 
 def build_cfdoc(function_or_tag, data):
 	cfdoc = dict(CFDOCS_STYLES)
