@@ -57,8 +57,8 @@ def load_project(project_name, project_data):
 	for path in model_completion_folders:
 		# normalize path
 		path = path.replace("\\","/")
-		if path[-1] != "/":
-			path = path + "/"
+		if path[-1] == "/":
+			path = path[:-1]
 		beans, count = load_directory(path)
 		project_beans.update(beans)
 		file_count += count
@@ -130,7 +130,7 @@ def get_inline_documentation(view, position):
 							bean_function_name, bean_function_metadata = bean.functions[function_name]
 							doc = get_documentation(symbol.name, bean.file_path, bean_function_name, bean_function_metadata)
 							callback = partial(on_navigate, view, bean.file_path, bean_function_name)
-							return Documentation(doc, callback, "normal")
+							return Documentation(doc, callback, 2)
 					break
 
 	return None

@@ -7,7 +7,7 @@ STYLES = {
 
 def get_documentation(bean_name, file_path, function_name, function_metadata):
 	model_doc = dict(STYLES)
-	model_doc["links"] = [{"href": "", "text": "Go to Definition"}]
+	model_doc["links"] = [{"href": "go_to_definition", "text": "Go to Definition"}]
 
 	model_doc["header"] = bean_name + "." + function_name + "()"
 	if len(function_metadata["access"]) > 0:

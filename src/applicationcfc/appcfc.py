@@ -78,16 +78,16 @@ def get_inline_documentation(view, position):
 		if view.match_selector(position, "meta.property.object.cfml,string.unquoted.label.cfml,variable.other.cfml"):
 			key += "." + view.substr(word_region).lower()
 		if key in appcfc["settings_docs"]:
-			return Documentation(get_documentation(key, appcfc["settings_docs"][key]), on_navigate, "normal")
+			return Documentation(get_documentation(key, appcfc["settings_docs"][key]), on_navigate, 1)
 		parent_key = ".".join(key.split(".")[:-1])
 		if parent_key in appcfc["settings_docs"]:
-			return Documentation(get_documentation(parent_key, appcfc["settings_docs"][parent_key]), on_navigate, "normal")
+			return Documentation(get_documentation(parent_key, appcfc["settings_docs"][parent_key]), on_navigate, 1)
 
 	# methods
 	if view.match_selector(position, "meta.function.cfml"):
 		function_name, function_name_region, function_region = utils.get_function(view, position)
 		if function_name in appcfc["methods_docs"]:
-			return Documentation(get_documentation(function_name, appcfc["methods_docs"][function_name]), on_navigate, "normal")
+			return Documentation(get_documentation(function_name, appcfc["methods_docs"][function_name]), on_navigate, 1)
 
 	return None
 

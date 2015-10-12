@@ -14,7 +14,7 @@ CFDOCS_STYLES = {
 
 def get_inline_documentation(view, position):
 	doc_name = None
-	doc_type = "normal"
+	doc_priority = 0
 
 	# functions
 	if view.match_selector(position, "meta.support.function-call.cfml"):
@@ -34,18 +34,17 @@ def get_inline_documentation(view, position):
 		doc_name = "cfinterface"
 	elif view.match_selector(position, "meta.function.cfml"):
 		doc_name = "cffunction"
-		doc_type = "default"
 
 	if doc_name:
-		return get_cfdoc(doc_name, doc_type)
+		return get_cfdoc(doc_name, doc_priority)
 
 	return None
 
-def get_cfdoc(function_or_tag, doc_type):
+def get_cfdoc(function_or_tag, doc_priority):
 	data, success = fetch_cfdoc(function_or_tag)
 	if success:
-		return Documentation(build_cfdoc(function_or_tag, data), on_navigate, doc_type)
-	return Documentation(build_cfdoc_error(function_or_tag, data), on_navigate, doc_type)
+		return Documentation(build_cfdoc(function_or_tag, data), on_navigate, doc_priority)
+	return Documentation(build_cfdoc_error(function_or_tag, data), on_navigate, doc_priority)
 
 def fetch_cfdoc(function_or_tag):
 	full_url = CFDOCS_BASE_URL + function_or_tag  + ".json"
