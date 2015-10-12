@@ -5,7 +5,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.authcookie": {
@@ -13,7 +13,7 @@
 		"description": "cfauthorization cookie settings",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.authcookie.disableupdate": {
@@ -21,7 +21,7 @@
 		"description": "Disable update of cfauthorization cookie using cfcookie or cfheader tag",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.authcookie.timeout": {
@@ -29,7 +29,7 @@
 		"description": "Auth Cookie age in days.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.bufferoutput": {
@@ -45,7 +45,7 @@
 		"description": "Query cache settings",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.cache.querysize": {
@@ -53,7 +53,7 @@
 		"description": "Maximum number of queries that can be cached. To be clear, this refers to automatic caching via cachedWithin and cachedAfter in the cfquery/queryExecute tag/function. You can store as many queries as you would like using cachePut. Well, as many as your RAM will allow. Be sensible, people.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.cache.useinternalquerycache": {
@@ -61,7 +61,7 @@
 		"description": "If true, ColdFusion will store cached queries in the old non-cool non-Ehcache version of the cache.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.cachefunction": {
@@ -117,7 +117,7 @@
 		"description": "Application specific chart styles directory.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.clientcluster": {
@@ -134,7 +134,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.clientstorage": {
@@ -143,7 +143,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.clienttimeout": {
@@ -159,7 +159,7 @@
 		"description": "Specify the list of allowed file extensions as a comma-separated list for the cfinclude tag. Specifying a wildcard * in the list makes any file included using the cfinclude tag to be compiled. If any file included using the cfinclude tag is not found in this list, their content will be statically included. By default, files with the cfm and cfml extensions are always compiled irrespective of this setting.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.componentpaths": {
@@ -184,7 +184,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.datasource": {
@@ -193,7 +193,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.datasources": {
@@ -202,7 +202,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.debuggingipaddresses": {
@@ -210,7 +210,7 @@
 		"description": "A list of IP addresses that need debugging.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.defaultdatasource": {
@@ -226,7 +226,7 @@
 		"description": "Overrides the default administrator settings. It does not report compile-time exceptions.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.googlemapkey": {
@@ -234,7 +234,7 @@
 		"description": "The Google Maps API key required to embed Google Maps in your web pages.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.invokeimplicitaccessor": {
@@ -250,7 +250,7 @@
 		"description": "A structure allowing you to specify Java class paths to be made available to your code. Valid keys are:<br><br>- <strong>loadPaths</strong> (an array of paths to include when searching for Java libraries)<br>- <strong>loadColdFusionClassPath</strong> (a boolean indicating if the default class path should be used, defaults to false)<br>- <strong>reloadOnChange</strong> (a boolean indicating if the classpaths should be reloaded when they change, the default is false)",
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.locale": {
@@ -275,7 +275,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.mappings": {
@@ -284,7 +284,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.name": {
@@ -293,7 +293,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.ormenabled": {
@@ -302,7 +302,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.ormsettings": {
@@ -506,7 +506,7 @@
 		"description": "application REST settings",
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.restsettings.cfclocation": {
@@ -514,7 +514,7 @@
 		"description": "To publish the CFCs only in a particular location, provide comma-separated list of directories where the REST CFCs are located. The directory paths can be absolute or relative.If not set, all the CFCs from the application root are published.",
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.restsettings.skipcfcwitherror": {
@@ -522,7 +522,7 @@
 		"description": "When an error occurs, continue publishing, ignoring the CFC that has caused the exception.If true, the CFC with error is ignored and the rest of the CFCs are published. By default it is false.If set to false, in case of an error, the application itself is not published. But other registered application are published.If an error occurs during application startup, the error is printed in console.Each application has separate log files for logging the issues.",
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.s3": {
@@ -531,7 +531,7 @@
 		"engines": ["Lucee"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sameformfieldsasarray": {
@@ -539,7 +539,7 @@
 		"description": "If the form fields have the same name, ColdFusion converts the form fields as an array instead of a list. To do this, in the Application.cfc, specify the following: this.sameformfieldsasarray = \"true\". Note: The empty string values will be preserved only if this is set to true.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.scopecascading": {
@@ -556,7 +556,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.securejson": {
@@ -565,7 +565,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.securejsonprefix": {
@@ -574,7 +574,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.security": {
@@ -582,7 +582,7 @@
 		"description": "Application security settings.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.security.antisamypolicy": {
@@ -590,7 +590,7 @@
 		"description": "Specify the location of antisamy file to be used when no antisamy policy file is passed to the getSafeHTML or isSafeHTML functions. The policy file can be relative to the Application CFC path or an absolute path can be provided.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.serialization": {
@@ -598,7 +598,7 @@
 		"description": "Application serialization settings.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.serialization.preservecaseforquerycolumn": {
@@ -606,7 +606,7 @@
 		"description": "If true, column case will be preserved.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.serialization.preservecaseforstructkey": {
@@ -614,7 +614,7 @@
 		"description": "Boolean that determines if case for struct keys should be preserved when serializing a struct to JSON.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.serialization.serializequeryas": {
@@ -622,7 +622,7 @@
 		"description": "Determines how queries should be serialized to JSON. Possible values are row, column, and struct.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.serversideformvalidation": {
@@ -630,7 +630,7 @@
 		"description": "Whether to enable validation on cfform fields when the form is submitted.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessioncluster": {
@@ -646,7 +646,7 @@
 		"description": "Application session cookie settings.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessioncookie.disableupdate": {
@@ -654,7 +654,7 @@
 		"description": "Disable update of cfid and cftoken cookie using cfcookie or cfheader tag",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessioncookie.domain": {
@@ -662,7 +662,7 @@
 		"description": "Domain for which the cookie should be set. This should match exactly with the domain, with which application would be accessed",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessioncookie.httponly": {
@@ -670,7 +670,7 @@
 		"description": "Specify whether session cookies have to be set as httponly or not. i.e. accessible only to Http requests",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessioncookie.secure": {
@@ -678,7 +678,7 @@
 		"description": "Specify whether session cookies have to be set as secure or not. i.e. returned on any type of connection or only secured (https) connections",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessioncookie.timeout": {
@@ -686,7 +686,7 @@
 		"description": "Session Cookie age in days",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessionmanagement": {
@@ -695,7 +695,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessionstorage": {
@@ -712,7 +712,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.sessiontype": {
@@ -729,7 +729,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.setdomaincookies": {
@@ -738,7 +738,7 @@
 		"engines": ["Lucee","ColdFusion"],
 		"links": [
 			{ "href": "http://docs.lucee.org/reference/tags/application.html", "text": "docs.lucee.org/reference/tags/application.html"},
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.smtpserversettings": {
@@ -746,7 +746,7 @@
 		"description": "A struct that contains the following values: server, username, and password.If no value is specified, takes the value in the administrator.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.strictnumbervalidation": {
@@ -754,7 +754,7 @@
 		"description": "True/False. Default is true. The IsValid function for the integer and numeric types allowed the currency symbols at the start and commas inside the number.In ColdFusion 11, the isValid function behaves in a different way. Setting strictnumbervalidation to false makes the isValid function to behave in a way just like in the previous versions (ColdFusion 10 or earlier). Note that this setting also changes the behavior of the following tags:cfargumentcfparamcfform",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.suppressremotecomponentcontent": {
@@ -770,7 +770,7 @@
 		"description": "This number represents how long an individual request can take. Timeout set using  overrides the timeout in the Application.cfc using this.timeout=\"\".",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.timezone": {
@@ -810,7 +810,7 @@
 		"description": "A comma-delimited list of names of files. Tells ColdFusion not to call the onMissingTemplate method if the files are not found. Use this variable to prevent ColdFusion from invoking the onMissingTemplate handler if all of the following items are true:Your web server (for example, web.xml file) has a welcome file list with CFML pages such as index.cfm that it tries to run if a URL specifies a path ending in a directory.The web server sends a request for CFML pages the welcome list to ColdFusion without first determining if the page exists.You want to support directory browsing in directories that do not have any of the files on the welcome file list. You specify this variable only if the Application.cfc file also specifies an onMissingTemplate handler. It must have the same list of files as your web.xml welcome file list.Note: You do not need to use the welcomeFileList variable with most \"pure\" web servers, such as Apache. The welcomeFileList variable has to be used with most integrated web and application servers.",
 		"engines": ["ColdFusion"],
 		"links": [
-			{ "href": "https://wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables", "text": "wikidocs.adobe.com/wiki/display/coldfusionen/Application+variables"}
+			{ "href": "https://helpx.adobe.com/coldfusion/cfml-reference/application-cfc-reference/application-variables.html", "text": "adobe.com application-cfc-reference"}
 		]
 	},
 	"this.wstype": {
