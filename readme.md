@@ -51,12 +51,16 @@ Unless you are using a specialized color scheme, Lucee/CFML tags and HTML tags w
 
 *Caveat:* This feature works by either overriding or modifying your active color scheme file. Because of this, it may not work well with other packages that also modify the active color scheme in some way. Also, if the package containing your active color scheme is updated, it is likely that you will need to toggle the custom tag coloring off and then on again to pick up any changes.
 
+### Framework One
+
+Framework One (https://github.com/framework-one/fw1) function completions and `variables.framework` setting completions are available. They are disabled by default, but can be enabled globally by adding `"fw1_enabled": true` to your Lucee user package settings, or on a per project basis by adding the same setting to a project settings file. (Project based settings will override global settings. The default package settings for Framework One can be viewed in the Lucee default package settings file.) The completions are offered in `Application.cfc` as well as in Framework One controller, view and layout files. (The folder names can be specified in the settings.) In controllers, Framework One method completions are offered after typing `framework.` and `fw.`.
+
 ### Installation
 
 Locate your Sublime Text 3 packages directory. This can be easily done by opening the command palette in Sublime Text (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on Windows, <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac), and running `Preferences: Browse Packages`.
 
 On Windows it will typically be something like this:
-`C:\Users\Username\AppData\Roaming\Sublime Text 3\Packages`
+`C:\Users\Username\AppData\Roaming\Sublime Text 3\Packages\`
 
 On a Mac it will be something like this:
 `/Users/Username/Library/Application Support/Sublime Text 3/Packages/`
@@ -65,13 +69,9 @@ On a Mac it will be something like this:
 
 Open Terminal or Command Prompt and cd into your packages directory, then run:
 
-    git clone https://github.com/jcberquist/sublimetext-lucee.git
-
-You can optionally specify a subdirectory name to clone into by adding it to the `git clone` command. For example, to clone into a folder named `Lucee` run:
-
     git clone https://github.com/jcberquist/sublimetext-lucee.git ./Lucee
 
-Or you can leave it as is, and it will clone into `sublimetext-lucee`.
+The specified `./Lucee` subdirectory is optional and if it is not included the package will be cloned into `sublimetext-lucee`.
 
 That's it, restart Sublime Text 3 - if you want to update the code to match this repo, simply run the following inside the folder where you installed the package:
 

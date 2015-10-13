@@ -16,6 +16,16 @@
 	// between controller method and corresponding view
 
 	"controller_folders": ["controllers", "handlers"],
-	"view_folders": ["views"]
+	"view_folders": ["views"],
+
+	// framework one settings
+	// you can override these in your user package settings
+	// these can also be set on a per project basis
+	// settings contained in a project override the package settings
+
+	"fw1_enabled": false,
+	"fw1_controller_folders": ["controllers"],
+	"fw1_view_folders": ["views"],
+	"fw1_layout_folders": ["layouts"]
 
 }
