@@ -110,6 +110,8 @@ def get_dot_completions(view, prefix, position, info):
 
 def on_navigate(view, file_path, symbol, href):
 	index_locations = view.window().lookup_symbol_in_index(symbol)
+	if file_path[1] == ":":
+		file_path = "/" + file_path[0] + file_path[2:]
 	for full_path, project_path, rowcol in index_locations:
 		if full_path == file_path:
 			row, col = rowcol

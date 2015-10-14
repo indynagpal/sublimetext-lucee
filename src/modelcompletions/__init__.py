@@ -6,7 +6,7 @@ def plugin_loaded():
 
 def on_post_save_async(view):
 	if view.window().project_file_name():
-		load_project_file(view.window().project_file_name(), view.window().project_data(), view.file_name())
+		load_project_file(view.window().project_file_name(), view.window().project_data(), view.file_name().replace("\\","/"))
 
 events.subscribe('on_load_async', lambda view: sync_projects())
 events.subscribe('on_close', lambda view: sync_projects())
