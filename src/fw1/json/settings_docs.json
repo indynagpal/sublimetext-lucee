@@ -137,8 +137,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -148,8 +148,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -159,8 +159,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -170,19 +170,29 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
-  "variables.framework.diconfig.omitdirectoryaliases": {
+  "variables.framework.diconfig.loadlistener": {
+    "header": "variables.framework.diConfig.loadListener",
+    "description": "any - If specified, DI/1 will register it as a load listener by calling <span class=\"code\">this.onLoad( loadListener )</span>. It can be a CFC instance, the name of a bean, or a function or closure.",
+    "body": "",
+    "links": [
+      {
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
+      }
+    ]
+  },  "variables.framework.diconfig.omitdirectoryaliases": {
     "header": "variables.framework.diConfig.omitDirectoryAliases",
     "description": "boolean - defaults to <span class=\"code\">false</span>. If <span class=\"code\">true</span>, use CFC names as bean names directly, without appending the singular directory name as a suffix. If your CFC names are not unique, you will get an exception.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -192,8 +202,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -203,8 +213,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -214,8 +224,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -225,8 +235,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -236,8 +246,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -247,8 +257,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },
@@ -258,8 +268,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
-        "text": "Framework One Developing Applications Manual"
+        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
+        "text": "Framework One - Using DI/1"
       }
     ]
   },

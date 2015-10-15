@@ -64,10 +64,10 @@ def get_dot_completions(view, prefix, position, info):
 	if extends_fw1(view) and len(info["dot_context"]) > 0 and info["dot_context"][-1].name == "variables":
 		key = ".".join([symbol.name for symbol in reversed(info["dot_context"])])
 		if key in fw1["settings"]:
-			return CompletionList(fw1["settings"][key], "normal")
+			return CompletionList(fw1["settings"][key], 1, False)
 
 	if  get_file_type(view) == "controller" and info["dot_context"][-1].name in ["fw","framework"]:
-		return CompletionList(fw1["methods"]["calls"], "normal")
+		return CompletionList(fw1["methods"]["calls"], 1, False)
 
 	return None
 
@@ -78,22 +78,19 @@ def get_script_completions(view, prefix, position, info):
 	if extends_fw1(view) and view.match_selector(position, "meta.group.braces.curly"):
 		scope_count = view.scope_name(position).count("meta.group.braces.curly")
 		if scope_count == 1:
-			return CompletionList(fw1["methods"]["definitions"], "normal")
+			return CompletionList(fw1["methods"]["definitions"], 1, False)
 
 		key = get_struct_var_assignment(view, position)
 		completions = []
 		if key and key in fw1["settings"]:
-			return CompletionList(fw1["settings"][key], "normal")
+			return CompletionList(fw1["settings"][key], 1, False)
 
-		return CompletionList(fw1["methods"]["calls"], "normal")
+		return CompletionList(fw1["methods"]["calls"], 1, False)
 	
 	if get_file_type(view) in ["view","layout"]:
-		return CompletionList(fw1["methods"]["calls"], "normal")
+		return CompletionList(fw1["methods"]["calls"], 1, False)
 
 	return None
-
-def on_navigate(href):
-	webbrowser.open_new_tab(href)
 
 def get_inline_documentation(view, position):
 	if not get_setting(view, "fw1_enabled"):
@@ -117,29 +114,29 @@ def get_inline_documentation(view, position):
 		if view.match_selector(position, "meta.property.object.cfml,string.unquoted.label.cfml,variable.other.cfml"):
 			key += "." + view.substr(word_region).lower()
 		if key in fw1["settings_docs"]:
-			return Documentation(get_documentation(key, fw1["settings_docs"][key]), on_navigate, 2)
+			return Documentation(get_documentation(key, fw1["settings_docs"][key]), None, 2)
 		parent_key = ".".join(key.split(".")[:-1])
 		if parent_key in fw1["settings_docs"]:
-			return Documentation(get_documentation(parent_key, fw1["settings_docs"][parent_key]), on_navigate, 2)
+			return Documentation(get_documentation(parent_key, fw1["settings_docs"][parent_key]), None, 2)
 
 	# methods
 	if view_extends_fw1 and view.match_selector(position, "meta.function.cfml"):
 		function_name, function_name_region, function_region = utils.get_function(view, position)
 		if function_name in fw1["methods_docs"]:
-			return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), on_navigate, 2)
+			return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), None, 2)
 
 	if view_extends_fw1 or view_file_type in ["view","layout"]:
-		if view.match_selector(position, "meta.function-call - meta.function-call.method"):
+		if view.match_selector(position, "meta.function-call"):
 			function_name, function_name_region, function_args_region = utils.get_function_call(view, position)
 			if function_name in fw1["methods_docs"]:
-				return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), on_navigate, 2)
+				return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), None, 2)
 
 	if view_file_type == "controller" and view.match_selector(position, "meta.function-call.method"):
 			function_name, function_name_region, function_args_region = utils.get_function_call(view, position)
 			if view.substr(function_name_region.begin() - 1) == ".":
 				dot_context = utils.get_dot_context(view, function_name_region.begin() - 1)			
 				if dot_context[-1].name in ["fw","framework"] and function_name in fw1["methods_docs"]:
-					return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), on_navigate, 2)
+					return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), None, 2)
 				
 	return None
 
