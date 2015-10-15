@@ -8,7 +8,7 @@ completions = {}
 
 def get_tags(view, prefix, position, info):
 	completion_list = completions[info["dialect"] + "_tags"]
-	return CompletionList(completion_list, 'default')
+	return CompletionList(completion_list, 0, False)
 
 def get_tag_attributes(view, prefix, position, info):
 	if not info["tag_name"]:
@@ -18,17 +18,17 @@ def get_tag_attributes(view, prefix, position, info):
 		 info["tag_name"] = (":" if info["dialect"] == "lucee" else "cf") +  info["tag_name"]
 
 	completion_list = completions[info["dialect"] + "_tag_attributes"].get(info["tag_name"], None)
-	return CompletionList(completion_list, 'default')
+	return CompletionList(completion_list, 0, False)
 
 def get_script_completions(view, prefix, position, info):
 	completion_list = []
 	completion_list.extend(completions[info["dialect"] + "_functions"])
 	completion_list.extend(completions[info["dialect"] + "_tags_in_script"])
-	return CompletionList(completion_list, 'default')
+	return CompletionList(completion_list, 0, False)
 
 def get_member_functions(view, prefix, position, info):
 	completion_list = completions[info["dialect"] + "_member_functions"]
-	return CompletionList(completion_list, 'default')
+	return CompletionList(completion_list, 0, False)
 
 def load_completions():
 	global completions

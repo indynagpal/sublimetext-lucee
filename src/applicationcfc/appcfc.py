@@ -39,7 +39,7 @@ def get_dot_completions(view, prefix, position, info):
 	if info["file_name"] == "application.cfc" and len(info["dot_context"]) > 0 and info["dot_context"][-1].name == "this":
 		key = ".".join([symbol.name for symbol in reversed(info["dot_context"])])
 		if key in appcfc["settings"]:
-			return CompletionList(appcfc["settings"][key], "normal")
+			return CompletionList(appcfc["settings"][key], 1, False)
 
 	return None
 
@@ -47,11 +47,11 @@ def get_script_completions(view, prefix, position, info):
 	if info["file_name"] == "application.cfc" and view.match_selector(position, "meta.group.braces.curly"):
 		scope_count = view.scope_name(position).count("meta.group.braces.curly")
 		if scope_count == 1:
-			return CompletionList(appcfc["methods"], "normal")
+			return CompletionList(appcfc["methods"], 1, False)
 
 		key = get_struct_var_assignment(view, position)
 		if key and key in appcfc["settings"]:
-			return CompletionList(appcfc["settings"][key], "normal")
+			return CompletionList(appcfc["settings"][key], 1, False)
 
 	return None
 

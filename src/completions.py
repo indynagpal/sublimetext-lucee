@@ -1,27 +1,29 @@
 from . import utils
 from collections import namedtuple
 
-CompletionList = namedtuple('CompletionList', 'completions type')
+CompletionList = namedtuple("CompletionList", "completions priority exclude_lower_priority")
 completion_sources = {"tag": [], "tag_attributes": [], "script": [], "dot": []}
 
 def add_completion_source(source_type, callback):
 	completion_sources[source_type].append(callback)
 
 def get_completions(source_type, *args):
-	full_list = []
-	default_list = None
+	completion_lists = []
+	minimum_priority = 0
 
 	for callback in completion_sources[source_type]:
 		completionlist = callback(*args)
 		if completionlist:
-			if completionlist.type == 'exclusive':
-				return completionlist.completions
-			elif completionlist.type == 'default':
-				default_list = completionlist.completions
-			else:
-				full_list.extend(completionlist.completions)
+			completion_lists.append(completionlist)
+			if completionlist.exclude_lower_priority:
+				minimum_priority = completionlist.priority
+				
+	full_completion_list = []
+	for completionlist in sorted(completion_lists, key=lambda comp_list: comp_list.priority, reverse=True):
+		if completionlist.priority >= minimum_priority:
+			full_completion_list.extend(completionlist.completions)
 
-	return full_list if len(full_list) else default_list
+	return full_completion_list
 
 def get_base_info(view, dialect):
 	file_name = view.file_name().replace("\\", "/").split("/").pop().lower()

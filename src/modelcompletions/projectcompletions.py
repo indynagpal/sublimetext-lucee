@@ -103,7 +103,7 @@ def get_dot_completions(view, prefix, position, info):
 		for symbol in info["dot_context"]:
 			if not symbol.is_function:
 				if has_bean(project_file_name, symbol.name):
-					return CompletionList(get_bean(project_file_name, symbol.name).completions, 'normal')
+					return CompletionList(get_bean(project_file_name, symbol.name).completions, 1, True)
 				break
 
 	return None
