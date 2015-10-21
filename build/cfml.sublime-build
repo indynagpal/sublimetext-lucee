@@ -1,0 +1,4 @@
+{
+	"cmd": ["box", "$file_name"],
+	"selector": "embedding.cfml"
+}

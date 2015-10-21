@@ -55,6 +55,10 @@ Unless you are using a specialized color scheme, Lucee/CFML tags and HTML tags w
 
 Framework One (https://github.com/framework-one/fw1) function completions and `variables.framework` setting completions are available. They are disabled by default, but can be enabled globally by adding `"fw1_enabled": true` to your Lucee user package settings, or on a per project basis by adding the same setting to a project settings file. (Project based settings will override global settings. The default package settings for Framework One can be viewed in the Lucee default package settings file.) The completions are offered in `Application.cfc` as well as in Framework One controller, view and layout files. (The folder names can be specified in the settings.) In controllers, Framework One method completions are offered after typing `framework.` and `fw.`.
 
+### CommandBox
+
+CommandBox (https://www.ortussolutions.com/products/commandbox) has been added as a build system. This simply means that running the build command (<kbd>CTRL</kbd>+<kbd>B</kbd> or <kbd>F7</kbd> on Windows) on a cfml file will run `box ${filename}` as a shell command in the directory of the file and output the result in a pane within Sublime Text. For this to work, Command box needs to be installed, and the CommandBox `box` binary needs to be available system wide, so that `box` can be run in any directory (see https://ortus.gitbooks.io/commandbox-documentation/content/setup/installation.html).
+
 ### Installation
 
 Locate your Sublime Text 3 packages directory. This can be easily done by opening the command palette in Sublime Text (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on Windows, <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> on a Mac), and running `Preferences: Browse Packages`.
