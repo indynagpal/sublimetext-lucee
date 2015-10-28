@@ -29,22 +29,22 @@ class LuceeEventListener(sublime_plugin.EventListener):
 			# tag completions
 			if view.match_selector(prefix_start, "embedding." + dialect + " - source." + dialect + ".script"):
 				tag_completions = completions.get_tag_completions(view, prefix, locations[0], dialect)
-				return (tag_completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+				return tag_completions
 
 			# dot completions (member and model function completions)
 			if view.match_selector(prefix_start - 1, base_script_scope + " keyword.operator.accessor." + dialect):
 				completion_list = completions.get_dot_completions(view, prefix, locations[0], dialect)
-				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+				return completion_list
 
 			#tag in script attribute completions
 			if view.match_selector(prefix_start, base_script_scope + " meta.tag, " + base_script_scope + " meta.class"):
 				attribute_completions = completions.get_script_tag_attributes(view, prefix, locations[0], dialect)
-				return (attribute_completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+				return attribute_completions
 
 			# script completions
 			if view.match_selector(prefix_start, "embedding." + dialect + " source." + dialect + ".script"):
 				completion_list = completions.get_script_completions(view, prefix, locations[0], dialect)
-				return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
+				return completion_list
 
 		# default
 		return None
