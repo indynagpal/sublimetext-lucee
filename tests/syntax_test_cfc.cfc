@@ -56,6 +56,9 @@ default="string";
     for ( var header in foo)
 //            ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.cfml
 
+    test.foo( myvar == test );
+//            ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly meta.function-call.method.cfml meta.function-call.method.arguments.cfml variable.other.cfml
+
     return result = foo;
 //         ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly variable.other.cfml
 //                  ^ embedding.cfml source.cfml.script meta.group.braces.curly meta.group.braces.curly variable.other.cfml

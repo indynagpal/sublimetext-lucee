@@ -424,7 +424,7 @@ contexts:
               pop: true
             - match: ","
               scope: punctuation.definition.separator.arguments.lucee
-            - match: (?i:(\w+)\s*(?=\=))
+            - match: (?i:(\w+)\s*(?=\=[^\=]))
               scope: entity.other.method-parameter.lucee
             - include: expression
   number:

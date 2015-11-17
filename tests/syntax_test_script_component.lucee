@@ -61,6 +61,9 @@ default="string";
     for ( var header in foo)
 //            ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly - meta.tag.script.lucee
 
+    test.foo( myvar == test );
+//            ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly meta.function-call.method.lucee meta.function-call.method.arguments.lucee variable.other.lucee
+
     return result = foo;
 //         ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly variable.other.lucee
 //                  ^ embedding.lucee source.lucee.script meta.group.braces.curly meta.group.braces.curly variable.other.lucee
