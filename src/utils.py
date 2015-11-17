@@ -103,7 +103,10 @@ def get_last_open_tag(view, pos):
 				continue
 
 			# check to exclude cfml tags that should not have a closing tag
-			if tag_name in ["cfset","cfelse","cfelseif",":set",":else",":elseif"]:
+			if tag_name in ["cfset","cfelse","cfelseif","cfcontinue","cfbreak","cfthrow","cfrethrow"]:
+				continue
+			# check to exclude lucee tags that should not have a closing tag
+			if tag_name in [":set",":else",":elseif",":continue",":break",":throw",":rethrow"]:
 				continue
 			# check to exclude html tags that should not have a closing tag
 			if tag_name in ["area","base","br","col","command","embed","hr","img","input","link","meta","param","source"]:
