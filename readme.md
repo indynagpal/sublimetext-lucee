@@ -51,13 +51,25 @@ Unless you are using a specialized color scheme, Lucee/CFML tags and HTML tags w
 
 *Caveat:* This feature works by either overriding or modifying your active color scheme file. Because of this, it may not work well with other packages that also modify the active color scheme in some way. Also, if the package containing your active color scheme is updated, it is likely that you will need to toggle the custom tag coloring off and then on again to pick up any changes.
 
+### CommandBox
+
+CommandBox (https://www.ortussolutions.com/products/commandbox) has been added as the default CFML build system. This simply means that running the build command (<kbd>F7</kbd> on Windows) on a CFML file will run `box ${filename}` as a shell command in the directory of the file and output the result in a pane within Sublime Text (it can also be selected from the build system menu available via <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>B</kbd>). For this to work, CommandBox needs to be installed, and the CommandBox `box` binary needs to be available system wide, so that `box` can be run in any directory (see https://ortus.gitbooks.io/commandbox-documentation/content/setup/installation.html).
+
+### TestBox
+
+TestBox (https://www.ortussolutions.com/products/testbox) completions and inline documentation are available for `BaseSpec` components. They are enabled by default, but can be disabled globally by adding `"testbox_enabled": false` to your Lucee user package settings, or on a per project basis by adding the same setting to a project settings file. The completions and documentation are offered in any cfc that is contained under a folder named `tests` (alternate folders can be specified in the settings), as well as in any cfc that extends `testbox.system.BaseSpec`.
+
+There are three build system variants for running TestBox tests from within Sublime Text. The first is for running all of a project's tests, which can be used no matter what project files are open, so long as the active file is a CFML one. The next variant is for running all of the tests in the directory of the currently active file, while the last variant runs the tests in the currently active test cfc only. <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>B</kbd> calls up the build system menu, from which these options can be selected. Once one of the variants has been run, <kbd>CTRL</kbd>+<kbd>B</kbd> can used to run the last selected option again, without having to go through the menu.
+
+Several settings need to be set in a project in order for these build systems to function. The first setting is `testbox_runner_url`, which should be the URL to a TestBox runner which runs tests and returns results in JSON. This needs to be setup so that a dot delimited directory of tests to run can be appended to it. An example URL that does this might be the following: `http://localhost:8888/testbox/system/Testbox.cfc?method=runremote&reporter=json&directory=`. The second setting is `testbox_default_directory`, which is the dot delimited directory that will be appended to the `testbox_runner_url` when the build variant for running all of a project's tests is selected. The last setting is `testbox_tests_root`, which is the root directory path that is used to determine the dot delimited path to a test directory when running the tests in a particular folder or file. (This could be the path to your project's webroot if your tests are contained under the webroot, but might not be if mappings are used.)
+
+Results are displayed in a results pane. If there are errors or failures you can step backwards and forwards through the file stack traces via <kbd>F4</kbd> and <kbd>SHIFT</kbd>+<kbd>F4</kbd>. As each file is selected, Sublime Text opens that file and jumps to the line indicated. You can also double click on any file, and Sublime Text will open it for you.  Since the path to your files might look different to Sublime Text and the Lucee application server (for example, if Lucee is running in a virtual machine), there is one more setting that maps the path as it appears to the server to the path as it appears to Sublime Text. Use `testbox_results.server_root` and `testbox_results.sublime_root` to specify the respective root paths to your project, so that Sublime Text can accurately open the files in stack traces.
+
+All of the settings for TestBox can be seen in the default package settings.
+
 ### Framework One
 
 Framework One (https://github.com/framework-one/fw1) function completions and `variables.framework` setting completions are available. They are disabled by default, but can be enabled globally by adding `"fw1_enabled": true` to your Lucee user package settings, or on a per project basis by adding the same setting to a project settings file. (Project based settings will override global settings. The default package settings for Framework One can be viewed in the Lucee default package settings file.) The completions are offered in `Application.cfc` as well as in Framework One controller, view and layout files. (The folder names can be specified in the settings.) In controllers, Framework One method completions are offered after typing `framework.` and `fw.`.
-
-### CommandBox
-
-CommandBox (https://www.ortussolutions.com/products/commandbox) has been added as a build system. This simply means that running the build command (<kbd>CTRL</kbd>+<kbd>B</kbd> or <kbd>F7</kbd> on Windows) on a cfml file will run `box ${filename}` as a shell command in the directory of the file and output the result in a pane within Sublime Text. For this to work, Command box needs to be installed, and the CommandBox `box` binary needs to be available system wide, so that `box` can be run in any directory (see https://ortus.gitbooks.io/commandbox-documentation/content/setup/installation.html).
 
 ### Installation
 
