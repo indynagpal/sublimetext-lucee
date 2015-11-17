@@ -247,7 +247,7 @@ contexts:
       scope: keyword.control.flow.cfml
     - match: (?<!\.)\b(if|else)\b
       scope: keyword.control.conditional.cfml
-    - match: (?<!\.)\b(catch|finally|throw|try)\b
+    - match: (?<!\.)\b(catch|finally|rethrow|throw|try)\b
       scope: keyword.control.trycatch.cfml
     - match: (?<!\.)\b(break|continue|do|while)\b
       scope: keyword.control.loop.cfml

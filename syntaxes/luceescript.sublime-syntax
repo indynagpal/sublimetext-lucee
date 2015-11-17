@@ -291,7 +291,7 @@ contexts:
       scope: keyword.control.flow.lucee
     - match: (?<!\.)\b(if|else)\b
       scope: keyword.control.conditional.lucee
-    - match: (?<!\.)\b(catch|finally|throw|try)\b
+    - match: (?<!\.)\b(catch|finally|rethrow|throw|try)\b
       scope: keyword.control.trycatch.lucee
     - match: (?<!\.)\b(break|continue|do|while)\b
       scope: keyword.control.loop.lucee
