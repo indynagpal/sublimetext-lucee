@@ -258,6 +258,7 @@ contexts:
       with_prototype:
         - match: (?i)(?=</cfquery>)
           pop: true
+        - include: comments
         - match: (?i)(?=</?cf)
           push: cfmltags
         - include: hash-delimiters

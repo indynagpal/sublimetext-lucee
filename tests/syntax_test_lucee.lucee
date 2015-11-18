@@ -13,6 +13,12 @@
 <!--- <- embedding.lucee text.html.lucee meta.scope.output.lucee text.html.lucee constant.character.hash.lucee.start --->
  <!--- <- embedding.lucee text.html.lucee meta.scope.output.lucee text.html.lucee source.lucee.script support.function.lucee --->
 </:output>
+
+<:query name="test">
+<!--- this should be a comment <:queryparam value=""> --->
+<!---                           ^ embedding.lucee text.html.lucee meta.scope.query.lucee source.sql comment.line.lucee --->
+</:query>
+
 <:script>
 foo = 'hello world';
 <!--- <- embedding.lucee text.html.lucee source.lucee.script variable.other.lucee --->

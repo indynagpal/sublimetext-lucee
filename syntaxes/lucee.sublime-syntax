@@ -279,6 +279,7 @@ contexts:
       with_prototype:
         - match: (?i)(?=</:query>)
           pop: true
+        - include: comments
         - match: (?i)(?=</?:)
           push: tags
         - include: hash-delimiters
