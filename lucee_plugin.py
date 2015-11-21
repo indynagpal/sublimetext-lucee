@@ -18,6 +18,12 @@ class LuceeEventListener(sublime_plugin.EventListener):
 	def on_post_save_async(self, view):
 		events.trigger('on_post_save_async', view)
 
+	def on_post_text_command(self, view, command_name, args):
+		if command_name == "commit_completion":
+			pos = view.sel()[0].begin()
+			if view.match_selector(pos, "embedding.cfml meta.tag.cfml - source.cfml.script"):
+				view.run_command("auto_complete", {"api_completions_only": True})
+
 	def on_query_completions(self, view, prefix, locations):
 		for dialect in ["lucee","cfml"]:
 			if not view.match_selector(locations[0], "embedding." + dialect):

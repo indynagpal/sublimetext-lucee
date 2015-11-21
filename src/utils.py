@@ -132,6 +132,19 @@ def get_tag_name(view, pos):
 			return view.substr(tag_name_region).lower()
 	return None
 
+def get_tag_attribute_name(view, pos):
+	dialect = get_dialect(view, pos)
+	for scope in ["string.quoted","string.unquoted"]:
+		if view.match_selector(pos, "meta.tag." + dialect + " " + scope):
+			previous_char = get_char_point_before_scope(view, pos, scope)
+			break
+	else:
+		previous_char = get_previous_character(view, pos)
+
+	if view.match_selector(previous_char, "meta.tag." + dialect + " " + "punctuation.separator.key-value"):
+		return get_previous_word(view, previous_char)
+	return None
+
 def get_function(view, pt):
 	dialect = get_dialect(view, pt)
 	function_scope = "meta.function." + dialect

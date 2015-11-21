@@ -27,8 +27,22 @@ def get_tag_attributes(view, prefix, position, info):
 	if info["tag_in_script"]:
 		 info["tag_name"] = (":" if info["dialect"] == "lucee" else "cf") +  info["tag_name"]
 
-	completion_list = completions[info["dialect"] + "_tag_attributes"].get(info["tag_name"], None)
-	return CompletionList(completion_list, 0, False)
+	# tag attribute value completions
+	if info["tag_attribute_name"]:
+		if (info["tag_name"] in completions[info["dialect"] + "_tag_attribute_values"]
+				and info["tag_attribute_name"] in completions[info["dialect"] + "_tag_attribute_values"][info["tag_name"]]):
+			completion_list = completions[info["dialect"] + "_tag_attribute_values"][info["tag_name"]][info["tag_attribute_name"]]
+			return CompletionList(completion_list, 0, False)
+		return None
+
+	# tag attribute completions
+	prefix_start = position - len(prefix)
+	ch = view.substr(prefix_start - 1)
+	if ch in [" ", "\t", "\n"]:
+		completion_list = completions[info["dialect"] + "_tag_attributes"].get(info["tag_name"], None)
+		return CompletionList(completion_list, 0, False)
+
+	return None
 
 def get_script_completions(view, prefix, position, info):
 	completion_list = []
@@ -67,12 +81,20 @@ def load_completions():
 		completions[dialect + "_tags"] = []
 		completions[dialect + "_tags_in_script"] = []
 		completions[dialect + "_tag_attributes"] = {}
+		completions[dialect + "_tag_attribute_values"] = {}
 		for tag_name in sorted(completions_data[dialect + "_tags"].keys()):
-			tag_attributes = completions_data[dialect + "_tags"][tag_name]
+			if isinstance(completions_data[dialect + "_tags"][tag_name], list):
+				completions_data[dialect + "_tags"][tag_name] = {"attributes": completions_data[dialect + "_tags"][tag_name], "attribute_values": {}}
+			tag_attributes = completions_data[dialect + "_tags"][tag_name]["attributes"]
 			completions[dialect + "_tags"].append(make_tag_completion(tag_name, dialect, tag_attributes[0]))
 			completions[dialect + "_tags_in_script"].append(make_tag_completion(tag_name[(1 if dialect == "lucee" else 2):], dialect, tag_attributes[0]))
 			completions[dialect + "_tag_attributes"][tag_name] = [(a + '\trequired', a + '="$1"') for a in tag_attributes[0]]
 			completions[dialect + "_tag_attributes"][tag_name].extend([(a + '\toptional', a + '="$1"') for a in tag_attributes[1]])
+			# attribute values
+			tag_attribute_values = completions_data[dialect + "_tags"][tag_name]["attribute_values"]
+			completions[dialect + "_tag_attribute_values"][tag_name] = {}
+			for attribute_name in sorted(tag_attribute_values.keys()):
+				completions[dialect + "_tag_attribute_values"][tag_name][attribute_name] = [(v + '\t' + attribute_name, v) for v in tag_attribute_values[attribute_name]]
 
 		# functions
 		completions[dialect + "_functions"] = [(funct + '\tfn (' + dialect + ')', funct + completions_data[dialect + "_functions"][funct]) for funct in sorted(completions_data[dialect + "_functions"].keys())]
@@ -83,7 +105,7 @@ def load_completions():
 			for funct in sorted(completions_data[dialect + "_member_functions"][member_function_type].keys()):
 				mem_func_comp.append( (funct + '\t' + member_function_type + '.fn (' + dialect + ')', funct + completions_data[dialect + "_member_functions"][member_function_type][funct]))
 		completions[dialect + "_member_functions"] = mem_func_comp
-		
+
 		# CGI scope
 		cgi = load_json_data("cgi")
 		completions["cgi"] = [(scope_variable.split(".").pop().upper() + "\tCGI", scope_variable.split(".").pop().upper()) for scope_variable in sorted(cgi.keys())]

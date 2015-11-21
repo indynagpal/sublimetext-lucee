@@ -17,7 +17,7 @@ def get_completions(source_type, *args):
 			completion_lists.append(completionlist)
 			if completionlist.exclude_lower_priority:
 				minimum_priority = completionlist.priority
-				
+
 	full_completion_list = []
 	for completionlist in sorted(completion_lists, key=lambda comp_list: comp_list.priority, reverse=True):
 		if completionlist.priority >= minimum_priority:
@@ -30,20 +30,19 @@ def get_base_info(view, dialect):
 	return {"dialect": dialect, "file_name": file_name}
 
 def get_tag_completions(view, prefix, position, dialect):
+	info = get_base_info(view, dialect)
 	prefix_start = position - len(prefix)
-	ch = view.substr(prefix_start - 1)
 	is_inside_tag = view.match_selector(prefix_start, "meta.tag - punctuation.definition.tag.begin")
+	is_tag_name = view.match_selector(prefix_start - 1, "punctuation.definition.tag.begin, entity.name.tag")
 
-	if is_inside_tag and ch in [" ", "\t", "\n"]:
-		info = get_base_info(view, dialect)
-		info.update({"tag_in_script": False, "tag_name": utils.get_tag_name(view, prefix_start)})
+	if is_inside_tag and not is_tag_name:
+		info.update({"tag_in_script": False, "tag_name": utils.get_tag_name(view, prefix_start), "tag_attribute_name": utils.get_tag_attribute_name(view, prefix_start) })
 		return get_completions('tag_attributes', view, prefix, position, info)
 
-	info = get_base_info(view, dialect)
 	completions = get_completions('tag', view, prefix, position, info)
 
 	# if the opening < is not here insert that
-	if ch != "<":
+	if view.substr(prefix_start - 1) != "<":
 		completions = [(pair[0], "<" + pair[1]) for pair in completions]
 
 	return completions
