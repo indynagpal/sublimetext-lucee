@@ -135,13 +135,15 @@ def get_tag_name(view, pos):
 def get_tag_attribute_name(view, pos):
 	dialect = get_dialect(view, pos)
 	for scope in ["string.quoted","string.unquoted"]:
-		if view.match_selector(pos, "meta.tag." + dialect + " " + scope):
+		full_scope = "meta.tag." + dialect + " " + scope + ", meta.tag.script." + dialect + " " + scope
+		if view.match_selector(pos, full_scope):
 			previous_char = get_char_point_before_scope(view, pos, scope)
 			break
 	else:
 		previous_char = get_previous_character(view, pos)
 
-	if view.match_selector(previous_char, "meta.tag." + dialect + " " + "punctuation.separator.key-value"):
+	full_scope = "meta.tag." + dialect + " punctuation.separator.key-value, meta.tag.script." + dialect + " punctuation.separator.key-value"
+	if view.match_selector(previous_char, full_scope):
 		return get_previous_word(view, previous_char)
 	return None
 

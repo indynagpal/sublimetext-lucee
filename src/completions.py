@@ -56,6 +56,7 @@ def get_script_tag_attributes(view, prefix, position, dialect):
 	info = get_base_info(view, dialect)
 	info["tag_in_script"] = True
 	info["tag_name"] = "component" if view.match_selector(prefix_start, "meta.class") else utils.get_tag_name(view, prefix_start)
+	info["tag_attribute_name"] = utils.get_tag_attribute_name(view, prefix_start)
 	return get_completions('tag_attributes', view, prefix, position, info)
 
 def get_dot_completions(view, prefix, position, dialect):

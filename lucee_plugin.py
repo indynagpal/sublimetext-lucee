@@ -21,7 +21,7 @@ class LuceeEventListener(sublime_plugin.EventListener):
 	def on_post_text_command(self, view, command_name, args):
 		if command_name == "commit_completion":
 			pos = view.sel()[0].begin()
-			if view.match_selector(pos, "embedding.cfml meta.tag.cfml - source.cfml.script"):
+			if view.match_selector(pos, "embedding.cfml meta.tag.cfml - source.cfml.script, embedding.cfml meta.tag.script.cfml"):
 				view.run_command("auto_complete", {"api_completions_only": True})
 
 	def on_query_completions(self, view, prefix, locations):
