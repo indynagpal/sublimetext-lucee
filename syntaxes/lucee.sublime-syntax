@@ -100,53 +100,62 @@ contexts:
     - include: comments
     - include: function
   function:
-    - match: (?i)(?=<:function)
+    - match: (?i)(<)(:function)
+      captures:
+        1: punctuation.definition.tag.begin.lucee
+        2: entity.name.tag.lucee storage.type.function.lucee
       push:
-        - match: (<)(:function)
-          captures:
-            1: punctuation.definition.tag.begin.lucee
-            2: entity.name.tag.lucee storage.type.function.lucee
-          push:
-            - meta_scope: meta.tag.lucee meta.function.lucee
-            - match: ">"
-              scope: punctuation.definition.tag.end.lucee
+        - meta_scope: meta.tag.lucee meta.function.lucee
+        - match: ">"
+          scope: punctuation.definition.tag.end.lucee
+          set:
+            - include: scope:text.html.basic
+          with_prototype:
+            - match: (?i)(</)(:function)(>)
+              captures:
+                0: meta.tag.lucee
+                1: punctuation.definition.tag.begin.lucee
+                2: entity.name.tag.lucee storage.type.function.lucee
+                3: punctuation.definition.tag.end.lucee
               pop: true
-            - match: '\b(name)\s*(=)\s*"([_$a-zA-Z][$\w]*)"'
-              captures:
-                1: entity.other.attribute-name.lucee
-                2: punctuation.separator.key-value.lucee
-                3: entity.name.function.lucee
-            - match: '\b(access)\s*(=)\s*"([_$a-zA-Z][$\w]*)"'
-              captures:
-                1: entity.other.attribute-name.lucee
-                2: punctuation.separator.key-value.lucee
-                3: storage.modifier.lucee
-            - match: |-
-                (?x)(?i)
-                  \b(returntype)\s*(=)\s*"(
-                  (void)
-                  |
-                  (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid) # return-type.primitive
-                  |
-                  ([A-Za-z0-9_\.$]+) #return-type component/object (may need additional tokens)
-                )"
-              captures:
-                1: entity.other.attribute-name.lucee
-                2: punctuation.separator.key-value.lucee
-                3: storage.type.return-type.void.lucee
-                4: storage.type.return-type.primitive.lucee
-                5: storage.type.return-type.object.lucee
-            - include: tag-generic-attribute
-        - match: (</)(:function)(>)
+            - include: comments
+            - match: (?=</?:)
+              push: lucee
+        - match: '(?i)\b(name)\s*(=)\s*((")([_$a-zA-Z][$\w]*)("))'
           captures:
-            0: meta.tag.lucee
-            1: punctuation.definition.tag.begin.lucee
-            2: entity.name.tag.lucee storage.type.function.lucee
-            3: punctuation.definition.tag.end.lucee
-          pop: true
-        - include: comments
-        - match: (?i)(?=</?:)
-          push: tags
+            1: entity.other.attribute-name.lucee
+            2: punctuation.separator.key-value.lucee
+            3: string.quoted.double.lucee
+            4: punctuation.definition.string.begin.lucee
+            5: entity.name.function.lucee
+            6: punctuation.definition.string.end.lucee
+        - match: '(?i)\b(access)\s*(=)\s*((")([_$a-zA-Z][$\w]*)("))'
+          captures:
+            1: entity.other.attribute-name.lucee
+            2: punctuation.separator.key-value.lucee
+            3: string.quoted.double.lucee
+            4: punctuation.definition.string.begin.lucee
+            5: storage.modifier.lucee
+            6: punctuation.definition.string.end.lucee
+        - match: |-
+            (?x)(?i)
+              \b(returntype)\s*(=)\s*((")(
+              (void)
+              |
+              (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid) # return-type.primitive
+              |
+              ([A-Za-z0-9_\.$]+) #return-type component/object (may need additional tokens)
+            )("))
+          captures:
+            1: entity.other.attribute-name.lucee
+            2: punctuation.separator.key-value.lucee
+            3: string.quoted.double.lucee
+            4: punctuation.definition.string.begin.lucee
+            6: storage.type.return-type.void.lucee
+            7: storage.type.return-type.primitive.lucee
+            8: storage.type.return-type.object.lucee
+            9: punctuation.definition.string.begin.lucee
+        - include: tag-generic-attribute
   hash-delimiters:
     - match: "##"
       scope: constant.character.escape.hash.lucee

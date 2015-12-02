@@ -6,7 +6,19 @@
   <:function name="init">
   <!--- <- embedding.lucee source.lucee meta.tag.lucee meta.function.lucee punctuation.definition.tag.begin.lucee --->
    <!--- <- embedding.lucee source.lucee meta.tag.lucee meta.function.lucee entity.name.tag.lucee storage.type.function.lucee --->
+<!---                   ^ embedding.lucee source.lucee source.lucee meta.tag.lucee meta.function.lucee punctuation.definition.tag.end.lucee --->
     <:return this>
+  </:function>
+
+  <:function name="testHtml" returntype="string" access="public">
+<!---              ^ embedding.lucee source.lucee source.lucee meta.tag.lucee meta.function.lucee entity.name.function.lucee --->
+<!---                                    ^ embedding.lucee source.lucee source.lucee meta.tag.lucee meta.function.lucee string.quoted.double.lucee storage.type.return-type.primitive.lucee --->
+<!---                                                    ^ embedding.lucee source.lucee source.lucee meta.tag.lucee meta.function.lucee string.quoted.double.lucee storage.modifier.lucee --->
+    <:savecontent variable="testHtml">
+      <div class="alert alert-<:if danger>danger<:else>success</:if>">Alert!</div>
+<!---  ^ embedding.lucee source.lucee source.lucee meta.tag.block.any.html entity.name.tag.block.any.html --->
+<!---                          ^ embedding.lucee source.lucee source.lucee meta.tag.block.any.html string.quoted.double.html meta.tag.lucee entity.name.tag.lucee --->
+    </:savecontent>
   </:function>
 
 </:component>

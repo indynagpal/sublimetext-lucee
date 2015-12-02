@@ -91,53 +91,62 @@ contexts:
     - include: comments
     - include: cffunction
   cffunction:
-    - match: (?i)(?=<cffunction)
+    - match: (?i)(<)(cffunction)
+      captures:
+        1: punctuation.definition.tag.begin.cfml
+        2: entity.name.tag.cfml storage.type.function.cfml
       push:
-        - match: (<)(cffunction)
-          captures:
-            1: punctuation.definition.tag.begin.cfml
-            2: entity.name.tag.cfml storage.type.function.cfml
-          push:
-            - meta_scope: meta.tag.cfml meta.function.cfml
-            - match: ">"
-              scope: punctuation.definition.tag.end.cfml
+        - meta_scope: meta.tag.cfml meta.function.cfml
+        - match: ">"
+          scope: punctuation.definition.tag.end.cfml
+          set:
+            - include: scope:text.html.basic
+          with_prototype:
+            - match: (?i)(</)(cffunction)(>)
+              captures:
+                0: meta.tag.cfml
+                1: punctuation.definition.tag.begin.cfml
+                2: entity.name.tag.cfml storage.type.function.cfml
+                3: punctuation.definition.tag.end.cfml
               pop: true
-            - match: '\b(name)\s*(=)\s*"([_$a-zA-Z][$\w]*)"'
-              captures:
-                1: entity.other.attribute-name.cfml
-                2: punctuation.separator.key-value.cfml
-                3: entity.name.function.cfml
-            - match: '\b(access)\s*(=)\s*"([_$a-zA-Z][$\w]*)"'
-              captures:
-                1: entity.other.attribute-name.cfml
-                2: punctuation.separator.key-value.cfml
-                3: storage.modifier.cfml
-            - match: |-
-                (?x)(?i)
-                  \b(returntype)\s*(=)\s*"(
-                  (void)
-                  |
-                  (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid) # return-type.primitive
-                  |
-                  ([A-Za-z0-9_\.$]+) #return-type component/object (may need additional tokens)
-                )"
-              captures:
-                1: entity.other.attribute-name.cfml
-                2: punctuation.separator.key-value.cfml
-                3: storage.type.return-type.void.cfml
-                4: storage.type.return-type.primitive.cfml
-                5: storage.type.return-type.object.cfml
-            - include: tag-generic-attribute
-        - match: (</)(cffunction)(>)
+            - include: comments
+            - match: (?i)(?=</?cf)
+              push: cfml
+        - match: '(?i)\b(name)\s*(=)\s*((")([_$a-zA-Z][$\w]*)("))'
           captures:
-            0: meta.tag.cfml
-            1: punctuation.definition.tag.begin.cfml
-            2: entity.name.tag.cfml storage.type.function.cfml
-            3: punctuation.definition.tag.end.cfml
-          pop: true
-        - include: comments
-        - match: (?i)(?=</?cf)
-          push: cfmltags
+            1: entity.other.attribute-name.cfml
+            2: punctuation.separator.key-value.cfml
+            3: string.quoted.double.cfml
+            4: punctuation.definition.string.begin.cfml
+            5: entity.name.function.cfml
+            6: punctuation.definition.string.end.cfml
+        - match: '(?i)\b(access)\s*(=)\s*((")([_$a-zA-Z][$\w]*)("))'
+          captures:
+            1: entity.other.attribute-name.cfml
+            2: punctuation.separator.key-value.cfml
+            3: string.quoted.double.cfml
+            4: punctuation.definition.string.begin.cfml
+            5: storage.modifier.cfml
+            6: punctuation.definition.string.end.cfml
+        - match: |-
+            (?x)(?i)
+              \b(returntype)\s*(=)\s*((")(
+              (void)
+              |
+              (any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid) # return-type.primitive
+              |
+              ([A-Za-z0-9_\.$]+) #return-type component/object (may need additional tokens)
+            )("))
+          captures:
+            1: entity.other.attribute-name.cfml
+            2: punctuation.separator.key-value.cfml
+            3: string.quoted.double.cfml
+            4: punctuation.definition.string.begin.cfml
+            6: storage.type.return-type.void.cfml
+            7: storage.type.return-type.primitive.cfml
+            8: storage.type.return-type.object.cfml
+            9: punctuation.definition.string.end.cfml
+        - include: tag-generic-attribute
   cfif:
     - match: (?i)(<)(cfif|cfelseif)
       captures:
