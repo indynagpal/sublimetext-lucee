@@ -18,6 +18,22 @@
       {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
     ]
   },
+  {
+    "keys": ["ctrl+alt+a"],
+    "command": "insert_snippet",
+    "args": {"contents": "abort;"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["ctrl+alt+a"],
+    "command": "insert_snippet",
+    "args": {"contents": "abort;"},
+    "context": [
+      {"key": "selector", "operator": "equal", "operand": "source.lucee.script"}
+    ]
+  },
   // ctrl+alt+d writeDump()/dump();
   {
     "keys": ["ctrl+alt+d"],
@@ -52,6 +68,42 @@
     "context": [
       {"key": "selector", "operator": "equal", "operand": "embedding.lucee"},
       {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // ctrl+shift+o  <cfoutput>/<:output>
+  {
+    "keys": ["ctrl+shift+o"],
+    "command": "insert_snippet",
+    "args": {"contents": "<cfoutput>${1:$SELECTION}</cfoutput>"},
+    "context": [
+      {"key": "selector", "operand": "embedding.cfml"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.cfml.script"}
+    ]
+  },
+  {
+    "keys": ["ctrl+shift+o"],
+    "command": "insert_snippet",
+    "args": {"contents": "<:output>${1:$SELECTION}</:output>"},
+    "context": [
+      {"key": "selector", "operand": "embedding.lucee"},
+      {"key": "selector", "operator": "not_equal", "operand": "source.lucee.script"}
+    ]
+  },
+  // ctrl+shift+o  writeOutput()
+  {
+    "keys": ["ctrl+shift+o"],
+    "command": "insert_snippet",
+    "args": {"contents": "writeOutput(${1:$SELECTION})"},
+    "context": [
+      {"key": "selector", "operand": "source.cfml.script" }
+    ]
+  },
+  {
+    "keys": ["ctrl+shift+o"],
+    "command": "insert_snippet",
+    "args": {"contents": "writeOutput(${1:$SELECTION})"},
+    "context": [
+      {"key": "selector", "operand": "source.lucee.script" }
     ]
   },
   // shift+3 wrap selection with hash
