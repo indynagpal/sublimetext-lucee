@@ -15,9 +15,11 @@ Installation must currently be done manually by downloading the repository and p
 
 In tag attributes, script strings, and between `cfoutput` tags, pressing `#` will automatically be escaped `##` if there is no cursor selection, or it will wrap the currently selected text `#selected#`.
 
-<kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>D</kbd> will output a `dump` tag or `writeDump()/dump()` function, wrapping any currently selected text.
+<kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>D</kbd> will output a `<cfdump>` tag or `writeDump()/dump()` function in CFML script, wrapping any currently selected text.
 
-<kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>A</kbd> will output an `abort` tag.
+<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>O</kbd> will output a `<cfoutput>` tag or `writeOutput()` function in CFML script, wrapping any currently selected text.
+
+<kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>A</kbd> will output a `<cfabort>` tag or `abort;` in CFML script.
 
 If SublimeText's `auto_close_tags` setting is true, when a closing tag's `/` has been pressed, the closing tag will be completed. (Hopefully not closing `cfset` tags and the like.)
 
