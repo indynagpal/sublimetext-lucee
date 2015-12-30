@@ -4,7 +4,6 @@ from ..completions import CompletionList
 from ..inline_documentation import Documentation
 from .. import utils
 
-DIR_PATH = dirname(realpath(__file__)).replace("\\", "/")
 DOC_STYLES = {
 	"side_color": "#2BA361",
 	"header_color": "#3C9959",
@@ -26,11 +25,11 @@ def load():
 		elif key == "methods":
 			data["calls"] = [(key + "\tframework.one", key.split("(")[0] + data["calls"][key]) for key in sorted(data["calls"].keys())]
 			data["definitions"] = [(key + "\tframework.one", key.split("(")[0] + data["definitions"][key]) for key in sorted(data["definitions"].keys())]
+			data["renderdata"] = [(key + "\trenderData()", key.split("(")[0] + data["renderdata"][key]) for key in sorted(data["renderdata"].keys())]
 		fw1[key] = data
 
 def load_json_data(filename):
-	with open(DIR_PATH + "/json/" + filename + ".json", "r") as f:
-		json_data = f.read()
+	json_data = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/src/fw1/json/" + filename + ".json")
 	return json.loads(json_data)
 
 def make_setting_completions(prefix, source_list):
@@ -60,21 +59,27 @@ def get_file_type(view):
 def get_dot_completions(view, prefix, position, info):
 	if not get_setting(view, "fw1_enabled"):
 		return None
-	
-	if extends_fw1(view) and len(info["dot_context"]) > 0 and info["dot_context"][-1].name == "variables":
-		key = ".".join([symbol.name for symbol in reversed(info["dot_context"])])
-		if key in fw1["settings"]:
-			return CompletionList(fw1["settings"][key], 1, False)
 
-	if  get_file_type(view) == "controller" and info["dot_context"][-1].name in ["fw","framework"]:
-		return CompletionList(fw1["methods"]["calls"], 1, False)
+	if extends_fw1(view) and len(info["dot_context"]) > 0:
+		if info["dot_context"][-1].name == "variables":
+			key = ".".join([symbol.name for symbol in reversed(info["dot_context"])])
+			if key in fw1["settings"]:
+				return CompletionList(fw1["settings"][key], 1, False)
+		if info["dot_context"][-1].name in ["renderdata","renderer"]:
+			return CompletionList(fw1["methods"]["renderdata"], 1, False)
+
+	if  get_file_type(view) == "controller":
+		if len(info["dot_context"]) > 1 and info["dot_context"][-2].name in ["renderdata","renderer"]:
+			return CompletionList(fw1["methods"]["renderdata"], 1, False)
+		if info["dot_context"][-1].name in ["fw","framework"]:
+			return CompletionList(fw1["methods"]["calls"], 1, False)
 
 	return None
 
 def get_script_completions(view, prefix, position, info):
 	if not get_setting(view, "fw1_enabled"):
 		return None
-			
+
 	if extends_fw1(view) and view.match_selector(position, "meta.group.braces.curly"):
 		scope_count = view.scope_name(position).count("meta.group.braces.curly")
 		if scope_count == 1:
@@ -86,7 +91,7 @@ def get_script_completions(view, prefix, position, info):
 			return CompletionList(fw1["settings"][key], 1, False)
 
 		return CompletionList(fw1["methods"]["calls"], 1, False)
-	
+
 	if get_file_type(view) in ["view","layout"]:
 		return CompletionList(fw1["methods"]["calls"], 1, False)
 
@@ -98,7 +103,7 @@ def get_inline_documentation(view, position):
 
 	view_extends_fw1 = extends_fw1(view)
 	view_file_type = get_file_type(view)
-	
+
 	# settings
 	context = []
 	word_region = view.word(position)
@@ -134,10 +139,10 @@ def get_inline_documentation(view, position):
 	if view_file_type == "controller" and view.match_selector(position, "meta.function-call.method"):
 			function_name, function_name_region, function_args_region = utils.get_function_call(view, position)
 			if view.substr(function_name_region.begin() - 1) == ".":
-				dot_context = utils.get_dot_context(view, function_name_region.begin() - 1)			
+				dot_context = utils.get_dot_context(view, function_name_region.begin() - 1)
 				if dot_context[-1].name in ["fw","framework"] and function_name in fw1["methods_docs"]:
 					return Documentation(get_documentation(function_name, fw1["methods_docs"][function_name]), None, 2)
-				
+
 	return None
 
 def get_documentation(key, metadata):

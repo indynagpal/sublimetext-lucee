@@ -47,7 +47,8 @@
     "processRoutes():struct": "( ${1:path}${2:, ${3:routes}}${4:, ${5:httpMethod}} )",
     "redirect():void": "( ${1:action}${2:, ${3:preserve}}${4:, ${5:append}}${6:, ${7:path}}${8:, ${9:queryString}}${10:, ${11:statusCode}}${12:, ${13:header}} )",
     "redirectCustomURL():void": "( ${1:uri}${2:, ${3:preserve}}${4:, ${5:statusCode}}${6:, ${7:header}} )",
-    "renderData():void": "( ${1:type}${2:, ${3:data}}${4:, ${5:statusCode}}${6:, ${7:jsonpCallback}} )",
+    "renderData():any": "()",
+    "renderer():any": "()",
     "setBeanFactory():void": "( ${1:factory} )",
     "setLayout():void": "( ${1:action}${2:, ${3:suppressOtherLayouts}} )",
     "setSubsystemBeanFactory():void": "( ${1:subsystem}${2:, ${3:factory}} )",
@@ -80,5 +81,13 @@
     "setupSubsystem():void": "( subsystem ) {$0}",
     "setupTraceRender():void": "( output ) {$0}",
     "setupView():void": "( rc ) {$0}"
+  },
+  "renderdata": {
+    "data():builder": "( ${1:payload} )",
+    "type():builder": "( ${1:contentType} )",
+    "header():builder": "( ${1:name}, ${2:value} )",
+    "statusCode():builder": "( ${1:code} )",
+    "statusText():builder": "( ${1:message} )",
+    "jsonpCallback():builder": "( ${1:callback} )"
   }
 }

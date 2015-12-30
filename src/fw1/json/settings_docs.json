@@ -5,7 +5,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -16,7 +16,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -27,7 +27,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -38,7 +38,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -49,7 +49,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -60,7 +60,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -71,7 +71,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -82,7 +82,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -93,7 +93,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -104,7 +104,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -115,7 +115,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -126,19 +126,19 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.diconfig.constants": {
     "header": "variables.framework.diConfig.constants",
-    "description": "struct - defaults to <span class=\"code\">{}</span>. DI/1 will use any name/value pairs specified here to provide <em>beans</em> that resolve to the specified values. This can be used to provide resolution for constructor arguments that need values which are not actual beans.",
+    "description": "struct - defaults to <span class=\"code\">{}</span>. DI/1 will use any name/value pairs specified here to provide <em>beans</em> that resolve to the specified values. This can be used to provide resolution for constructor arguments that need values which are not actual beans. See also <span class=\"code\">addBean()</span> in the <strong>Customization</strong> section that follows.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -148,8 +148,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -159,8 +159,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -170,8 +170,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -181,29 +181,41 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
-  },  "variables.framework.diconfig.omitdirectoryaliases": {
+  },
+  "variables.framework.diconfig.omitdefaultedproperties": {
+    "header": "variables.framework.diConfig.omitDefaultedProperties",
+    "description": "boolean - defaults to <span class=\"code\">true</span>. If <span class=\"code\">false</span>, property declarations that specify a default will still be treated as dependency declarations and autowired. If <span class=\"code\">true</span>, property declarations that specify a default will be ignored for injection. This is useful when you are using <span class=\"code\">property</span> declarations on transients solely for generating setters and getters, rather than for declaring dependencies. <em>New in 4.0.</em>",
+    "body": "",
+    "links": [
+      {
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
+      }
+    ]
+  },
+  "variables.framework.diconfig.omitdirectoryaliases": {
     "header": "variables.framework.diConfig.omitDirectoryAliases",
     "description": "boolean - defaults to <span class=\"code\">false</span>. If <span class=\"code\">true</span>, use CFC names as bean names directly, without appending the singular directory name as a suffix. If your CFC names are not unique, you will get an exception.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.diconfig.omittypedproperties": {
     "header": "variables.framework.diConfig.omitTypedProperties",
-    "description": "boolean - defaults to <span class=\"code\">false</span>. If <span class=\"code\">true</span>, property declarations that specify a type will be ignored for injection. That is useful if you are working with the ORM (since those property declarations will have types and should not be treated as dependencies).",
+    "description": "boolean - defaults to <span class=\"code\">true</span>. If <span class=\"code\">false</span>, property declarations that specify a type (other than <span class=\"code\">any</span>) will still be treated as dependency declarations and autowired. If <span class=\"code\">true</span>, property declarations that specify a type will be ignored for injection. This is useful when you are working with the ORM (since those property declarations will typeically have types and should not be treated as dependencies). <em>The default changed from <span class=\"code\">false</span> to <span class=\"code\">true</span> in 4.0.</em>",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -213,8 +225,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -224,30 +236,30 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.diconfig.singulars": {
     "header": "variables.framework.diConfig.singulars",
-    "description": "struct - defaults to <span class=\"code\">{}</span>. DI/1 will use any name/value pairs specified here to translate folder names to a singular variety, e.g., <span class=\"code\">pride = 'lion'</span> will convert the <em>plural</em> folder <span class=\"code\">pride</span> to the <em>singular</em> name <span class=\"code\">lion</span> and therefore a <span class=\"code\">simba.cfc</span> within the <span class=\"code\">pride</span> folder will get the alias <span class=\"code\">simbaLion</span>. This also allows for other folders to behave as if they were called <span class=\"code\">beans</span> by treating their singular name as <span class=\"code\">bean</span>. One of the DI/1 unit tests maps <span class=\"code\">sheep</span> to <span class=\"code\">bean</span> for this reason. This won't work if the CFCs in <span class=\"code\">sheep</span> have the same name as the CFCs in <span class=\"code\">beans</span> however.",
+    "description": "struct - defaults to <span class=\"code\">{}</span>. DI/1 will use any name/value pairs specified here to translate folder names to a singular variety, e.g., <span class=\"code\">pride = 'lion'</span> will convert the <em>plural</em> folder <span class=\"code\">pride</span> to the <em>singular</em> name <span class=\"code\">lion</span> and therefore a <span class=\"code\">simba.cfc</span> within the <span class=\"code\">pride</span> folder will get the alias <span class=\"code\">simbaLion</span>. This also allows for other folders to behave as if they were called <span class=\"code\">beans</span> by treating their singular name as <span class=\"code\">bean</span>. One of the DI/1 unit tests maps <span class=\"code\">sheep</span> to <span class=\"code\">bean</span> for this reason. This won't work if the CFCs in <span class=\"code\">sheep</span> have the same name as the CFCs in a <span class=\"code\">beans</span> folder however.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.diconfig.strict": {
     "header": "variables.framework.diConfig.strict",
-    "description": "boolean - defaults to <span class=\"code\">false</span>. If <span class=\"code\">true</span>, DI/1 will throw an exception if it cannot resolve a bean implied by a constructor argument, setter name or property name. If <span class=\"code\">false</span>, DI/1 simply calls <span class=\"code\">logMissingBean()</span> which writes the failure to the Java console.",
+    "description": "boolean - defaults to <span class=\"code\">false</span>. If <span class=\"code\">true</span>, DI/1 will throw an exception if it cannot resolve a bean implied by a constructor argument, setter name or property name. If <span class=\"code\">false</span>, DI/1 simply calls <span class=\"code\">logMissingBean()</span> which writes the failure to the Java console. See <span class=\"code\">missingBean()</span> in <strong>Overriding DI/1 Behavior</strong> below for more details.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -257,8 +269,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -268,8 +280,8 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/using-di-one.html",
-        "text": "Framework One - Using DI/1"
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
       }
     ]
   },
@@ -279,7 +291,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -290,7 +302,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -301,18 +313,29 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
+      }
+    ]
+  },
+  "variables.framework.enablejsonpost": {
+    "header": "variables.framework.enableJSONPOST",
+    "description": "Default <span class=\"code\">false</span>. If <span class=\"code\">true</span>, FW/1 will accept JSON POST data and deserialize it automatically into the request context. <em>New in 4.0.</em>",
+    "body": "",
+    "links": [
+      {
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.environments": {
     "header": "variables.framework.environments",
-    "description": "An optional struct containing per-tier and per-server configuration that should be merged into FW/1's settings. See <strong><a href=\"http://framework-one.github.io/documentation/3.5/developing-applications.html#environment-control\">Environment Control</a></strong> below for more details.",
+    "description": "An optional struct containing per-tier and per-server configuration that should be merged into FW/1's settings. See <strong><a href=\"http://framework-one.github.io/documentation/4.0/developing-applications.html#environment-control\">Environment Control</a></strong> below for more details.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -323,18 +346,18 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.generateses": {
     "header": "variables.framework.generateSES",
-    "description": "If true, causes <span class=\"code\">redirect()</span> and <span class=\"code\">buildURL()</span> to generate SES-style URLs with items separated by <span class=\"code\">/</span> (and the path info in the URL will begin <span class=\"code\">/section/item</span> rather than <span class=\"code\">?action=section.item</span> - see the <a href=\"http://framework-one.github.io/documentation/3.5/reference-manual.html\">Reference Manual</a> for more details).",
+    "description": "If true, causes <span class=\"code\">redirect()</span> and <span class=\"code\">buildURL()</span> to generate SES-style URLs with items separated by <span class=\"code\">/</span> (and the path info in the URL will begin <span class=\"code\">/section/item</span> rather than <span class=\"code\">?action=section.item</span> - see the <a href=\"http://framework-one.github.io/documentation/4.0/reference-manual.html\">Reference Manual</a> for more details).",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -345,7 +368,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -356,7 +379,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -367,7 +390,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -378,7 +401,18 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
+      }
+    ]
+  },
+  "variables.framework.optionsaccesscontrol": {
+    "header": "variables.framework.optionsAccessControl",
+    "description": "Default <span class=\"code\">{ }</span>. You can use this to override the default <span class=\"code\">Access-Control-*</span> headers returns by FW/1's <span class=\"code\">OPTIONS</span> support. Valid keys are: <span class=\"code\">origin</span>, <span class=\"code\">headers</span>, <span class=\"code\">credentials</span>, and <span class=\"code\">maxAge</span>. <em>New in 4.0.</em>",
+    "body": "",
+    "links": [
+      {
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -389,7 +423,29 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
+      }
+    ]
+  },
+  "variables.framework.perresourceerror": {
+    "header": "variables.framework.perResourceError",
+    "description": "Default <span class=\"code\">true</span>. Controls whether a wildcard route is added to each resouce template. See <strong><a href=\"url-routes\">URL Routes</a></strong> for more details.",
+    "body": "",
+    "links": [
+      {
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
+        "text": "Framework One Developing Applications Manual"
+      }
+    ]
+  },
+  "variables.framework.preflightoptions": {
+    "header": "variables.framework.preflightOptions",
+    "description": "Default <span class=\"code\">false</span>. If <span class=\"code\">true</span>, FW/1 will handle HTTP <span class=\"code\">OPTIONS</span> requests for you. See <strong><a href=\"http://framework-one.github.io/documentation/4.0/developing-applications.html#options-support\">OPTIONS Support</a></strong> above for more details. <em>New in 4.0.</em>",
+    "body": "",
+    "links": [
+      {
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -400,7 +456,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -411,7 +467,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -422,7 +478,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -433,7 +489,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -444,7 +500,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -455,18 +511,18 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.sesomitindex": {
     "header": "variables.framework.SESOmitIndex",
-    "description": "If SES URLs are enabled and this is <span class=\"code\">true</span>, will attempt to omit the base filename in the path when constructing URLs in <span class=\"code\">buildURL()</span> and <span class=\"code\">redirect()</span> which will generally omit <span class=\"code\">/index.cfm</span> from the start of the URL. Again, see the <a href=\"http://framework-one.github.io/documentation/3.5/reference-manual.html\">Reference Manual</a> for more details.",
+    "description": "If SES URLs are enabled and this is <span class=\"code\">true</span>, will attempt to omit the base filename in the path when constructing URLs in <span class=\"code\">buildURL()</span> and <span class=\"code\">redirect()</span> which will generally omit <span class=\"code\">/index.cfm</span> from the start of the URL. Again, see the <a href=\"http://framework-one.github.io/documentation/4.0/reference-manual.html\">Reference Manual</a> for more details.",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -477,7 +533,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -488,7 +544,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -499,7 +555,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -510,18 +566,18 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.trace": {
     "header": "variables.framework.trace",
-    "description": "If <span class=\"code\">true</span>, FW/1 will print out debugging / tracing information at the bottom of each page. This can be very useful for debugging your application! If you want to track framework behavior across redirects, you need to enable session management in your application if you use this feature. (Note that FW/1 will not print out debugging / tracing information when the <span class=\"code\">renderData()</span> function is used, unless the content type is <span class=\"code\">\"html\"</span>. You can still access and output debugging / tracing information in such cases by overriding the <span class=\"code\">setupTraceRender()</span> function. See the <a href=\"http://framework-one.github.io/documentation/3.5/reference-manual.html\">Reference Manual</a> for more details.).",
+    "description": "If <span class=\"code\">true</span>, FW/1 will print out debugging / tracing information at the bottom of each page. This can be very useful for debugging your application! If you want to track framework behavior across redirects, you need to enable session management in your application if you use this feature. (Note that FW/1 will not print out debugging / tracing information when the <span class=\"code\">renderData()</span> function is used, unless the content type is <span class=\"code\">\"html\"</span>. You can still access and output debugging / tracing information in such cases by overriding the <span class=\"code\">setupTraceRender()</span> function. See the <a href=\"http://framework-one.github.io/documentation/4.0/reference-manual.html\">Reference Manual</a> for more details.).",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -532,7 +588,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -543,7 +599,7 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
@@ -554,29 +610,29 @@
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.usingsubsystems": {
     "header": "variables.framework.usingSubsystems",
-    "description": "Whether or not to use legacy style subsystems - see <strong><a href=\"http://framework-one.github.io/documentation/3.5/developing-applications.html#using-subsystems\">Using Subsystems</a></strong> below. This is automatically set <span class=\"code\">true</span> if you explicitly specify a <span class=\"code\">defaultSubsystem</span>. As of release 3.5, it is recommended to use the new style subsystems (and leave this as <span class=\"code\">false</span> or omit it).",
+    "description": "Whether or not to use legacy style subsystems - see <strong><a href=\"http://framework-one.github.io/documentation/4.0/developing-applications.html#using-subsystems\">Using Subsystems</a></strong> below. This is automatically set <span class=\"code\">true</span> if you explicitly specify a <span class=\"code\">defaultSubsystem</span>. As of release 3.5, it is recommended to use the new style subsystems (and leave this as <span class=\"code\">false</span> or omit it).",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
   },
   "variables.framework.viewsfolder": {
-    "header": "variables.framework.viewssFolder",
+    "header": "variables.framework.viewsFolder",
     "description": "The name used for the views folder. Must be plural. Defaults to <span class=\"code\">\"views\"</span> but could be <span class=\"code\">\"pages\"</span> for example. <em>New in 3.5.</em>",
     "body": "",
     "links": [
       {
-        "href": "http://framework-one.github.io/documentation/3.5/developing-applications.html",
+        "href": "http://framework-one.github.io/documentation/4.0/developing-applications.html",
         "text": "Framework One Developing Applications Manual"
       }
     ]
