@@ -23,17 +23,11 @@ def get_inline_documentation(view, position):
 			docs.append(inline_doc)
 
 	return docs
-	
+
 def plugin_loaded():
 	global DOC_TEMPLATE, PAGINATION_TEMPLATE
-	template_path = "/".join(FILE_PATH.split('/')[:-1]) + "/templates/"
-	DOC_TEMPLATE = load_template(template_path, "inline_documentation")
-	PAGINATION_TEMPLATE = load_template(template_path, "pagination")
-
-def load_template(template_path, filename):
-	with open(template_path + filename + ".html", "r") as f:
-		html_string = f.read()
-	return html_string
+	DOC_TEMPLATE = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/templates/inline_documentation.html")
+	PAGINATION_TEMPLATE = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/templates/pagination.html")
 
 def build_links(links):
 	html_links = ['<a class="link" href="' + link["href"] + '">' + link["text"] + '</a>' for link in links]
@@ -69,7 +63,7 @@ def generate_documentation(docs, current_index):
 	doc_html_variables["pagination"] = build_pagination(current_index, len(docs)) if len(docs) > 1 else ""
 	doc_html_variables["links"] = build_links(doc_html_variables["links"]) if "links" in doc_html_variables else ""
 
-	return build_doc_html(doc_html_variables)	
+	return build_doc_html(doc_html_variables)
 
 def display_documentation(view, docs, current_index=0):
 	doc_html = generate_documentation(docs, current_index)
