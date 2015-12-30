@@ -1,9 +1,6 @@
 import sublime, sublime_plugin, webbrowser
-from os.path import dirname, realpath, splitext
 from .src.bootstrap import *
 from .src import completions, events, utils
-
-LUCEE_PLUGIN_PATH = dirname(realpath(__file__)).replace("\\", "/")
 
 class LuceeEventListener(sublime_plugin.EventListener):
 	"""
@@ -86,4 +83,4 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 class LuceeDefaultPackageSettingsCommand(sublime_plugin.WindowCommand):
 
 	def run(self):
-		self.window.run_command("open_file", {"file": "${packages}/" + LUCEE_PLUGIN_PATH.split("/")[-1] + "/settings/lucee_package.sublime-settings"})
+		self.window.run_command("open_file", {"file": "${packages}/" + utils.get_plugin_name() + "/settings/lucee_package.sublime-settings"})

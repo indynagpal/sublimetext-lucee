@@ -1,10 +1,8 @@
 import json, sublime, webbrowser
-from os.path import dirname, realpath
 from ..completions import CompletionList
 from ..inline_documentation import Documentation
 from .. import utils
 
-DIR_PATH = dirname(realpath(__file__)).replace("\\", "/")
 DOC_STYLES = {
 	"side_color": "#336B81",
 	"header_color": "#379AC1",
@@ -34,8 +32,7 @@ def load():
 	testbox["documentation"] = load_json_data("documentation")
 
 def load_json_data(filename):
-	with open(DIR_PATH + "/json/" + filename + ".json", "r") as f:
-		json_data = f.read()
+	json_data = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/src/testbox/json/" + filename + ".json")
 	return json.loads(json_data)
 
 def negate_string(string_to_negate):

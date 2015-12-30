@@ -1,6 +1,14 @@
 import sublime
 from collections import deque, namedtuple
+from os.path import dirname, realpath
+
+path_parts = dirname(realpath(__file__)).replace("\\", "/").split("/")
+LUCEE_PLUGIN_NAME = path_parts[-1].split(".")[0] if "Installed Packages" in path_parts else path_parts[-2]
+
 Symbol = namedtuple('Symbol', 'name is_function function_region args_region')
+
+def get_plugin_name():
+	return LUCEE_PLUGIN_NAME
 
 def get_dialect(view, position):
 	return "cfml" if view.match_selector(position, "embedding.cfml") else "lucee"

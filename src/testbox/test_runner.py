@@ -1,14 +1,11 @@
 # thanks to the Default Package - Default/exec.py
 
 import sublime, sublime_plugin
-import json, os, re, time, urllib
+import json, os, re, time, urllib.request
 from functools import partial
-from os.path import dirname, realpath
+from .. import utils
 
-PACKAGE_PARTS = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/").split('/')
-PACKAGE_NAME = PACKAGE_PARTS[-3]
-PACKAGE_PATH = "/".join(PACKAGE_PARTS[:-2])
-TEMPLATE_PATH = PACKAGE_PATH + "/templates/testbox/"
+SYNTAX_EXT = "sublime-syntax" if int(sublime.version()) >= 3092 else "hidden-tmLanguage"
 RESULTS_TEMPLATES = {"logo": "","bundle": "", "results": "","global_exception": "", "legend": ""}
 RESULT_FILE_REGEX = "(\\S+):([0-9]+)$"
 
@@ -18,8 +15,7 @@ def plugin_loaded():
 def load():
 	global RESULTS_TEMPLATES
 	for template in RESULTS_TEMPLATES:
-		with open(TEMPLATE_PATH + template + ".txt", "r") as f:
-			RESULTS_TEMPLATES[template] = f.read()
+		RESULTS_TEMPLATES[template] = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/templates/testbox/" + template + ".txt")
 
 class TestboxCommand(sublime_plugin.WindowCommand):
 
@@ -62,8 +58,8 @@ class TestboxCommand(sublime_plugin.WindowCommand):
 		self.output_view.settings().set("line_numbers", False)
 		self.output_view.settings().set("gutter", False)
 		self.output_view.settings().set("scroll_past_end", False)
-		self.output_view.settings().set("color_scheme", "Packages/" + PACKAGE_NAME + "/color-schemes/testbox.tmTheme")
-		self.output_view.assign_syntax("Packages/" + PACKAGE_NAME + "/syntaxes/testbox.sublime-syntax")
+		self.output_view.settings().set("color_scheme", "Packages/" + utils.get_plugin_name() + "/color-schemes/testbox.tmTheme")
+		self.output_view.assign_syntax("Packages/" + utils.get_plugin_name() + "/syntaxes/testbox." + SYNTAX_EXT)
 
 		# As per Default/exec.py
 		# Call create_output_panel a second time after assigning the above

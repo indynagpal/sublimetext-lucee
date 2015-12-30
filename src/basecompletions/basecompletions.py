@@ -1,10 +1,10 @@
+import sublime
 import json
 from os.path import dirname, realpath
 from ..completions import CompletionList
 from ..inline_documentation import Documentation
 from .. import utils
 
-FULL_PATH = dirname(realpath(__file__)).replace("\\", "/")
 COMPLETION_FILES = ["lucee_tags","lucee_functions","lucee_member_functions","cfml_tags","cfml_functions","cfml_member_functions"]
 DOC_STYLES = {
 	"side_color": "#4C9BB0",
@@ -111,8 +111,7 @@ def load_completions():
 		completions["cgi"] = [(scope_variable.split(".").pop().upper() + "\tCGI", scope_variable.split(".").pop().upper()) for scope_variable in sorted(cgi.keys())]
 
 def load_json_data(filename):
-	with open(FULL_PATH + '/json/' + filename + '.json', 'r') as f:
-		json_data = f.read()
+	json_data = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/src/basecompletions/json/" + filename + ".json")
 	return json.loads(json_data)
 
 def make_tag_completion(tag, type, required_attrs):

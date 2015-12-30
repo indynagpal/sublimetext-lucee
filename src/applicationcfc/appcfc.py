@@ -4,7 +4,6 @@ from ..completions import CompletionList
 from ..inline_documentation import Documentation
 from .. import utils
 
-DIR_PATH = dirname(realpath(__file__)).replace("\\", "/")
 DOC_STYLES = {
 	"side_color": "#4C9BB0",
 	"header_color": "#306B7B",
@@ -31,8 +30,7 @@ def make_setting_completions(prefix, source_list):
 	return [(key + "\t" + prefix, key) for key in sorted(source_list)]
 
 def load_json_data(filename):
-	with open(DIR_PATH + "/json/" + filename + ".json", "r") as f:
-		json_data = f.read()
+	json_data = sublime.load_resource("Packages/" + utils.get_plugin_name() + "/src/applicationcfc/json/" + filename + ".json")
 	return json.loads(json_data)
 
 def get_dot_completions(view, prefix, position, info):
