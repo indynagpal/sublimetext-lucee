@@ -148,7 +148,7 @@
     "keys": ["/"],
     "command": "close_lucee_tag",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "embedding.cfml - string - comment - source.cfml.script", "match_all":true},
+      {"key": "selector", "operator": "equal", "operand": "embedding.cfml - string.quoted.single.cfml - string.quoted.double.cfml - comment - source.cfml.script", "match_all":true},
       {"key": "preceding_text", "operator": "regex_match", "operand": ".*<$", "match_all":true},
       {"key": "setting.auto_close_tags"}
     ]
@@ -157,7 +157,7 @@
     "keys": ["/"],
     "command": "close_lucee_tag",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "embedding.lucee - string - comment - source.lucee.script", "match_all":true},
+      {"key": "selector", "operator": "equal", "operand": "embedding.lucee - string.quoted.single.lucee - string.quoted.double.lucee - comment - source.lucee.script", "match_all":true},
       {"key": "preceding_text", "operator": "regex_match", "operand": ".*<$", "match_all":true},
       {"key": "setting.auto_close_tags"}
     ]

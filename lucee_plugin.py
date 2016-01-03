@@ -73,7 +73,8 @@ class CloseLuceeTagCommand(sublime_plugin.TextCommand):
 
 	def run(self, edit):
 		pt = self.view.sel()[0].begin()
-		last_open_tag = utils.get_last_open_tag(self.view,pt - 1)
+		lucee_only = self.view.match_selector(pt, "string")
+		last_open_tag = utils.get_last_open_tag(self.view,pt - 1, lucee_only)
 		if last_open_tag:
 			self.view.insert(edit,pt,"/" + last_open_tag + ">")
 		else:
