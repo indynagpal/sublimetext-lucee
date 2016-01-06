@@ -90,6 +90,10 @@ def get_struct_context(view, position):
 
 	return context
 
+def get_setting(setting_key):
+	lucee_settings = sublime.load_settings("lucee_package.sublime-settings")
+	return lucee_settings.get(setting_key)
+
 def get_tag_end(view, pos, is_lucee):
 	tag_end = view.find("/?>", pos)
 	if tag_end:
@@ -100,10 +104,13 @@ def get_tag_end(view, pos, is_lucee):
 		return get_tag_end(view, tag_end.end(), is_lucee)
 	return None
 
-
 def get_last_open_tag(view, pos, lucee_only):
 	tag_selector = "entity.name.tag.lucee, entity.name.tag.cfml" if lucee_only else "entity.name.tag"
 	closed_tags = []
+	lucee_non_closing_tags = get_setting("lucee_non_closing_tags")
+	cfml_non_closing_tags = get_setting("cfml_non_closing_tags")
+	html_non_closing_tags = get_setting("html_non_closing_tags")
+
 	tag_name_regions = reversed([r for r in view.find_by_selector(tag_selector) if r.end() <= pos])
 
 	for tag_name_region in tag_name_regions:
@@ -135,13 +142,13 @@ def get_last_open_tag(view, pos, lucee_only):
 			continue
 
 		# check to exclude cfml tags that should not have a closing tag
-		if tag_name in ["cfset","cfelse","cfelseif","cfcontinue","cfbreak","cfthrow","cfrethrow"]:
+		if tag_name in cfml_non_closing_tags:
 			continue
 		# check to exclude lucee tags that should not have a closing tag
-		if tag_name in [":set",":else",":elseif",":continue",":break",":throw",":rethrow"]:
+		if tag_name in lucee_non_closing_tags:
 			continue
 		# check to exclude html tags that should not have a closing tag
-		if tag_name in ["area","base","br","col","command","embed","hr","img","input","link","meta","param","source"]:
+		if tag_name in html_non_closing_tags:
 			continue
 
 		return tag_name
