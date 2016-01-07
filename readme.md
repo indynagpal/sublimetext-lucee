@@ -11,6 +11,8 @@ It includes syntax highlighting for both the new Lucee 5 dialect and the current
 
 Installation must currently be done manually by downloading the repository and placing it in a folder within your Sublime packages folder.
 
+**Note: For the time being I plan on focusing on the https://github.com/jcberquist/sublimetext-cfml repository, which is aimed more generically at CFML (as I have realized that I have a number of users that use this with ColdFusion). The only thing here that is not in the sublimetext-cfml repository is the syntax for the Lucee dialect coming in Lucee 5. So unless you are looking for the Lucee dialect syntax, I recommend you use the other repository. I plan on revisiting this as the Lucee 5 dialect comes out of development and is more widely available.**
+
 ### Key Bindings
 
 In tag attributes, script strings, and between `cfoutput` tags, pressing `#` will automatically be escaped `##` if there is no cursor selection, or it will wrap the currently selected text `#selected#`.
